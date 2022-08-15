@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/UI/SoundButton/SoundButton.gd" type="Script" id=1]
+
+[node name="SoundButton" type="Button"]
+rect_min_size = Vector2( 0, 40 )
+script = ExtResource( 1 )
+
+[node name="AudioStreamPlayers" type="Node" parent="."]
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="AudioStreamPlayers"]
+
+[connection signal="mouse_entered" from="." to="." method="_on_SoundButton_mouse_entered"]

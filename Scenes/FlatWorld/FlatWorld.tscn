@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
+[ext_resource path="res://Data/FlatWorld/data.hterrain" type="Resource" id=3]
+[ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+mode = 0
+textures = [ [  ], [  ] ]
+
+[node name="FlatWorld" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
+script = ExtResource( 2 )
+lod_scale = 2.0
+_terrain_data = ExtResource( 3 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 1 )
+render_layers = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02613, 0.834509, 1.1295 )
+mass = 10.0
+gravity_scale = 0.1

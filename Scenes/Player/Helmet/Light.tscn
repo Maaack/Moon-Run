@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Player/Helmet/Light.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Player/Helmet/OnLightGlass.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/Player/Helmet/OffLightGlass.tres" type="Material" id=4]
+
+[node name="Light" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+script = ExtResource( 2 )
+on_color = Color( 0.12549, 1, 0, 1 )
+on_material = ExtResource( 3 )
+off_color = Color( 1, 0, 0, 1 )
+off_material = ExtResource( 4 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.44622e-10, -0.0101718 )
+light_color = Color( 1, 0, 0, 1 )
+light_energy = 0.01
+omni_range = 0.25
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+radius = 0.025
+material = ExtResource( 4 )
+
+[node name="CSGSphere" type="CSGSphere" parent="CSGSphere"]
+operation = 2
+radius = 0.02
+material = ExtResource( 4 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11297e-09, 0.0254618 )
+operation = 2
+width = 0.05
+height = 0.05
+depth = 0.05

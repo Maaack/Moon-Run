@@ -1,0 +1,91 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scenes/Player/Camera/PlayerCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Player/Animations/PlayerCrouch.tres" type="Animation" id=5]
+[ext_resource path="res://Scenes/Player/Animations/PlayerStand.tres" type="Animation" id=6]
+[ext_resource path="res://Scenes/Player/Animations/PlayerStanding.tres" type="Animation" id=7]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.35
+height = 1.6
+
+[sub_resource type="Animation" id=4]
+resource_name = "Jogging"
+length = 0.3
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walking"
+length = 0.6
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Crouch"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "Stand"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Standing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/Crouch/node = SubResource( 11 )
+states/Crouch/position = Vector2( 411, 43 )
+states/Stand/node = SubResource( 13 )
+states/Stand/position = Vector2( 221, 137 )
+states/Standing/node = SubResource( 18 )
+states/Standing/position = Vector2( 36, 43 )
+transitions = [ "Crouch", "Stand", SubResource( 15 ), "Standing", "Crouch", SubResource( 19 ), "Stand", "Standing", SubResource( 20 ) ]
+start_node = "Standing"
+graph_offset = Vector2( -181.595, -43 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="SphereShape" id=17]
+radius = 0.35
+
+[node name="Player" type="KinematicBody"]
+collision_layer = 8
+script = ExtResource( 4 )
+
+[node name="Body" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, -1, 0 )
+shape = SubResource( 1 )
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="PlayerCamera" parent="Pivot" instance=ExtResource( 3 )]
+far = 1024.0
+
+[node name="FootstepsAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+anims/Jogging = SubResource( 4 )
+anims/Walking = SubResource( 3 )
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Crouch = ExtResource( 5 )
+anims/Stand = ExtResource( 6 )
+anims/Standing = ExtResource( 7 )
+
+[node name="BodyAnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../BodyAnimationPlayer")
+active = true
+parameters/playback = SubResource( 10 )
+
+[node name="StandUpArea" type="Area" parent="."]
+collision_layer = 0
+
+[node name="ImpactDetection" type="CollisionShape" parent="StandUpArea"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.55, 0 )
+shape = SubResource( 17 )
+
+[connection signal="body_entered" from="StandUpArea" to="." method="_on_StandUpArea_body_entered"]
+[connection signal="body_exited" from="StandUpArea" to="." method="_on_StandUpArea_body_exited"]

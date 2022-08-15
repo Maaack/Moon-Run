@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Player/Helmet/Light.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player/Helmet/Helmet.gd" type="Script" id=3]
+
+[node name="Helmet" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+radius = 0.5
+radial_segments = 24
+rings = 12
+
+[node name="CSGSphere2" type="CSGSphere" parent="CSGSphere"]
+operation = 2
+radius = 0.35
+radial_segments = 24
+rings = 12
+
+[node name="CSGBox" type="CSGBox" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.332776 )
+operation = 2
+width = 0.66
+height = 0.5
+depth = 0.5
+
+[node name="LeftLight" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.252, -0.25, -0.283385 )
+toggle_state = true
+
+[node name="RightLight" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.251503, -0.250419, -0.283367 )
+
+[node name="CameraPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0562407 )
+
+[node name="Camera" type="Camera" parent="CameraPivot"]
