@@ -1,19 +1,14 @@
 extends Control
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var sub_menu
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func open_sub_menu(menu : Control):
+	$Main.visible = false
+	menu.visible = true
+	sub_menu = $OptionsMenu
+	$BackButton.visible = true
 
 
 func _on_Play_pressed():
@@ -21,7 +16,7 @@ func _on_Play_pressed():
 
 
 func _on_Options_pressed():
-	pass # Replace with function body.
+	open_sub_menu($OptionsMenu)
 
 
 func _on_Credits_pressed():
@@ -32,3 +27,9 @@ func _on_Exit_pressed():
 	get_tree().quit()
 
 
+func _on_BackButton_pressed():
+	if sub_menu:
+		$BackButton.visible = false
+		sub_menu.visible = false
+		$Main.visible = true
+		sub_menu = null
