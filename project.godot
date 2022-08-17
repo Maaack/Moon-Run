@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Moon Run"
-run/main_scene="res://Scenes/GameScene/GameScene.tscn"
+run/main_scene="res://Scenes/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -53,6 +53,7 @@ config/icon="res://icon.png"
 PauseMenuController="*res://Scripts/PauseMenuController.gd"
 Config="*res://Scripts/Config.gd"
 GameLog="*res://Scripts/GameLog.gd"
+SceneLoader="*res://Scenes/LoadingScreen/SceneLoader.gd"
 
 [editor_plugins]
 

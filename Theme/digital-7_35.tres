@@ -3,6 +3,7 @@
 [ext_resource path="res://Theme/digital-7.ttf" type="DynamicFontData" id=1]
 
 [resource]
-extra_spacing_bottom = 4
+size = 35
+extra_spacing_bottom = 6
 extra_spacing_char = 1
 font_data = ExtResource( 1 )
