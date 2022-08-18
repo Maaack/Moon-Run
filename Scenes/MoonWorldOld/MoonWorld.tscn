@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/MoonWorld/MoonWorld.gd" type="Script" id=1]
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=2]
-[ext_resource path="res://Data/Moon/data.hterrain" type="Resource" id=3]
+[ext_resource path="res://Data/MoonWorldOld/data.hterrain" type="Resource" id=3]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=5]
 
@@ -22,8 +22,8 @@ ambient_light_energy = 0.1
 [node name="MoonWorld" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="MoonHTerrain" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -512, 0, -512 )
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -256, 0, -256 )
 script = ExtResource( 5 )
 lod_scale = 2.0
 _terrain_data = ExtResource( 3 )
@@ -50,7 +50,7 @@ shadow_enabled = true
 shadow_bias = 0.05
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -443.464, -94.8268, -460.589 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -190.309, -79.6563, -208.046 )
 
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]

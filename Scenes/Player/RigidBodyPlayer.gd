@@ -12,19 +12,23 @@ onready var camera_pivot = $Pivot
 onready var camera = $Pivot/PlayerCamera
 onready var left_leg = $Legs/LeftRayCast
 onready var right_leg = $Legs/RightRayCast
+onready var left_arm = $Arms/LeftRayCast
+onready var right_arm = $Arms/RightRayCast
 var forward_movement_vector : Vector3 = Vector3.FORWARD
 var bounce_movement_vector : Vector3 = Vector3.UP
-var bounce_force : float = 5.0
-var jump_force : float = 300.0
+var bounce_force : float = 2.5
+var jump_force : float = 360.0
 var walk_force : float = 12.0
 var turn_force : float = 1.0
 var rotate_y_force : float = 0.0
-var angular_damp_on_ground : float = 6.0
-var linear_damp_on_ground : float = 2.0
+var angular_damp_per_contact : float = 3.0
+var linear_damp_per_contact : float = 0.25
 var free_look_mode : bool = false setget set_free_look_mode
 
 var left_foot_grounded : bool = false setget set_left_foot_grounded
 var right_foot_grounded : bool = false setget set_right_foot_grounded
+var left_arm_contacting : bool = false
+var right_arm_contacting : bool = false
 
 func set_left_foot_grounded(value : bool) -> void:
 	if value == left_foot_grounded:
@@ -41,11 +45,23 @@ func set_right_foot_grounded(value : bool) -> void:
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _get_linear_damp_by_contacts() -> float:
+	var total_linear_damp : float = 0
+	total_linear_damp = int(left_foot_grounded) + int(right_foot_grounded)
+	total_linear_damp *= linear_damp_per_contact
+	return total_linear_damp
+
+func _get_angular_damp_by_contacts() -> float:
+	var total_angular_damp : float = 0
+	total_angular_damp = int(left_foot_grounded) + int(right_foot_grounded) + int(left_arm_contacting) + int(right_arm_contacting)
+	total_angular_damp *= angular_damp_per_contact
+	return total_angular_damp
+
 func _both_feet_can_reach_ground():
 	return left_foot_grounded and right_foot_grounded
 
 func _can_reach_ground():
-	return left_foot_grounded or right_foot_grounded
+	return left_foot_grounded or right_foot_grounded or left_arm_contacting or right_arm_contacting
 
 func _get_spatial_origin_relative(node : Spatial):
 		return node.global_transform.origin - global_transform.origin
@@ -62,15 +78,13 @@ func set_free_look_mode(value : bool) -> void:
 		emit_signal("camera_y_reset", duration)
 
 func _process(delta):
-	self.left_foot_grounded = $Legs/LeftRayCast.is_colliding()
-	self.right_foot_grounded = $Legs/RightRayCast.is_colliding()
-	linear_damp = linear_damp_on_ground
-	angular_damp = angular_damp_on_ground
-	if not _both_feet_can_reach_ground():
-		linear_damp = 0.0
-		angular_damp = 0.0
-		self.free_look_mode = true
-	elif Input.is_action_pressed("free_look"):
+	self.left_foot_grounded = left_leg.is_colliding()
+	self.right_foot_grounded = right_leg.is_colliding()
+	self.left_arm_contacting = left_arm.is_colliding()
+	self.right_arm_contacting = right_arm.is_colliding()
+	linear_damp = _get_linear_damp_by_contacts()
+	angular_damp = _get_angular_damp_by_contacts()
+	if not _can_reach_ground() or Input.is_action_pressed("free_look"):
 		self.free_look_mode = true
 	else:
 		self.free_look_mode = false
@@ -88,6 +102,18 @@ func _input(event):
 		camera.rotation.x = clamp(camera.rotation.x, -0.90, 1)
 		emit_signal("camera_x_rotated", camera.rotation.x)
 
+func _get_input_direction():
+	var total_input_direction : Vector3
+	if Input.is_action_pressed("move_forward"):
+		total_input_direction += Vector3.FORWARD
+	if Input.is_action_pressed("move_back"):
+		total_input_direction += Vector3.BACK
+	if Input.is_action_pressed("move_left"):
+		total_input_direction += Vector3.LEFT
+	if Input.is_action_pressed("move_right"):
+		total_input_direction += Vector3.RIGHT
+	return total_input_direction.normalized()
+
 func _integrate_forces(state):
 	rotate_y_force += rad2deg(camera_pivot.rotation.y) * 0.01
 	if rotate_y_force != 0.0 and not free_look_mode:
@@ -96,14 +122,15 @@ func _integrate_forces(state):
 	if Input.is_action_pressed("jump") and _both_feet_can_reach_ground():
 		var jump_impulse : Vector3 = bounce_movement_vector * jump_force * mass
 		state.add_central_force(bounce_movement_vector * jump_force * mass)
-	if Input.is_action_pressed("move_forward"):
+	var input_direction : Vector3 = _get_input_direction()
+	if input_direction != Vector3.ZERO:
 		if right_foot_grounded:
 			var foot_vector : Vector3 = -right_leg.cast_to.normalized()
-			var next_impulse : Vector3 = forward_movement_vector.rotated(Vector3.UP, rotation.y) * walk_force * mass
+			var next_impulse : Vector3 = input_direction.rotated(Vector3.UP, rotation.y) * walk_force * mass
 			next_impulse += foot_vector * bounce_force * mass
 			state.add_central_force(next_impulse)
 		if left_foot_grounded:
 			var foot_vector : Vector3 = -left_leg.cast_to.normalized()
-			var next_impulse : Vector3 = forward_movement_vector.rotated(Vector3.UP, rotation.y) * walk_force * mass
+			var next_impulse : Vector3 = input_direction.rotated(Vector3.UP, rotation.y) * walk_force * mass
 			next_impulse += foot_vector * bounce_force * mass
 			state.add_central_force(next_impulse)
