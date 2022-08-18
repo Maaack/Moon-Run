@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SketchLevel/LongPlatform.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SketchLevel/TunnelLight.tscn" type="PackedScene" id=2]
+
+[node name="Tunnel" type="Spatial"]
+
+[node name="LongPlatform" parent="." instance=ExtResource( 1 )]
+
+[node name="LongPlatform2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28, 0 )
+
+[node name="LongPlatform3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 7, 12 )
+
+[node name="LongPlatform4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 7, -12 )
+
+[node name="LongPlatform5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -0.5, -0.866025, 0, 0.866025, -0.5, 0, 21, -12 )
+
+[node name="LongPlatform6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 21, 12 )
+
+[node name="TunnelLight" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 14, 14 )
+
+[node name="TunnelLight2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 14, -14 )
+
+[node name="TunnelLight3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 14, 14 )
+
+[node name="TunnelLight4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 14, -14 )
