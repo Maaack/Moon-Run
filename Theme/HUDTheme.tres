@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=2]
 
-[ext_resource path="res://Theme/digital-7_25.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Theme/digital-7_25_green_outline.tres" type="DynamicFont" id=1]
+
 
 [resource]
 default_font = ExtResource( 1 )
