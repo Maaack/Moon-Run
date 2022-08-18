@@ -10,8 +10,6 @@ export(float) var mouse_sensitivity : float = 0.02
 
 onready var camera_pivot = $Pivot
 onready var camera = $Pivot/PlayerCamera
-onready var left_leg = $Legs/LeftRayCast
-onready var right_leg = $Legs/RightRayCast
 onready var left_arm = $Arms/LeftRayCast
 onready var right_arm = $Arms/RightRayCast
 var forward_movement_vector : Vector3 = Vector3.FORWARD
@@ -25,22 +23,10 @@ var angular_damp_per_contact : float = 3.0
 var linear_damp_per_contact : float = 0.25
 var free_look_mode : bool = false setget set_free_look_mode
 
-var left_foot_grounded : bool = false setget set_left_foot_grounded
-var right_foot_grounded : bool = false setget set_right_foot_grounded
+var left_foot_grounded : bool = false
+var right_foot_grounded : bool = false
 var left_arm_contacting : bool = false
 var right_arm_contacting : bool = false
-
-func set_left_foot_grounded(value : bool) -> void:
-	if value == left_foot_grounded:
-		return
-	left_foot_grounded = value
-	emit_signal("left_foot_grounded", value)
-
-func set_right_foot_grounded(value : bool) -> void:
-	if value == right_foot_grounded:
-		return
-	right_foot_grounded = value
-	emit_signal("right_foot_grounded", value)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -78,8 +64,6 @@ func set_free_look_mode(value : bool) -> void:
 		emit_signal("camera_y_reset", duration)
 
 func _process(delta):
-	self.left_foot_grounded = left_leg.is_colliding()
-	self.right_foot_grounded = right_leg.is_colliding()
 	self.left_arm_contacting = left_arm.is_colliding()
 	self.right_arm_contacting = right_arm.is_colliding()
 	linear_damp = _get_linear_damp_by_contacts()
@@ -124,13 +108,17 @@ func _integrate_forces(state):
 		state.add_central_force(bounce_movement_vector * jump_force * mass)
 	var input_direction : Vector3 = _get_input_direction()
 	if input_direction != Vector3.ZERO:
-		if right_foot_grounded:
-			var foot_vector : Vector3 = -right_leg.cast_to.normalized()
-			var next_impulse : Vector3 = input_direction.rotated(Vector3.UP, rotation.y) * walk_force * mass
-			next_impulse += foot_vector * bounce_force * mass
-			state.add_central_force(next_impulse)
-		if left_foot_grounded:
-			var foot_vector : Vector3 = -left_leg.cast_to.normalized()
-			var next_impulse : Vector3 = input_direction.rotated(Vector3.UP, rotation.y) * walk_force * mass
-			next_impulse += foot_vector * bounce_force * mass
-			state.add_central_force(next_impulse)
+		if $RightLegControl.can_step():
+			$RightLegControl.step()
+		if $LeftLegControl.can_step():
+			$LeftLegControl.step()
+		state.add_central_force($RightLegControl.get_force_of_step(rotation.y, input_direction, mass))
+		state.add_central_force($LeftLegControl.get_force_of_step(rotation.y, input_direction, mass))
+
+func _on_LeftLegControl_foot_grounded(value):
+	left_foot_grounded = value
+	emit_signal("left_foot_grounded", value)
+
+func _on_RightLegControl_foot_grounded(value):
+	right_foot_grounded = value
+	emit_signal("right_foot_grounded", value)

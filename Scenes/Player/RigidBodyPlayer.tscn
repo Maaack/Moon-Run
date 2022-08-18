@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerBodyShape.tres" type="Shape" id=2]
 [ext_resource path="res://Scenes/Player/Camera/PlayerCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Originals/SFX/Footsteps/FS_1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Scenes/Player/Leg/Leg.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=4]
 resource_name = "Jogging"
@@ -16,6 +18,10 @@ length = 0.6
 radius = 0.25
 mid_height = 0.8
 radial_segments = 16
+
+[sub_resource type="AudioStreamRandomPitch" id=22]
+audio_stream = ExtResource( 4 )
+random_pitch = 1.05
 
 [node name="Player" type="RigidBody"]
 collision_layer = 8
@@ -40,16 +46,23 @@ root_node = NodePath("../..")
 anims/Jogging = SubResource( 4 )
 anims/Walking = SubResource( 3 )
 
+[node name="LeftLegControl" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0 )
+cast_to = Vector3( -0.4, -1.2, 0 )
+
+[node name="RightLegControl" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0 )
+cast_to = Vector3( 0.4, -1.2, 0 )
+
 [node name="Legs" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9889, 0 )
 
 [node name="LeftRayCast" type="RayCast" parent="Legs"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0 )
 enabled = true
 cast_to = Vector3( -0.4, -1.2, 0 )
 
 [node name="RightRayCast" type="RayCast" parent="Legs"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0 )
 enabled = true
 cast_to = Vector3( 0.4, -1.2, 0 )
 
@@ -71,13 +84,24 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.1
 mesh = SubResource( 21 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.199769, 1, 0 )
+transform = Transform( 0.965926, 0, 0.258819, -0.0669873, 0.965926, 0.25, -0.25, -0.258819, 0.933013, -0.199769, 1, 0 )
 light_energy = 0.2
 spot_range = 40.0
 spot_attenuation = 3.0
 
 [node name="SpotLight2" type="SpotLight" parent="."]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.2, 1, 0 )
+transform = Transform( 0.965926, 0, -0.258819, 0.0669873, 0.965926, 0.25, 0.25, -0.258819, 0.933013, 0.2, 1, 0 )
 light_energy = 0.2
 spot_range = 40.0
 spot_attenuation = 3.0
+
+[node name="LeftFootAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -1, 0 )
+stream = SubResource( 22 )
+
+[node name="RightFoodAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -1, 0 )
+stream = SubResource( 22 )
+
+[connection signal="foot_grounded" from="LeftLegControl" to="." method="_on_LeftLegControl_foot_grounded"]
+[connection signal="foot_grounded" from="RightLegControl" to="." method="_on_RightLegControl_foot_grounded"]
