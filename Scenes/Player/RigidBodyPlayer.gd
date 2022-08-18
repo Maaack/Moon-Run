@@ -14,13 +14,13 @@ onready var left_leg = $Legs/LeftRayCast
 onready var right_leg = $Legs/RightRayCast
 var forward_movement_vector : Vector3 = Vector3.FORWARD
 var bounce_movement_vector : Vector3 = Vector3.UP
-var bounce_force : float = 5.0
-var jump_force : float = 300.0
+var bounce_force : float = 2.5
+var jump_force : float = 360.0
 var walk_force : float = 12.0
 var turn_force : float = 1.0
 var rotate_y_force : float = 0.0
 var angular_damp_on_ground : float = 6.0
-var linear_damp_on_ground : float = 2.0
+var linear_damp_on_ground : float = 0.5
 var free_look_mode : bool = false setget set_free_look_mode
 
 var left_foot_grounded : bool = false setget set_left_foot_grounded
