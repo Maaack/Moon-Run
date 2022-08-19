@@ -2,6 +2,7 @@ extends RigidBody
 
 signal camera_x_rotated(value)
 signal camera_y_rotated(value)
+signal player_y_rotated(value)
 signal camera_y_reset(duration)
 signal left_foot_grounded(state)
 signal right_foot_grounded(state)
@@ -16,7 +17,6 @@ var forward_movement_vector : Vector3 = Vector3.FORWARD
 var bounce_movement_vector : Vector3 = Vector3.UP
 var bounce_force : float = 2.5
 var jump_force : float = 360.0
-var walk_force : float = 12.0
 var turn_force : float = 1.0
 var rotate_y_force : float = 0.0
 var angular_damp_per_contact : float = 3.0
@@ -68,10 +68,8 @@ func _process(delta):
 	self.right_arm_contacting = right_arm.is_colliding()
 	linear_damp = _get_linear_damp_by_contacts()
 	angular_damp = _get_angular_damp_by_contacts()
-	if not _can_reach_ground() or Input.is_action_pressed("free_look"):
-		self.free_look_mode = true
-	else:
-		self.free_look_mode = false
+	self.free_look_mode = not _can_reach_ground() or Input.is_action_pressed("free_look")
+	emit_signal("player_y_rotated", camera_pivot.global_rotation.y)
 
 func _input(event):
 	if event is InputEventMouseButton:

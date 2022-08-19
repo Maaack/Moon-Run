@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Player/Helmet/Helmet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/SketchLevel/SketchLevel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Originals/SFX/LowRumble/LowRumbleLoop.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Originals/SFX/Inhaleexhale/Exhale 1 - GDWJM.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Originals/SFX/Inhaleexhale/Inhale 3 - GDWJM.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Scenes/MoonBody/MoonBody.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Breath"
@@ -51,7 +52,35 @@ random_pitch = 1.05
 [node name="GameScene" type="Node"]
 script = ExtResource( 3 )
 
-[node name="MoonWorld" parent="." instance=ExtResource( 2 )]
+[node name="MeteorsViewport" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="MeteorsViewport"]
+size = Vector2( 1024, 600 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="MoonBody" parent="MeteorsViewport/Viewport" instance=ExtResource( 7 )]
+
+[node name="WorldContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="WorldContainer"]
+size = Vector2( 1024, 600 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+audio_listener_enable_3d = true
+shadow_atlas_size = 1024
+
+[node name="MoonWorld" parent="WorldContainer/Viewport" instance=ExtResource( 2 )]
 
 [node name="HelmetViewport" type="ViewportContainer" parent="."]
 anchor_right = 1.0
@@ -87,8 +116,9 @@ volume_db = -10.0
 stream = SubResource( 3 )
 volume_db = -10.0
 
-[connection signal="player_camera_x_rotated" from="MoonWorld" to="." method="_on_MoonWorld_player_camera_x_rotated"]
-[connection signal="player_camera_y_reset" from="MoonWorld" to="." method="_on_MoonWorld_player_camera_y_reset"]
-[connection signal="player_camera_y_rotated" from="MoonWorld" to="." method="_on_MoonWorld_player_camera_y_rotated"]
-[connection signal="player_left_foot_grounded" from="MoonWorld" to="." method="_on_MoonWorld_player_left_foot_grounded"]
-[connection signal="player_right_foot_grounded" from="MoonWorld" to="." method="_on_MoonWorld_player_right_foot_grounded"]
+[connection signal="player_camera_x_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_x_rotated"]
+[connection signal="player_camera_y_reset" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_reset"]
+[connection signal="player_camera_y_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_rotated"]
+[connection signal="player_left_foot_grounded" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_left_foot_grounded"]
+[connection signal="player_right_foot_grounded" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_right_foot_grounded"]
+[connection signal="player_y_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_y_rotated"]
