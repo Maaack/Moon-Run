@@ -21,6 +21,7 @@ func set_cast_to(value : Vector3) -> void:
 		return
 	cast_to = value
 	$RayCast.cast_to = cast_to
+	$Footstep.translation = cast_to
 
 func set_foot_grounded(value : bool) -> void:
 	if value == foot_grounded:
