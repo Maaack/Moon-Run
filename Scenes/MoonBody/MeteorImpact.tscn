@@ -1,0 +1,161 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scenes/MoonBody/MeteorImpact.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sourced/White puff/whitePuff00.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sourced/White puff/whitePuff14.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MoonBody/MeteorImpactScaleCurveTexture.tres" type="Texture" id=4]
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 5
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 5.0
+emission_ring_height = 0.0
+emission_ring_axis = Vector3( 0, 1, 0 )
+direction = Vector3( 0, 1, 0 )
+spread = 60.0
+gravity = Vector3( 0, -0.5, 0 )
+initial_velocity = 10.0
+angle = 360.0
+angle_random = 1.0
+scale_random = 0.25
+scale_curve = ExtResource( 4 )
+anim_speed_random = 0.4
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 1, 1, 0.498039 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 10 )
+size = Vector2( 40, 40 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 5
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 4.0
+emission_ring_height = 0.0
+emission_ring_axis = Vector3( 0, 1, 0 )
+direction = Vector3( 0, 1, 0 )
+spread = 30.0
+gravity = Vector3( 0, -0.5, 0 )
+initial_velocity = 8.0
+angle = 360.0
+angle_random = 1.0
+scale_curve = ExtResource( 4 )
+anim_speed_random = 0.4
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.47451, 0.47451, 0.47451, 0.521569 )
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=13]
+material = SubResource( 12 )
+size = Vector2( 20, 20 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 5
+emission_ring_radius = 6.0
+emission_ring_inner_radius = 2.0
+emission_ring_height = 0.0
+emission_ring_axis = Vector3( 0, 1, 0 )
+direction = Vector3( 0, 1, 0 )
+spread = 15.0
+gravity = Vector3( 0, -0.5, 0 )
+initial_velocity = 6.0
+angle = 360.0
+angle_random = 1.0
+scale_curve = ExtResource( 4 )
+anim_speed_random = 0.4
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.215686, 0.215686, 0.215686, 0.494118 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=15]
+material = SubResource( 14 )
+size = Vector2( 10, 10 )
+
+[sub_resource type="Animation" id=16]
+resource_name = "New Anim"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+} ]
+}
+
+[sub_resource type="SphereShape" id=17]
+radius = 10.0
+
+[node name="MeteorImpact" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="TopLayerLightParticles" type="Particles" parent="."]
+emitting = false
+amount = 50
+lifetime = 25.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.5
+visibility_aabb = AABB( -25.088, -25.2529, -25.4195, 50.1761, 50.5057, 50.839 )
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 11 )
+
+[node name="MidLayerLightParticles" type="Particles" parent="."]
+emitting = false
+amount = 50
+lifetime = 25.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.5
+visibility_aabb = AABB( -25.5354, -25.2588, -24.8715, 51.0708, 50.5175, 49.743 )
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 13 )
+
+[node name="BottomLayerLightParticles" type="Particles" parent="."]
+emitting = false
+amount = 50
+lifetime = 25.0
+one_shot = true
+explosiveness = 0.8
+randomness = 0.5
+visibility_aabb = AABB( -25.1949, -25.2073, -25.0239, 50.3898, 50.4145, 50.0478 )
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/New Anim" = SubResource( 16 )
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 17 )
