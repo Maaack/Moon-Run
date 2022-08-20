@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SketchLevel/Tunnel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SketchLevel/Chamber.tscn" type="PackedScene" id=2]
+
+[node name="EndChamber" instance=ExtResource( 2 )]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="WallsCSG" index="1"]
+transform = Transform( -4.37114e-08, -1, 0, 0.866025, -3.78552e-08, -0.5, 0.5, -2.18557e-08, 0.866025, 58.92, 13, 0 )
+operation = 2
+radius = 16.0
+height = 16.0
+sides = 6
+
+[node name="Tunnel" parent="." index="2" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.2498, -0.5, 0 )
+visible = false

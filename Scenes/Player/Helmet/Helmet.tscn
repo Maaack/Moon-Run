@@ -44,7 +44,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250346, 0 )
 
 [node name="LeftLight" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.252, -0.25, -0.283385 )
-toggle_state = true
 
 [node name="RightLight" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.251503, -0.250419, -0.283367 )
