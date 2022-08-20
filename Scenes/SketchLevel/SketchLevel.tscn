@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/SketchLevel/LongPlatform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=8]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=9]
 [ext_resource path="res://Data/Moon/data.hterrain" type="Resource" id=10]
+[ext_resource path="res://Scenes/Pickups/OxygenPickup.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -151,6 +152,9 @@ shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="OxygenPickup" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -351.237, -168.333, -354.342 )
 
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]

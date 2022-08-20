@@ -7,7 +7,6 @@
 [ext_resource path="res://Assets/Originals/SFX/Inhaleexhale/Exhale 1 - GDWJM.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Originals/SFX/Inhaleexhale/Inhale 3 - GDWJM.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/MoonMiniature/MoonMiniature.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Pickups/OxygenPickup.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Breath"
@@ -116,9 +115,6 @@ volume_db = -10.0
 [node name="Exhale" type="AudioStreamPlayer" parent="AudioPlayers/Breathing"]
 stream = SubResource( 3 )
 volume_db = -10.0
-
-[node name="OxygenPickup" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -351.237, -168.333, -354.342 )
 
 [connection signal="player_camera_x_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_x_rotated"]
 [connection signal="player_camera_y_reset" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_reset"]
