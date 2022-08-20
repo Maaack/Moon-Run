@@ -99,13 +99,13 @@ text = "Outside - Medium"
 font = ExtResource( 6 )
 
 [node name="FlatBox" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.404, -313.694 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.017, -313.694 )
 
 [node name="FlatBox2" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.175, -313.694 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -167.58, -313.694 )
 
 [node name="FlatBox3" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -314.807, -168.414, -318.698 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -324.813, -168.027, -317.778 )
 
 [node name="LongTunnel" parent="." instance=ExtResource( 7 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -293.95, -168.834, -294.705 )
