@@ -1,4 +1,4 @@
-extends Spatial
+extends Node
 
 var can_pause = true # to prevent from instantly repausing after unpaused from the pause menu by pressing ui_cancel
 

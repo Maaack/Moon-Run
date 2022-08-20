@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Scenes/MoonBody/MeteorImpact.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sourced/White puff/whitePuff00.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/MoonMiniature/MeteorImpact.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/MoonMiniature/MeteorImpactScaleCurveTexture.tres" type="Texture" id=2]
 [ext_resource path="res://Assets/Sourced/White puff/whitePuff14.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/MoonBody/MeteorImpactScaleCurveTexture.tres" type="Texture" id=4]
+[ext_resource path="res://Assets/Sourced/White puff/whitePuff00.png" type="Texture" id=4]
 
 [sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 5
-emission_ring_radius = 10.0
-emission_ring_inner_radius = 5.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 10.0
 emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 1, 0 )
 direction = Vector3( 0, 1, 0 )
@@ -18,7 +18,7 @@ initial_velocity = 10.0
 angle = 360.0
 angle_random = 1.0
 scale_random = 0.25
-scale_curve = ExtResource( 4 )
+scale_curve = ExtResource( 2 )
 anim_speed_random = 0.4
 
 [sub_resource type="SpatialMaterial" id=10]
@@ -30,7 +30,7 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_color = Color( 1, 1, 1, 0.498039 )
-albedo_texture = ExtResource( 2 )
+albedo_texture = ExtResource( 4 )
 
 [sub_resource type="QuadMesh" id=11]
 material = SubResource( 10 )
@@ -38,8 +38,8 @@ size = Vector2( 40, 40 )
 
 [sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 5
-emission_ring_radius = 8.0
-emission_ring_inner_radius = 4.0
+emission_ring_radius = 15.0
+emission_ring_inner_radius = 5.0
 emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 1, 0 )
 direction = Vector3( 0, 1, 0 )
@@ -48,7 +48,7 @@ gravity = Vector3( 0, -0.5, 0 )
 initial_velocity = 8.0
 angle = 360.0
 angle_random = 1.0
-scale_curve = ExtResource( 4 )
+scale_curve = ExtResource( 2 )
 anim_speed_random = 0.4
 
 [sub_resource type="SpatialMaterial" id=12]
@@ -68,8 +68,8 @@ size = Vector2( 20, 20 )
 
 [sub_resource type="ParticlesMaterial" id=7]
 emission_shape = 5
-emission_ring_radius = 6.0
-emission_ring_inner_radius = 2.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 4.0
 emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 1, 0 )
 direction = Vector3( 0, 1, 0 )
@@ -78,7 +78,7 @@ gravity = Vector3( 0, -0.5, 0 )
 initial_velocity = 6.0
 angle = 360.0
 angle_random = 1.0
-scale_curve = ExtResource( 4 )
+scale_curve = ExtResource( 2 )
 anim_speed_random = 0.4
 
 [sub_resource type="SpatialMaterial" id=14]
@@ -90,7 +90,7 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_color = Color( 0.215686, 0.215686, 0.215686, 0.494118 )
-albedo_texture = ExtResource( 2 )
+albedo_texture = ExtResource( 4 )
 
 [sub_resource type="QuadMesh" id=15]
 material = SubResource( 14 )
