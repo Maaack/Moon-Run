@@ -51,10 +51,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PauseMenuController="*res://Scripts/PauseMenuController.gd"
 Config="*res://Scripts/Config.gd"
 GameLog="*res://Scripts/GameLog.gd"
 SceneLoader="*res://Scenes/LoadingScreen/SceneLoader.gd"
+InGameMenuController="*res://Scripts/InGameMenuController.gd"
 
 [editor_plugins]
 
