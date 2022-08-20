@@ -53,3 +53,19 @@ func _on_MoonWorld_succeeded(rest_stops):
 	InGameMenuController.open_menu(success_screen_packed, false)
 	if InGameMenuController.current_menu.has_method("set_rest_stops"):
 		InGameMenuController.current_menu.set_rest_stops(rest_stops)
+
+
+func _on_MoonWorld_player_oxygen_picked_up():
+	$HelmetViewport/Viewport/Helmet.oxygen = 100
+
+
+func _on_Helmet_start_asphyxiation():
+	$AsphyxiationTimer.start()
+
+
+func _on_Helmet_stop_asphyxiation():
+	$AsphyxiationTimer.stop()
+
+
+func _on_AsphyxiationTimer_timeout():
+	$WorldContainer/Viewport/MoonWorld/Player.kill_human($WorldContainer/Viewport/MoonWorld/Player.DEATH_REASONS.ASPHYXIATION)

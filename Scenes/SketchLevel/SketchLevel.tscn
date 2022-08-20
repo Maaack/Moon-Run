@@ -169,6 +169,7 @@ TODO: Delete me"
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
 [connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
+[connection signal="oxygen_picked_up" from="Player" to="." method="_on_Player_oxygen_picked_up"]
 [connection signal="player_y_rotated" from="Player" to="." method="_on_Player_player_y_rotated"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
 [connection signal="succeeded" from="Player" to="." method="_on_Player_succeeded"]
