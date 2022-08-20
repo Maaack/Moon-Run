@@ -82,8 +82,6 @@ func _process(delta):
 	emit_signal("player_y_rotated", camera_pivot.global_rotation.y)
 
 func _input(event):
-	if event is InputEventMouseButton:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y_force = -event.relative.x * mouse_sensitivity * turn_force
 		if free_look_mode:

@@ -16,11 +16,11 @@ func _input(event):
 			$OptionsMenu.visible = false
 			$ButtonsContainer.visible = true
 		else:
-			PauseMenuController.paused = false
+			InGameMenuController.close_menu()
 
 
 func _on_ResumeBtn_pressed():
-	PauseMenuController.paused = false
+	InGameMenuController.close_menu()
 
 
 func _on_OptionsBtn_pressed():
@@ -37,7 +37,7 @@ func _on_ExitBtn_pressed():
 
 
 func _on_ConfirmMainMenu_confirmed():
-	PauseMenuController.paused = false
+	InGameMenuController.close_menu()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene("res://Scenes/MainMenu/MainMenu.tscn")
 
