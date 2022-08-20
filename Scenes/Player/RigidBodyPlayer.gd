@@ -86,7 +86,7 @@ func add_play_time(delta : float) -> void:
 	run_time += delta
 	real_run_time += delta
 
-func succeed_escape() -> void:
+func succeed() -> void:
 	controls_frozen = true
 	emit_signal("succeeded", rest_stops)
 
