@@ -1,6 +1,7 @@
 extends Node
 
 var death_screen_packed = preload("res://Scenes/DeathScreen/DeathScreen.tscn")
+var success_screen_packed = preload("res://Scenes/SuccessScreen/SuccessScreen.tscn")
 
 func _on_MoonWorld_player_camera_x_rotated(value):
 	$HelmetViewport/Viewport/Helmet.rotate_camera_x(value)
@@ -25,3 +26,8 @@ func _on_MoonWorld_human_died(reason):
 	InGameMenuController.open_menu(death_screen_packed, false)
 	if InGameMenuController.current_menu.has_method("set_reason"):
 		InGameMenuController.current_menu.set_reason(reason)
+
+func _on_MoonWorld_succeeded(rest_stops):
+	InGameMenuController.open_menu(success_screen_packed, false)
+	if InGameMenuController.current_menu.has_method("set_rest_stops"):
+		InGameMenuController.current_menu.set_rest_stops(rest_stops)

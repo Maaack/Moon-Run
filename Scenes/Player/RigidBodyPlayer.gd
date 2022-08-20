@@ -13,6 +13,7 @@ signal left_foot_grounded(state)
 signal right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
+signal succeeded(rest_stops)
 
 export(float) var mouse_sensitivity : float = 0.02
 
@@ -37,7 +38,10 @@ var left_foot_grounded : bool = false
 var right_foot_grounded : bool = false
 var left_arm_contacting : bool = false
 var right_arm_contacting : bool = false
-var human_dead : bool = false
+var controls_frozen : bool = false
+var run_time : float = 0.0
+var real_run_time : float = 0.0
+var rest_stops : int = 0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -74,8 +78,20 @@ func set_free_look_mode(value : bool) -> void:
 		tween.play()
 		emit_signal("camera_y_reset", duration)
 
+func rest() -> void:
+	run_time += 30.0
+	rest_stops += 1
+
+func add_play_time(delta : float) -> void:
+	run_time += delta
+	real_run_time += delta
+
+func succeed_escape() -> void:
+	controls_frozen = true
+	emit_signal("succeeded", rest_stops)
+
 func kill_human(reason : int) -> void:
-	human_dead = true
+	controls_frozen = true
 	emit_signal("human_died", reason)
 	axis_lock_angular_x = false
 	axis_lock_angular_z = false
@@ -87,6 +103,7 @@ func damage_suit(amount : float) -> void:
 		suit_damage += amount
 
 func _process(delta):
+	add_play_time(delta)
 	self.left_arm_contacting = left_arm.is_colliding()
 	self.right_arm_contacting = right_arm.is_colliding()
 	linear_damp = _get_linear_damp_by_contacts()
@@ -95,7 +112,7 @@ func _process(delta):
 	emit_signal("player_y_rotated", camera_pivot.global_rotation.y)
 
 func _input(event):
-	if human_dead:
+	if controls_frozen:
 		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y_force = -event.relative.x * mouse_sensitivity * turn_force
@@ -120,7 +137,7 @@ func _get_input_direction():
 	return total_input_direction.normalized()
 
 func _integrate_forces(state):
-	if human_dead:
+	if controls_frozen:
 		return
 	var forces : Vector3 = state.get_linear_velocity() / state.get_inverse_mass() / state.get_step()
 	var forces_delta : Vector3 = forces - previous_forces

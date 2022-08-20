@@ -3,7 +3,7 @@ extends CanvasLayer
 const REST_STOPS_NONE_TEXT : String = "That was exhausting!!! If this somehow ever ever happens again... I'm taking a rest stop."
 const REST_STOPS_ONE_TEXT : String = "Phew. Still quite tiring even with that rest stop. I should have tried for two."
 const REST_STOPS_TWO_TEXT : String = "Nice. Feeling pretty good after all that rest, too."
-const REST_STOPS_MORE_TEXT : String = "Yawn. Now you're making me lethargic..."
+const REST_STOPS_MORE_TEXT : String = "*Yawn* ... Now you're just making me lethargic."
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

@@ -163,4 +163,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -351.237, -168.333, -354.342 )
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
 [connection signal="player_y_rotated" from="Player" to="." method="_on_Player_player_y_rotated"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
+[connection signal="succeeded" from="Player" to="." method="_on_Player_succeeded"]
 [connection signal="suit_damaged" from="Player" to="." method="_on_Player_suit_damaged"]
