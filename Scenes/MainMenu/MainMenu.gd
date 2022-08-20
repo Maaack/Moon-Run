@@ -12,7 +12,7 @@ func open_sub_menu(menu : Control):
 
 
 func _on_Play_pressed():
-	SceneLoader.load_scene("res://Scenes/GameScene2/GameScene.tscn")
+	SceneLoader.load_scene("res://Scenes/GameScene/GameScene.tscn")
 
 
 func _on_Options_pressed():
