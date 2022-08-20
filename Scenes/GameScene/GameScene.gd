@@ -1,4 +1,4 @@
-extends Node
+extends "res://Scripts/InteractionController.gd"
 
 
 func _on_MoonWorld_player_camera_x_rotated(value):
