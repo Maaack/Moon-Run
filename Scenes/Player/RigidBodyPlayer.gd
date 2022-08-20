@@ -2,7 +2,8 @@ extends RigidBody
 
 enum DEATH_REASONS{
 	ASPHYXIATION,
-	IMPACT
+	IMPACT,
+	METEOR
 } 
 
 signal camera_x_rotated(value)
