@@ -120,6 +120,7 @@ volume_db = -10.0
 stream = SubResource( 3 )
 volume_db = -10.0
 
+[connection signal="human_died" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_died"]
 [connection signal="player_camera_x_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_x_rotated"]
 [connection signal="player_camera_y_reset" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_reset"]
 [connection signal="player_camera_y_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_rotated"]
