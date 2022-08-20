@@ -99,13 +99,13 @@ text = "Outside - Medium"
 font = ExtResource( 6 )
 
 [node name="FlatBox" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.404, -313.694 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.017, -313.694 )
 
 [node name="FlatBox2" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.175, -313.694 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -167.58, -313.694 )
 
 [node name="FlatBox3" parent="." instance=ExtResource( 4 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -314.807, -168.414, -318.698 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -324.813, -168.027, -317.778 )
 
 [node name="LongTunnel" parent="." instance=ExtResource( 7 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -293.95, -168.834, -294.705 )
@@ -155,6 +155,8 @@ shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
+[connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
 [connection signal="player_y_rotated" from="Player" to="." method="_on_Player_player_y_rotated"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
+[connection signal="suit_damaged" from="Player" to="." method="_on_Player_suit_damaged"]
