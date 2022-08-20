@@ -16,6 +16,8 @@ func _input(event):
 func _on_ResumeBtn_pressed():
 	InGameMenuController.close_menu()
 
+func _on_RestartBtn_pressed():
+	$Control/ConfirmRestart.popup_centered()
 
 func _on_OptionsBtn_pressed():
 	$Control/ButtonsContainer.visible = false
@@ -30,11 +32,14 @@ func _on_ExitBtn_pressed():
 	$Control/ConfirmExit.popup_centered()
 
 
+func _on_ConfirmRestart_confirmed():
+	SceneLoader.load_scene("res://Scenes/GameScene2/GameScene.tscn")
+
+
 func _on_ConfirmMainMenu_confirmed():
 	InGameMenuController.close_menu()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene("res://Scenes/MainMenu/MainMenu.tscn")
-
 
 func _on_ConfirmExit_confirmed():
 	get_tree().quit()
