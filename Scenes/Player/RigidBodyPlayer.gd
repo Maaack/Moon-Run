@@ -93,6 +93,9 @@ func succeed() -> void:
 func kill_human(reason : int) -> void:
 	controls_frozen = true
 	emit_signal("human_died", reason)
+	match(reason):
+		1:
+			$CrackedHelmet.play()
 	axis_lock_angular_x = false
 	axis_lock_angular_z = false
 	var random_angular_velocity = Vector3(rand_range(-0.5, 0.5),rand_range(-0.5, 0.5),rand_range(-0.5, 0.5))
@@ -136,6 +139,15 @@ func _get_input_direction():
 		total_input_direction += Vector3.RIGHT
 	return total_input_direction.normalized()
 
+func _play_suit_impact(impact_force : float) -> void:
+	var impact_ratio : float = impact_force / impact_force_resistance
+	if impact_ratio < 0.75:
+		return
+	var loudness : float = 0.2
+	loudness += clamp(impact_ratio, 1, 6) / 10.0
+	$SuitImpact.volume_db = linear2db(loudness)
+	$SuitImpact.play()
+
 func _integrate_forces(state):
 	if controls_frozen:
 		return
@@ -147,6 +159,7 @@ func _integrate_forces(state):
 	elif impact_force > impact_force_resistance:
 		var current_damage : float = impact_force/impact_force_resistance
 		damage_suit(current_damage)
+	_play_suit_impact(impact_force)
 	previous_forces = forces
 	rotate_y_force += rad2deg(camera_pivot.rotation.y) * 0.01
 	if rotate_y_force != 0.0 and not free_look_mode:
