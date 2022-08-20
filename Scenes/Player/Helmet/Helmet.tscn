@@ -33,10 +33,10 @@ radial_segments = 24
 rings = 12
 
 [node name="CSGBox" type="CSGBox" parent="CSGSphere"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.332776 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -0.333 )
 operation = 2
 width = 0.66
-height = 0.5
+height = 0.55
 depth = 0.5
 
 [node name="OxygenMeter" parent="." instance=ExtResource( 4 )]

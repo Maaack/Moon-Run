@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/SketchLevel/LongPlatform.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=8]
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=9]
 [ext_resource path="res://Data/Moon/data.hterrain" type="Resource" id=10]
+[ext_resource path="res://Scenes/Pickups/OxygenPickup.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -152,10 +153,14 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 
+[node name="OxygenPickup" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -351.237, -168.333, -354.342 )
+
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
 [connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
+[connection signal="player_y_rotated" from="Player" to="." method="_on_Player_player_y_rotated"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
 [connection signal="suit_damaged" from="Player" to="." method="_on_Player_suit_damaged"]
