@@ -75,6 +75,7 @@ __meta__ = {
 }
 
 [node name="VoiceControl" type="HBoxContainer" parent="."]
+visible = false
 margin_top = 72.0
 margin_right = 305.0
 margin_bottom = 88.0
@@ -105,9 +106,9 @@ __meta__ = {
 }
 
 [node name="MusicControl" type="HBoxContainer" parent="."]
-margin_top = 108.0
+margin_top = 72.0
 margin_right = 305.0
-margin_bottom = 124.0
+margin_bottom = 88.0
 
 [node name="MusicLabel" type="Label" parent="MusicControl"]
 margin_top = 1.0
@@ -135,9 +136,9 @@ __meta__ = {
 }
 
 [node name="MuteControl" type="HBoxContainer" parent="."]
-margin_top = 144.0
+margin_top = 108.0
 margin_right = 305.0
-margin_bottom = 184.0
+margin_bottom = 148.0
 rect_min_size = Vector2( 0, 40 )
 
 [node name="MuteLabel" type="Label" parent="MuteControl"]

@@ -42,17 +42,8 @@ func _set_mute(mute_flag : bool) -> void:
 	AudioServer.set_bus_mute(bus_index, mute_flag)
 	Config.set_config(AUDIO_SECTION, MUTE_SETTING, mute_flag)
 
-func _play_next_audio_stream(stream_parent : Node) -> void:
-	if not play_audio_streams:
-		return
-	for child in stream_parent.get_children():
-		if child is AudioStreamPlayer and child.playing:
-			return
-	vocal_audio_stream_iter += 1
-	if vocal_audio_stream_iter >= stream_parent.get_child_count():
-		vocal_audio_stream_iter = 0
-	var audio_stream : AudioStreamPlayer = stream_parent.get_child(vocal_audio_stream_iter)
-	audio_stream.play()
+func _play_next_audio_stream(_stream_parent : Node) -> void:
+	pass
 
 func _play_next_vocal_audio_stream() -> void:
 	_play_next_audio_stream($VocalAudioStreamPlayers)
