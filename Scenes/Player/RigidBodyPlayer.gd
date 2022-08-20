@@ -37,6 +37,7 @@ var left_foot_grounded : bool = false
 var right_foot_grounded : bool = false
 var left_arm_contacting : bool = false
 var right_arm_contacting : bool = false
+var human_dead : bool = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -73,6 +74,18 @@ func set_free_look_mode(value : bool) -> void:
 		tween.play()
 		emit_signal("camera_y_reset", duration)
 
+func kill_human(reason : int) -> void:
+	human_dead = true
+	emit_signal("human_died", reason)
+	axis_lock_angular_x = false
+	axis_lock_angular_z = false
+	var random_angular_velocity = Vector3(rand_range(-0.5, 0.5),rand_range(-0.5, 0.5),rand_range(-0.5, 0.5))
+	angular_velocity = random_angular_velocity
+
+func damage_suit(amount : float) -> void:
+		emit_signal("suit_damaged", amount)
+		suit_damage += amount
+
 func _process(delta):
 	self.left_arm_contacting = left_arm.is_colliding()
 	self.right_arm_contacting = right_arm.is_colliding()
@@ -82,6 +95,8 @@ func _process(delta):
 	emit_signal("player_y_rotated", camera_pivot.global_rotation.y)
 
 func _input(event):
+	if human_dead:
+		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y_force = -event.relative.x * mouse_sensitivity * turn_force
 		if free_look_mode:
@@ -105,15 +120,16 @@ func _get_input_direction():
 	return total_input_direction.normalized()
 
 func _integrate_forces(state):
+	if human_dead:
+		return
 	var forces : Vector3 = state.get_linear_velocity() / state.get_inverse_mass() / state.get_step()
 	var forces_delta : Vector3 = forces - previous_forces
 	var impact_force : float = forces_delta.length()
 	if impact_force > impact_force_kills:
-		emit_signal("human_died", DEATH_REASONS.IMPACT)
+		kill_human(DEATH_REASONS.IMPACT)
 	elif impact_force > impact_force_resistance:
 		var current_damage : float = impact_force/impact_force_resistance
-		emit_signal("suit_damaged", current_damage)
-		suit_damage += current_damage
+		damage_suit(current_damage)
 	previous_forces = forces
 	rotate_y_force += rad2deg(camera_pivot.rotation.y) * 0.01
 	if rotate_y_force != 0.0 and not free_look_mode:
