@@ -14,6 +14,7 @@ signal right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
 signal succeeded(rest_stops)
+signal oxygen_picked_up
 
 export(float) var mouse_sensitivity : float = 0.02
 
@@ -104,6 +105,9 @@ func kill_human(reason : int) -> void:
 func damage_suit(amount : float) -> void:
 		emit_signal("suit_damaged", amount)
 		suit_damage += amount
+
+func pickup_oxygen():
+	emit_signal("oxygen_picked_up")
 
 func _process(delta):
 	add_play_time(delta)

@@ -12,12 +12,27 @@ func add_objective(objective : String):
 	add(objective, $Objectives)
 
 
+func modify_objective(objective : String, new_text: String):
+	modify(objective, new_text, $Objectives)
+
+
 func remove_objective(objective : String):
 	remove(objective, $Objectives)
 
 
 func add_warning(warning : String):
 	add(warning, $Warnings)
+
+
+func modify_warning(warning : String, new_text : String):
+	modify(warning, new_text, $Warnings)
+
+
+func modify(text, new_text, container):
+	for label in container.get_children():
+		if label.text == text:
+			label.text = new_text
+			return
 
 
 func remove_warning(warning : String):
