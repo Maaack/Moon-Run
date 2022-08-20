@@ -155,5 +155,7 @@ shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
+[connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
+[connection signal="suit_damaged" from="Player" to="." method="_on_Player_suit_damaged"]

@@ -1,10 +1,17 @@
 extends RigidBody
 
+enum DEATH_REASONS{
+	ASPHYXIATION,
+	IMPACT
+} 
+
 signal camera_x_rotated(value)
 signal camera_y_rotated(value)
 signal camera_y_reset(duration)
 signal left_foot_grounded(state)
 signal right_foot_grounded(state)
+signal suit_damaged(value)
+signal human_died(reason)
 
 export(float) var mouse_sensitivity : float = 0.02
 
@@ -22,7 +29,10 @@ var rotate_y_force : float = 0.0
 var angular_damp_per_contact : float = 3.0
 var linear_damp_per_contact : float = 0.25
 var free_look_mode : bool = false setget set_free_look_mode
-
+var previous_forces : Vector3
+var impact_force_resistance : float = 75000
+var impact_force_kills : float = 150000
+var suit_damage : float = 0.0
 var left_foot_grounded : bool = false
 var right_foot_grounded : bool = false
 var left_arm_contacting : bool = false
@@ -99,6 +109,16 @@ func _get_input_direction():
 	return total_input_direction.normalized()
 
 func _integrate_forces(state):
+	var forces : Vector3 = state.get_linear_velocity() / state.get_inverse_mass() / state.get_step()
+	var forces_delta : Vector3 = forces - previous_forces
+	var impact_force : float = forces_delta.length()
+	if impact_force > impact_force_kills:
+		emit_signal("human_died", DEATH_REASONS.IMPACT)
+	elif impact_force > impact_force_resistance:
+		var current_damage : float = impact_force/impact_force_resistance
+		emit_signal("suit_damaged", current_damage)
+		suit_damage += current_damage
+	previous_forces = forces
 	rotate_y_force += rad2deg(camera_pivot.rotation.y) * 0.01
 	if rotate_y_force != 0.0 and not free_look_mode:
 		state.add_torque(Vector3(0, rotate_y_force, 0) * mass)
