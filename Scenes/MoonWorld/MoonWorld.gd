@@ -9,6 +9,7 @@ signal player_right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
 signal succeeded(rest_stops)
+signal player_oxygen_picked_up
 
 func _on_Player_camera_x_rotated(value):
 	emit_signal("player_camera_x_rotated", value)
@@ -36,3 +37,6 @@ func _on_Player_suit_damaged(value):
 
 func _on_Player_succeeded(rest_stops):
 	emit_signal("succeeded", rest_stops)
+
+func _on_Player_oxygen_picked_up():
+	emit_signal("player_oxygen_picked_up")

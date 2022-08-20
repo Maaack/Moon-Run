@@ -56,4 +56,5 @@ transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107,
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
+[connection signal="oxygen_picked_up" from="Player" to="." method="_on_Player_oxygen_picked_up"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
