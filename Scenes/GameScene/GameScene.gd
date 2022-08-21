@@ -69,3 +69,12 @@ func _on_AsphyxiationTimer_timeout():
 
 func _on_MoonWorld_human_faced(vector3):
 	$MeteorsViewport/Viewport/MoonMiniature.rotate_camera(vector3)
+
+
+func _on_MeteorTimer_timeout():
+	$HelmetViewport/Viewport/Helmet/Viewport/HUD.start_countdown()
+	$LastMinTimer.start()
+
+
+func _on_LastMinTimer_timeout():
+	$WorldContainer/Viewport/MoonWorld/Player.kill_human($WorldContainer/Viewport/MoonWorld/Player.DEATH_REASONS.METEOR)

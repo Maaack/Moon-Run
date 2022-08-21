@@ -4,8 +4,9 @@ enum DEATH_REASONS{
 	ASPHYXIATION,
 	IMPACT,
 	ABANDONED,
+	METEOR,
 	EXPOSED
-} 
+}
 
 signal camera_x_rotated(value)
 signal camera_y_rotated(value)

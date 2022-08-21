@@ -3,6 +3,7 @@ extends CanvasLayer
 const IMPACT_DEATH_TEXT : String = "Rapid Decompression"
 const ASPHYXIATION_DEATH_TEXT : String = "Asphyxiation"
 const ABANDONED_DEATH_TEXT : String = "Missed Exit Window"
+const METEOR_DEATH_TEXT : String = "obliteration caused by astral body at very high velocity"
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -19,6 +20,8 @@ func set_reason(reason : int) -> void:
 			$Control/Reason.text = IMPACT_DEATH_TEXT
 		2:
 			$Control/Reason.text = ABANDONED_DEATH_TEXT
+		3:
+			$Control/Reason.text = METEOR_DEATH_TEXT
 
 func _on_ConfirmMainMenu_confirmed():
 	InGameMenuController.close_menu()

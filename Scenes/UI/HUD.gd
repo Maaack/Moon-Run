@@ -2,7 +2,8 @@ extends Control
 
 
 var labels_to_display = [] # list of labels which the text need to be displayed by the timer (slow print)
-
+var countdown = 60
+var countdown_text = "alert: meteor striking in 01:00"
 
 func _ready():
 	$AnimationPlayer.play("meteor_shower_alert")
@@ -54,6 +55,11 @@ func remove(text, container):
 			return
 
 
+func start_countdown():
+	add_objective(countdown_text)
+	$CountdownTimer.start()
+
+
 func _on_Timer_timeout():
 	var labels_finished_display = []
 	
@@ -71,3 +77,10 @@ func _on_Timer_timeout():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$CenterText.visible = false
 	add_objective("return to the rocket")
+
+
+func _on_CountdownTimer_timeout():
+	var old_countdown_text = countdown_text
+	countdown -= 1
+	countdown_text = "alert: meteor striking in 00:%2d" % countdown
+	modify_objective(old_countdown_text, countdown_text)
