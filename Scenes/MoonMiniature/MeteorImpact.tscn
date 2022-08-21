@@ -261,7 +261,7 @@ lifetime = 25.0
 one_shot = true
 explosiveness = 0.95
 randomness = 0.5
-visibility_aabb = AABB( -25.088, -25.2529, -25.4195, 50.1761, 50.5057, 50.839 )
+visibility_aabb = AABB( -166.511, -40, -155.807, 327.715, 179.748, 323.627 )
 process_material = SubResource( 2 )
 draw_pass_1 = SubResource( 11 )
 
@@ -272,7 +272,7 @@ lifetime = 25.0
 one_shot = true
 explosiveness = 0.92
 randomness = 0.5
-visibility_aabb = AABB( -25.5354, -25.2588, -24.8715, 51.0708, 50.5175, 49.743 )
+visibility_aabb = AABB( -84.8596, -20, -84.0101, 173.44, 103.94, 177.182 )
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 13 )
 
@@ -283,7 +283,7 @@ lifetime = 25.0
 one_shot = true
 explosiveness = 0.9
 randomness = 0.5
-visibility_aabb = AABB( -25.1949, -25.2073, -25.0239, 50.3898, 50.4145, 50.0478 )
+visibility_aabb = AABB( -49.6879, -19.8775, -48.0669, 104.345, 65.8734, 94.9753 )
 process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 15 )
 

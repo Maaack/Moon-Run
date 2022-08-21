@@ -10,6 +10,7 @@ height = 3200.0
 [sub_resource type="Animation" id=2]
 resource_name = "MeteorShower"
 length = 240.0
+step = 1.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("MeteorImpact")
 tracks/0/interp = 1
@@ -17,7 +18,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 28, 147.4, 221.2 ),
+"times": PoolRealArray( 28, 116, 221.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -37,7 +38,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 34.2, 176.5, 223.3 ),
+"times": PoolRealArray( 34.2, 136, 223.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -57,7 +58,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 45.5, 154.4, 224.6 ),
+"times": PoolRealArray( 45.5, 130, 224.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -77,7 +78,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 48.4, 177.3, 226.5 ),
+"times": PoolRealArray( 48.4, 144, 226.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -97,7 +98,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 55, 207.4, 228.2 ),
+"times": PoolRealArray( 55, 158, 228.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -117,7 +118,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 71.2, 212 ),
+"times": PoolRealArray( 71.2, 176 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -134,7 +135,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 85, 208.4, 231 ),
+"times": PoolRealArray( 85, 192, 231 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
