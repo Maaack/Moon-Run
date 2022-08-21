@@ -37,6 +37,7 @@ func set_oxygen(value):
 	if low_oxygen_alert == false and oxygen < 20:
 		low_oxygen_alert = true
 		$Viewport/HUD.add_warning(oxygen_warning_txt)
+		show_message("oxygen low", 6, 1)
 	elif low_oxygen_alert == true and oxygen > 20:
 		low_oxygen_alert = false
 		$Viewport/HUD.remove_warning(oxygen_warning_txt)
@@ -44,6 +45,7 @@ func set_oxygen(value):
 	if oxygen <= 0 and asphyxiating == false:
 		asphyxiating = true
 		emit_signal("start_asphyxiation")
+		show_message("oxygen empty", 10, 2)
 	elif oxygen > 0 and asphyxiating == true:
 		asphyxiating = false
 		emit_signal("stop_asphyxiation")
