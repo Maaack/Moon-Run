@@ -19,7 +19,7 @@ Marek
 #### Currently Everything
 Author: [Style-7](http://www.styleseven.com/)  
 Source: [1001Fonts : digital-7-font.html](https://www.1001fonts.com/digital-7-font.html)  
-License: [Free for personal use](https://scripts.sil.org/OFL)
+License: [Free for personal use](http://www.styleseven.com/)
 
 
 ## Tools
