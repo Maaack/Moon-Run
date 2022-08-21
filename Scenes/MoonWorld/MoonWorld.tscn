@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Scenes/Pickups/DiveZone.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Walls/CornerWallStraightTunnel.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/Walls/LongFlatWallStraightTunnel.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Scenes/Pickups/KillZone.tscn" type="PackedScene" id=27]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -338,6 +339,12 @@ collision_shape = SubResource( 15 )
 message_text = "enjoy the view before death"
 message_duration = 6.0
 message_severity = 2
+
+[node name="KillZone" parent="." instance=ExtResource( 27 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 170, 512 )
+collision_shape = SubResource( 15 )
+death_reason = 4
+death_delay = 8.0
 
 [node name="StartChamber" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -399.367, -168.3, -400.123 )

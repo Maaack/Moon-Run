@@ -37,9 +37,9 @@ align = 1
 [node name="Reason" type="Label" parent="Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -147.0
+margin_left = -204.0
 margin_top = 111.0
-margin_right = 148.0
+margin_right = 205.0
 margin_bottom = 187.0
 custom_colors/font_color = Color( 1, 0.913725, 0, 1 )
 text = "human error

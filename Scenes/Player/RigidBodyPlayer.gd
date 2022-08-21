@@ -98,7 +98,9 @@ func succeed() -> void:
 	controls_frozen = true
 	emit_signal("succeeded", rest_stops)
 
-func kill_human(reason : int) -> void:
+func kill_human(reason : int, delay : float = 0.0) -> void:
+	if delay > 0.0:
+		yield(get_tree().create_timer(delay), "timeout")
 	if controls_frozen:
 		return
 	controls_frozen = true
