@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scenes/SketchLevel/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -20,7 +20,10 @@
 [ext_resource path="res://Scenes/SketchLevel/Tunnel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ElbowChamber.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Data/Crater/data.hterrain" type="Resource" id=20]
-[ext_resource path="res://Scenes/Rocket/SpaceRocket.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Rocket/RegolithRocketBlast.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/Rocket/RocketBody.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Pickups/LaunchZone.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Scenes/Pickups/DiveZone.tscn" type="PackedScene" id=24]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -283,12 +286,6 @@ transform = Transform( 0.700225, -0.0984102, -0.707106, 0.139173, 0.990268, 0, 0
 [node name="LongTunnel3" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.683013, -0.183013, 0.707107, -27.985, -117.75, -28.741 )
 
-[node name="SuccessZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, 184, 1877.71 )
-__meta__ = {
-"_editor_description_": ""
-}
-
 [node name="StartChamber" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -399.367, -168.3, -400.123 )
 
@@ -361,21 +358,32 @@ transform = Transform( -4.3286e-08, -6.08345e-09, 1, -0.139173, 0.990268, 0, -0.
 [node name="Tunnel2" parent="." instance=ExtResource( 18 )]
 transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 17.5049, 1558.15 )
 
-[node name="SpaceRocket" parent="." instance=ExtResource( 21 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, -106, 1877.89 )
+[node name="DiveZone" parent="." instance=ExtResource( 24 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1621.29 )
 
-[node name="SpaceRocket2" parent="." instance=ExtResource( 21 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, 62, 1877.89 )
-
-[node name="SpaceRocket3" parent="." instance=ExtResource( 21 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, 270.009, 1877.89 )
+[node name="LaunchZone" parent="." instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 20.4433, 1495.85 )
 
 [node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1981.69 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1086.44, -108.435, 1970.69 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093, -14.824, 1092.07 )
 
+[node name="RegolithRocketBlast" parent="." instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -102, 1867 )
+
+[node name="RocketBody" parent="." instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1867 )
+
+[node name="SuccessZone" parent="RocketBody" instance=ExtResource( 12 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 20, 0 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[connection signal="launch_countdown" from="LaunchZone" to="RegolithRocketBlast" method="launch"]
+[connection signal="launch_countdown" from="LaunchZone" to="RocketBody" method="launch"]
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]

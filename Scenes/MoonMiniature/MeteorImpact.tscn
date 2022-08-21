@@ -21,7 +21,7 @@ scale_random = 0.25
 scale_curve = ExtResource( 2 )
 anim_speed_random = 0.4
 
-[sub_resource type="SpatialMaterial" id=10]
+[sub_resource type="SpatialMaterial" id=20]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -33,7 +33,7 @@ albedo_color = Color( 1, 1, 1, 0.498039 )
 albedo_texture = ExtResource( 4 )
 
 [sub_resource type="QuadMesh" id=11]
-material = SubResource( 10 )
+material = SubResource( 20 )
 size = Vector2( 40, 40 )
 
 [sub_resource type="ParticlesMaterial" id=4]

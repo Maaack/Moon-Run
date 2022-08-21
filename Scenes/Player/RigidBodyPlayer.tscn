@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerBodyShape.tres" type="Shape" id=2]
@@ -25,6 +25,37 @@ audio_stream = ExtResource( 4 )
 
 [sub_resource type="AudioStreamRandomPitch" id=22]
 audio_stream = ExtResource( 6 )
+
+[sub_resource type="Animation" id=24]
+resource_name = "Dive"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -35, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
 
 [node name="Player" type="RigidBody" groups=["Player"]]
 collision_layer = 8
@@ -94,6 +125,10 @@ bus = "SFX"
 stream = SubResource( 22 )
 volume_db = -12.0
 bus = "SFX"
+
+[node name="DivingAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Dive = SubResource( 24 )
+anims/RESET = SubResource( 25 )
 
 [connection signal="foot_grounded" from="LeftLegControl" to="." method="_on_LeftLegControl_foot_grounded"]
 [connection signal="foot_grounded" from="RightLegControl" to="." method="_on_RightLegControl_foot_grounded"]

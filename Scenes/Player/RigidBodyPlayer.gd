@@ -109,6 +109,9 @@ func damage_suit(amount : float) -> void:
 func pickup_oxygen():
 	emit_signal("oxygen_picked_up")
 
+func dive():
+	$DivingAnimationPlayer.play("Dive")
+
 func _process(delta):
 	add_play_time(delta)
 	self.left_arm_contacting = left_arm.is_colliding()
