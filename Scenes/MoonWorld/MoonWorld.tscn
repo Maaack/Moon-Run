@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -44,6 +44,27 @@ textures = [ [  ], [  ] ]
 script = ExtResource( 8 )
 mode = 0
 textures = [ [  ], [  ] ]
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 20, 50, 80 )
+
+[sub_resource type="CylinderShape" id=13]
+height = 20.0
+radius = 32.0
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 512, 20, 512 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 512, 20, 512 )
+
+[sub_resource type="CylinderShape" id=16]
+height = 32.0
+radius = 16.0
+
+[sub_resource type="CylinderShape" id=17]
+height = 128.0
+radius = 32.0
 
 [sub_resource type="BoxShape" id=11]
 extents = Vector3( 80, 16, 20 )
@@ -230,10 +251,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 836.001, -15, 844.739 )
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -15.6167, 1092.07 )
 
 [node name="OxygenPickup10" parent="Interactables" instance=ExtResource( 11 )]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -6.13416, 1406.21 )
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -105.21, 1854.95 )
 
 [node name="OxygenPickup11" parent="Interactables" instance=ExtResource( 11 )]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, 14.8658, 1541.21 )
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, 12.1145, 1541.21 )
 
 [node name="PlayerStartPosition" type="Position3D" parent="."]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
@@ -293,6 +314,30 @@ transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.
 
 [node name="FlatWallStraightTunnel" parent="." instance=ExtResource( 26 )]
 transform = Transform( 0.683013, -0.183013, -0.707108, 0.258819, 0.965927, 0, 0.683013, -0.183013, 0.707108, 12.3022, -35.9307, 11.5462 )
+
+[node name="SplitPathsMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( 0.700225, -0.0984103, -0.707107, 0.139173, 0.990268, 0, 0.700225, -0.0984103, 0.707107, 339.259, 27.5793, 350.321 )
+collision_shape = SubResource( 12 )
+message_text = "split paths ahead"
+
+[node name="DontJumpMessageZone2" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 483.259, -5.4207, 488.321 )
+collision_shape = SubResource( 13 )
+message_text = "dont jump here"
+message_duration = 4.0
+
+[node name="WhyJumpMessageZone3" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 96.579, 512 )
+collision_shape = SubResource( 14 )
+message_text = "risking exposure to impact debris"
+message_severity = 1
+
+[node name="EnjoyViewMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 165, 512 )
+collision_shape = SubResource( 15 )
+message_text = "enjoy the view before death"
+message_duration = 6.0
+message_severity = 2
 
 [node name="StartChamber" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -399.367, -168.3, -400.123 )
@@ -354,11 +399,29 @@ transform = Transform( 0.707107, -0.0123407, 0.706999, 0, 0.999848, 0.0174524, -
 [node name="ElbowChamber" parent="." instance=ExtResource( 19 )]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -16.5, 1102.07 )
 
+[node name="LaunchSoonMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1032, -3, 1041 )
+collision_shape = SubResource( 16 )
+message_text = "emergency launch imminent"
+message_severity = 1
+
+[node name="JumpMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 34.2002, 1577.65 )
+collision_shape = SubResource( 16 )
+message_text = "jump!"
+message_severity = 2
+
+[node name="GrabLadderMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 209.2, 1812.65 )
+collision_shape = SubResource( 17 )
+message_text = "Grab the ladder!"
+message_severity = 2
+
 [node name="Tunnel" parent="." instance=ExtResource( 18 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1032, -17, 1041 )
 
-[node name="FlatWallStraightTunnel" parent="Tunnel" instance=ExtResource( 25 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9707, 64, 6.10352e-05 )
+[node name="FlatWallStraightTunnel2" parent="." instance=ExtResource( 25 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1020, 47, 1029 )
 
 [node name="LongTunnel4" parent="." instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093, -17, 1251.07 )
@@ -366,10 +429,11 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093, -
 [node name="LongTunnel5" parent="." instance=ExtResource( 7 )]
 transform = Transform( -4.3286e-08, -6.08345e-09, 1, -0.139173, 0.990268, 0, -0.990268, -0.139173, -4.37114e-08, 1093, -4, 1442.07 )
 
+[node name="FlatWallStraightTunnel3" parent="." instance=ExtResource( 26 )]
+transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 79.3242, 1551.59 )
+
 [node name="Tunnel2" parent="." instance=ExtResource( 18 )]
 transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 17.5049, 1568.15 )
-
-[node name="FlatWallStraightTunnel" parent="Tunnel2" instance=ExtResource( 26 )]
 
 [node name="DiveZone" parent="." instance=ExtResource( 24 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1631.29 )
@@ -386,14 +450,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -102, 1884 )
 [node name="RocketBody" parent="." instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1884 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
-
 [node name="WrongWayMessageZone" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -414.367, -151.834, -415.123 )
 collision_shape = SubResource( 11 )
 message_text = "wrong way"
 message_severity = 2
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
 
 [connection signal="launch_countdown" from="LaunchZone" to="RegolithRocketBlast" method="launch"]
 [connection signal="launch_countdown" from="LaunchZone" to="RocketBody" method="launch"]

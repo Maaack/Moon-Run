@@ -83,6 +83,7 @@ func _on_CountdownTimer_timeout():
 func pop_up_message(text : String, duration : float = 5.0, text_color : Color = DEFAULT_COLOR, flash_flag : bool = false) -> void:
 	if $AnimationPlayer.is_playing():
 		$AnimationPlayer.seek($AnimationPlayer.current_animation_length)
+		$MessageTimer.stop()
 		$CenterText.hide()
 	$CenterText.text = text
 	$CenterText.set("custom_colors/font_color", text_color)
@@ -90,7 +91,10 @@ func pop_up_message(text : String, duration : float = 5.0, text_color : Color = 
 		$AnimationPlayer.play("FlashText")
 	else:
 		$AnimationPlayer.play("TypeText")
-	yield(get_tree().create_timer(duration), "timeout")
+	$MessageTimer.wait_time = duration
+	$MessageTimer.start()
+
+
+func _on_MessageTimer_timeout():
 	$AnimationPlayer.stop()
 	$CenterText.hide()
-	

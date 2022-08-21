@@ -62,7 +62,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "TypeText"
-length = 2.0
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("CenterText:percent_visible")
 tracks/0/interp = 1
@@ -70,7 +70,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
@@ -147,5 +147,9 @@ anims/meteor_shower_alert = SubResource( 1 )
 
 [node name="CountdownTimer" type="Timer" parent="."]
 
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
