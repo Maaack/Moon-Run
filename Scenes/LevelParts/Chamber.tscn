@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/LevelParts/ChamberLight.tscn" type="PackedScene" id=1]
+
+[node name="Chamber" type="Spatial"]
+
+[node name="WallsCSG" type="CSGSphere" parent="."]
+use_collision = true
+radius = 64.0
+
+[node name="CSGSphere" type="CSGSphere" parent="WallsCSG"]
+operation = 2
+radius = 62.0
+
+[node name="FloorCSG" type="CSGSphere" parent="."]
+use_collision = true
+radius = 64.0
+
+[node name="CSGBox" type="CSGBox" parent="FloorCSG"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32, 0 )
+operation = 2
+width = 128.0
+height = 64.0
+depth = 128.0
+
+[node name="ChamberLight" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 32, 32, 32 )
+
+[node name="ChamberLight2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -32, 32, 32 )
+
+[node name="ChamberLight3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -32, 32, -32 )
+
+[node name="ChamberLight4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 32, 32, -32 )
+
+[node name="ChamberLight5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0 )

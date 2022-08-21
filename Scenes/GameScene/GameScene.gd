@@ -18,7 +18,6 @@ func _set_rumble_linear_2_volume(linear : float) -> void:
 
 func _on_MoonWorld_player_camera_x_rotated(value):
 	$HelmetViewport/Viewport/Helmet.rotate_camera_x(value)
-	$MeteorsViewport/Viewport/MoonMiniature.rotate_camera_x(value)
 
 func _on_MoonWorld_player_camera_y_rotated(value):
 	$HelmetViewport/Viewport/Helmet.rotate_camera_y(value)
@@ -35,9 +34,6 @@ func _on_MoonWorld_player_right_foot_grounded(state):
 	$HelmetViewport/Viewport/Helmet.toggle_right_light(state)
 	right_foot_down = state
 	recalculate_rumble()
-
-func _on_MoonWorld_player_y_rotated(value):
-	$MeteorsViewport/Viewport/MoonMiniature.rotate_camera_y(value)
 
 func stop_audio():
 	$AudioPlayers/Breathing.stop()
@@ -69,3 +65,7 @@ func _on_Helmet_stop_asphyxiation():
 
 func _on_AsphyxiationTimer_timeout():
 	$WorldContainer/Viewport/MoonWorld/Player.kill_human($WorldContainer/Viewport/MoonWorld/Player.DEATH_REASONS.ASPHYXIATION)
+
+
+func _on_MoonWorld_human_faced(vector3):
+	$MeteorsViewport/Viewport/MoonMiniature.rotate_camera(vector3)

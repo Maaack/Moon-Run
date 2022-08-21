@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/MoonMiniature/MeteorImpact.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MoonMiniature/MoonMiniature.gd" type="Script" id=2]
-
-[sub_resource type="SphereMesh" id=1]
-radius = 1600.0
-height = 3200.0
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=3]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=4]
+[ext_resource path="res://Data/Miniature/data.hterrain" type="Resource" id=5]
 
 [sub_resource type="Animation" id=2]
 resource_name = "MeteorShower"
-length = 46.0
+length = 240.0
+step = 1.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("MeteorImpact")
 tracks/0/interp = 1
@@ -17,9 +17,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 28 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 28, 116, 221.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+}, {
 "args": [  ],
 "method": "emit"
 } ]
@@ -31,9 +37,15 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 34.2 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 34.2, 136, 223.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+}, {
 "args": [  ],
 "method": "emit"
 } ]
@@ -45,7 +57,189 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 42.1 ),
+"times": PoolRealArray( 45.5, 130, 224.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("MeteorImpact4")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 48.4, 144, 226.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("MeteorImpact5")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 55, 158, 228.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("MeteorImpact6")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 71.2, 176 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("MeteorImpact7")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 85, 192, 231 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("MeteorImpact8")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 103.2, 214.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath("MeteorImpact9")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 137, 217.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/9/type = "method"
+tracks/9/path = NodePath("MeteorImpact10")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 117.8, 230.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("MeteorImpact11")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 155.1, 237.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/11/type = "method"
+tracks/11/path = NodePath("MeteorImpact12")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 95.7, 229 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "emit"
+}, {
+"args": [  ],
+"method": "emit"
+} ]
+}
+tracks/12/type = "method"
+tracks/12/path = NodePath("MeteorImpact13")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 238.9 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -53,24 +247,55 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+mode = 0
+textures = [ [  ], [  ] ]
+
 [node name="MoonMiniature" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1600.01, 0 )
-mesh = SubResource( 1 )
-
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.965926, 0, 0.258819, -0.25, 0.258819, 0.933013, -0.0669873, -0.965926, 0.25, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 0, 0 )
 
 [node name="MeteorImpact" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 30.0388, -3, -35.8713 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35, 0, -50 )
 
 [node name="MeteorImpact2" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -31.1619, -3, -20.514 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -40, 0, -30 )
 
 [node name="MeteorImpact3" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.5926, -3, 11.2704 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -50, 0, 20 )
+
+[node name="MeteorImpact4" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 0, -90 )
+
+[node name="MeteorImpact5" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 100, 0, -80 )
+
+[node name="MeteorImpact6" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -95, 0, 45 )
+
+[node name="MeteorImpact7" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -100, 0, -25 )
+
+[node name="MeteorImpact8" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 45, 0, -100 )
+
+[node name="MeteorImpact9" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -65, 0, -110 )
+
+[node name="MeteorImpact10" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 75, 0, 5 )
+
+[node name="MeteorImpact11" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 45 )
+
+[node name="MeteorImpact12" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 20, 0, 85 )
+
+[node name="MeteorImpact13" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 100, 0, 85 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "MeteorShower"
@@ -81,3 +306,22 @@ transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107,
 
 [node name="Camera" type="Camera" parent="CameraPivot"]
 near = 0.01
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, -32 )
+script = ExtResource( 4 )
+lod_scale = 2.0
+_terrain_data = ExtResource( 5 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 3 )
+render_layers = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )

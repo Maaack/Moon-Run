@@ -2,6 +2,7 @@ extends CanvasLayer
 
 const IMPACT_DEATH_TEXT : String = "Rapid Decompression"
 const ASPHYXIATION_DEATH_TEXT : String = "Asphyxiation"
+const ABANDONED_DEATH_TEXT : String = "Missed Exit Window"
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -16,6 +17,8 @@ func set_reason(reason : int) -> void:
 			$Control/Reason.text = ASPHYXIATION_DEATH_TEXT
 		1:
 			$Control/Reason.text = IMPACT_DEATH_TEXT
+		2:
+			$Control/Reason.text = ABANDONED_DEATH_TEXT
 
 func _on_ConfirmMainMenu_confirmed():
 	InGameMenuController.close_menu()
@@ -26,7 +29,7 @@ func _on_ConfirmExit_confirmed():
 	get_tree().quit()
 
 func _on_RestartButton_pressed():
-	SceneLoader.load_scene("res://Scenes/GameScene2/GameScene.tscn")
+	SceneLoader.load_scene("res://Scenes/GameScene/GameScene.tscn")
 
 func _on_MainMenuButton_pressed():
 	$Control/ConfirmMainMenu.popup_centered()
