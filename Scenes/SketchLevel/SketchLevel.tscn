@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/SketchLevel/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/SketchLevel/SketchLevel.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MoonWorld/MoonWorld.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/SketchLevel/FlatBox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/SketchLevel/CubeBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Theme/digital-7_25_green_outline.tres" type="DynamicFont" id=6]
@@ -11,7 +11,6 @@
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=9]
 [ext_resource path="res://Data/Moon/data.hterrain" type="Resource" id=10]
 [ext_resource path="res://Scenes/Pickups/OxygenPickup.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Pickups/SuccessZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/SketchLevel/LeaningFlatBox.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/SketchLevel/MidWideLongPlatform.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/SketchLevel/LargeLongPlatform.tscn" type="PackedScene" id=15]
@@ -24,6 +23,8 @@
 [ext_resource path="res://Scenes/Rocket/RocketBody.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/Pickups/LaunchZone.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Pickups/DiveZone.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Walls/CornerWallStraightTunnel.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Scenes/Walls/LongFlatWallStraightTunnel.tscn" type="PackedScene" id=26]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -47,7 +48,7 @@ textures = [ [  ], [  ] ]
 script = ExtResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.965926, -0.12941, -0.224144, 0.258819, 0.482963, 0.836516, 0, -0.866025, 0.5, 0, 50, 0 )
+transform = Transform( 1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 50, 0 )
 shadow_enabled = true
 shadow_bias = 0.05
 directional_shadow_max_distance = 1024.0
@@ -258,7 +259,7 @@ shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
 
 [node name="HTerrain2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 581, 149, 1530 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 581, 149, 1540 )
 script = ExtResource( 9 )
 lod_scale = 2.0
 map_scale = Vector3( 2, 1, 2 )
@@ -285,6 +286,9 @@ transform = Transform( 0.700225, -0.0984102, -0.707106, 0.139173, 0.990268, 0, 0
 
 [node name="LongTunnel3" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.683013, -0.183013, 0.707107, -27.985, -117.75, -28.741 )
+
+[node name="FlatWallStraightTunnel" parent="." instance=ExtResource( 26 )]
+transform = Transform( 0.683013, -0.183013, -0.707108, 0.258819, 0.965927, 0, 0.683013, -0.183013, 0.707108, 12.3022, -35.9307, 11.5462 )
 
 [node name="StartChamber" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -399.367, -168.3, -400.123 )
@@ -341,56 +345,56 @@ transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 608.535, -1
 transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 487.321, -18.9096, 866.589 )
 
 [node name="MidWideLongPlatform" parent="." instance=ExtResource( 14 )]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 999.238, -17.5, 1007.68 )
+transform = Transform( 0.707107, -0.0123407, 0.706999, 0, 0.999848, 0.0174524, -0.707107, -0.0123407, 0.706999, 985.64, -18.8409, 1003.92 )
 
 [node name="ElbowChamber" parent="." instance=ExtResource( 19 )]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -16.5, 1092.07 )
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -16.5, 1102.07 )
 
 [node name="Tunnel" parent="." instance=ExtResource( 18 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1032, -16.5, 1032 )
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1032, -17, 1041 )
+
+[node name="FlatWallStraightTunnel" parent="Tunnel" instance=ExtResource( 25 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9707, 64, 6.10352e-05 )
 
 [node name="LongTunnel4" parent="." instance=ExtResource( 7 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093, -17, 1241.07 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093, -17, 1251.07 )
 
 [node name="LongTunnel5" parent="." instance=ExtResource( 7 )]
-transform = Transform( -4.3286e-08, -6.08345e-09, 1, -0.139173, 0.990268, 0, -0.990268, -0.139173, -4.37114e-08, 1093, -4, 1432.07 )
+transform = Transform( -4.3286e-08, -6.08345e-09, 1, -0.139173, 0.990268, 0, -0.990268, -0.139173, -4.37114e-08, 1093, -4, 1442.07 )
 
 [node name="Tunnel2" parent="." instance=ExtResource( 18 )]
-transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 17.5049, 1558.15 )
+transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 17.5049, 1568.15 )
+
+[node name="FlatWallStraightTunnel" parent="Tunnel2" instance=ExtResource( 26 )]
 
 [node name="DiveZone" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1621.29 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1631.29 )
 
 [node name="LaunchZone" parent="." instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 20, 1526 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 20, 1536 )
 
 [node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1086.44, -108.435, 1977.69 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1086.44, -108.435, 1987.69 )
 
 [node name="RegolithRocketBlast" parent="." instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -102, 1874 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -102, 1884 )
 
 [node name="RocketBody" parent="." instance=ExtResource( 22 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1874 )
-
-[node name="SuccessZone" parent="RocketBody" instance=ExtResource( 12 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 20, 0 )
-__meta__ = {
-"_editor_description_": ""
-}
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1884 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093, -14.824, 1092.07 )
 
 [connection signal="launch_countdown" from="LaunchZone" to="RegolithRocketBlast" method="launch"]
 [connection signal="launch_countdown" from="LaunchZone" to="RocketBody" method="launch"]
+[connection signal="rocket_left" from="RocketBody" to="." method="_on_RocketBody_rocket_left"]
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
 [connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
 [connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
+[connection signal="human_faced" from="Player" to="." method="_on_Player_human_faced"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
 [connection signal="oxygen_picked_up" from="Player" to="." method="_on_Player_oxygen_picked_up"]
-[connection signal="player_y_rotated" from="Player" to="." method="_on_Player_player_y_rotated"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
 [connection signal="succeeded" from="Player" to="." method="_on_Player_succeeded"]
 [connection signal="suit_damaged" from="Player" to="." method="_on_Player_suit_damaged"]

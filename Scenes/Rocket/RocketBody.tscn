@@ -1,15 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Rocket/SpaceRocket.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Rocket/RocketBody.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Pickups/SuccessZone.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CylinderShape" id=11]
-height = 40.0
+[sub_resource type="CapsuleShape" id=15]
 radius = 3.0
+height = 40.0
 
 [sub_resource type="Animation" id=13]
 resource_name = "ThrottleUpEngine"
-length = 8.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:engine_speed")
 tracks/0/interp = 1
@@ -17,14 +18,28 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 3.5, 8 ),
+"times": PoolRealArray( 3, 6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 3.0 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 30 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "left_moon"
+} ]
+}
 
 [sub_resource type="CylinderShape" id=14]
-radius = 20.0
+radius = 15.0
 
 [node name="RocketBody" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1878 )
@@ -39,11 +54,18 @@ script = ExtResource( 2 )
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
-shape = SubResource( 11 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 20, 0 )
+shape = SubResource( 15 )
 
 [node name="EngineAnimationPlayer" type="AnimationPlayer" parent="."]
 anims/ThrottleUpEngine = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 shape = SubResource( 14 )
+
+[node name="SuccessZone" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.9224, 0 )

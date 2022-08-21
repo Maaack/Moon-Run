@@ -1,5 +1,7 @@
 extends KinematicBody
 
+signal rocket_left
+
 export(float) var engine_speed : float = 0.0
 
 var launching : bool = false
@@ -16,3 +18,5 @@ func _physics_process(delta):
 	var vector : Vector3 = Vector3.UP * upwards_speed
 	move_and_slide(vector, Vector3.UP)
 
+func left_moon():
+	emit_signal("rocket_left")
