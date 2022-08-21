@@ -7,7 +7,7 @@ var sub_menu
 func open_sub_menu(menu : Control):
 	$Main.visible = false
 	menu.visible = true
-	sub_menu = $OptionsMenu
+	sub_menu = menu
 	$BackButton.visible = true
 
 
@@ -20,7 +20,9 @@ func _on_Options_pressed():
 
 
 func _on_Credits_pressed():
-	pass # Replace with function body.
+	open_sub_menu($Credits)
+	$Credits.set_header_and_footer()
+	$Credits.set_process(true)
 
 
 func _on_Exit_pressed():
