@@ -4,7 +4,7 @@
 
 [sub_resource type="CylinderShape" id=1]
 height = 20.0
-radius = 15.0
+radius = 12.0
 
 [node name="SuccessZone" type="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0 )

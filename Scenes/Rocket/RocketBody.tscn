@@ -39,7 +39,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CylinderShape" id=14]
-radius = 15.0
+radius = 12.0
 
 [node name="RocketBody" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1878 )
