@@ -132,6 +132,21 @@ bus = "Music"
 [node name="AsphyxiationTimer" type="Timer" parent="."]
 wait_time = 10.0
 
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 180.0
+one_shot = true
+autostart = true
+__meta__ = {
+"_editor_description_": "3 minutes before meteor get closer"
+}
+
+[node name="LastMinTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+__meta__ = {
+"_editor_description_": "last minute before meteor impact"
+}
+
 [connection signal="human_died" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_died"]
 [connection signal="human_faced" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_faced"]
 [connection signal="player_camera_x_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_x_rotated"]
@@ -144,3 +159,5 @@ wait_time = 10.0
 [connection signal="start_asphyxiation" from="HelmetViewport/Viewport/Helmet" to="." method="_on_Helmet_start_asphyxiation"]
 [connection signal="stop_asphyxiation" from="HelmetViewport/Viewport/Helmet" to="." method="_on_Helmet_stop_asphyxiation"]
 [connection signal="timeout" from="AsphyxiationTimer" to="." method="_on_AsphyxiationTimer_timeout"]
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_MeteorTimer_timeout"]
+[connection signal="timeout" from="LastMinTimer" to="." method="_on_LastMinTimer_timeout"]
