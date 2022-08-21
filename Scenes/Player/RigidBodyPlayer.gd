@@ -16,7 +16,6 @@ signal right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
 signal succeeded(rest_stops)
-signal human_dove
 signal oxygen_picked_up
 
 export(float) var mouse_sensitivity : float = 0.02
@@ -116,7 +115,6 @@ func pickup_oxygen():
 
 func dive():
 	$DivingAnimationPlayer.play("Dive")
-	emit_signal("human_dove")
 
 func _process(delta):
 	add_play_time(delta)

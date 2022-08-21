@@ -133,13 +133,13 @@ bus = "Music"
 wait_time = 10.0
 
 [connection signal="human_died" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_died"]
+[connection signal="human_faced" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_faced"]
 [connection signal="player_camera_x_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_x_rotated"]
 [connection signal="player_camera_y_reset" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_reset"]
 [connection signal="player_camera_y_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_camera_y_rotated"]
 [connection signal="player_left_foot_grounded" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_left_foot_grounded"]
 [connection signal="player_oxygen_picked_up" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_oxygen_picked_up"]
 [connection signal="player_right_foot_grounded" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_right_foot_grounded"]
-[connection signal="player_y_rotated" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_player_y_rotated"]
 [connection signal="succeeded" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_succeeded"]
 [connection signal="start_asphyxiation" from="HelmetViewport/Viewport/Helmet" to="." method="_on_Helmet_start_asphyxiation"]
 [connection signal="stop_asphyxiation" from="HelmetViewport/Viewport/Helmet" to="." method="_on_Helmet_stop_asphyxiation"]
