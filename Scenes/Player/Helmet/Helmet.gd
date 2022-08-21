@@ -50,3 +50,24 @@ func set_oxygen(value):
 
 func _on_Timer_timeout():
 	set_oxygen(oxygen-1)
+
+func start_run_mission():
+	show_message("incoming transmission...", 2)
+	yield(get_tree().create_timer(2), "timeout")
+	var start_text = "incoming meteor shower\nreturn to the rocket to evacuate"
+	show_message(start_text, 5, 1)
+	yield(get_tree().create_timer(5), "timeout")
+	$Viewport/HUD.add_objective("return to the rocket")
+	show_message("run", 3.6, 2)
+
+func show_message(text : String, duration : float, severity : int = 0):
+	match (severity):
+		0:
+			$Viewport/HUD.pop_up_message(text, duration)
+		1:
+			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.WARNING_COLOR)
+		2:
+			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.ALERT_COLOR, true)
+		_:
+			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.ALERT_COLOR, true)
+

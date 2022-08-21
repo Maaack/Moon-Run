@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=9]
 [ext_resource path="res://Data/Moon/data.hterrain" type="Resource" id=10]
 [ext_resource path="res://Scenes/Pickups/OxygenPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Pickups/MessageZone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/LevelParts/LeaningFlatBox.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/LevelParts/MidWideLongPlatform.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/LevelParts/LargeLongPlatform.tscn" type="PackedScene" id=15]
@@ -43,6 +44,9 @@ textures = [ [  ], [  ] ]
 script = ExtResource( 8 )
 mode = 0
 textures = [ [  ], [  ] ]
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 80, 16, 20 )
 
 [node name="MoonWorld" type="Spatial"]
 script = ExtResource( 3 )
@@ -385,6 +389,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1884 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
 
+[node name="WrongWayMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -414.367, -151.834, -415.123 )
+collision_shape = SubResource( 11 )
+message_text = "wrong way"
+message_severity = 2
+
 [connection signal="launch_countdown" from="LaunchZone" to="RegolithRocketBlast" method="launch"]
 [connection signal="launch_countdown" from="LaunchZone" to="RocketBody" method="launch"]
 [connection signal="rocket_left" from="RocketBody" to="." method="_on_RocketBody_rocket_left"]
@@ -394,6 +404,7 @@ transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107,
 [connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
 [connection signal="human_faced" from="Player" to="." method="_on_Player_human_faced"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
+[connection signal="message_logged" from="Player" to="." method="_on_Player_message_logged"]
 [connection signal="oxygen_picked_up" from="Player" to="." method="_on_Player_oxygen_picked_up"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
 [connection signal="succeeded" from="Player" to="." method="_on_Player_succeeded"]

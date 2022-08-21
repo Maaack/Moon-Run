@@ -18,6 +18,7 @@ signal suit_damaged(value)
 signal human_died(reason)
 signal succeeded(rest_stops)
 signal oxygen_picked_up
+signal message_logged(text, duration, severity)
 
 export(float) var mouse_sensitivity : float = 0.02
 
@@ -89,6 +90,9 @@ func rest() -> void:
 func add_play_time(delta : float) -> void:
 	run_time += delta
 	real_run_time += delta
+
+func log_message(text : String, duration : float, severity : int) -> void:
+	emit_signal("message_logged", text, duration, severity)
 
 func succeed() -> void:
 	controls_frozen = true

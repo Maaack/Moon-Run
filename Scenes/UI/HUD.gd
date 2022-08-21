@@ -9,16 +9,6 @@ var labels_to_display = [] # list of labels which the text need to be displayed 
 var countdown = 60
 var countdown_text = "alert: meteor striking in 01:00"
 
-var start_text = "incoming meteor shower\nreturn to the rocket to evacuate"
-
-func start_run_mission():
-	pop_up_message("incoming transmission...", 2)
-	yield(get_tree().create_timer(2), "timeout")
-	pop_up_message(start_text, 5, WARNING_COLOR)
-	yield(get_tree().create_timer(5), "timeout")
-	add_objective("return to the rocket")
-	pop_up_message("run", 3.6, ALERT_COLOR, true)
-
 func add_objective(objective : String):
 	add(objective, $Objectives)
 
