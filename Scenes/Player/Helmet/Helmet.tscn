@@ -33,24 +33,23 @@ radial_segments = 24
 rings = 12
 
 [node name="CSGBox" type="CSGBox" parent="CSGSphere"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -0.333 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.333 )
 operation = 2
 width = 0.66
-height = 0.55
+height = 0.6
 depth = 0.5
 
 [node name="OxygenMeter" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250346, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.295, 0.057889 )
 
 [node name="LeftLight" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.252, -0.25, -0.283385 )
-toggle_state = true
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.252, -0.295, -0.225111 )
 
 [node name="RightLight" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.251503, -0.250419, -0.283367 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.252, -0.295, -0.225111 )
 
 [node name="CameraPivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0562407 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1 )
 
 [node name="Camera" type="Camera" parent="CameraPivot"]
 

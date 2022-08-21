@@ -3,12 +3,14 @@ extends RigidBody
 enum DEATH_REASONS{
 	ASPHYXIATION,
 	IMPACT,
-	METEOR
-} 
+	ABANDONED,
+	METEOR,
+	EXPOSED
+}
 
 signal camera_x_rotated(value)
 signal camera_y_rotated(value)
-signal player_y_rotated(value)
+signal human_faced(vector3)
 signal camera_y_reset(duration)
 signal left_foot_grounded(state)
 signal right_foot_grounded(state)
@@ -93,6 +95,8 @@ func succeed() -> void:
 	emit_signal("succeeded", rest_stops)
 
 func kill_human(reason : int) -> void:
+	if controls_frozen:
+		return
 	controls_frozen = true
 	emit_signal("human_died", reason)
 	match(reason):
@@ -110,6 +114,9 @@ func damage_suit(amount : float) -> void:
 func pickup_oxygen():
 	emit_signal("oxygen_picked_up")
 
+func dive():
+	$DivingAnimationPlayer.play("Dive")
+
 func _process(delta):
 	add_play_time(delta)
 	self.left_arm_contacting = left_arm.is_colliding()
@@ -117,7 +124,7 @@ func _process(delta):
 	linear_damp = _get_linear_damp_by_contacts()
 	angular_damp = _get_angular_damp_by_contacts()
 	self.free_look_mode = not _can_reach_ground() or Input.is_action_pressed("free_look")
-	emit_signal("player_y_rotated", camera_pivot.global_rotation.y)
+	emit_signal("human_faced", camera.global_rotation)
 
 func _input(event):
 	if controls_frozen:
