@@ -5,12 +5,23 @@ const REST_STOPS_ONE_TEXT : String = "Phew. Still quite tiring even with that re
 const REST_STOPS_TWO_TEXT : String = "Nice. Feeling pretty good after all that rest, too."
 const REST_STOPS_MORE_TEXT : String = "*Yawn* ... Now you're just making me lethargic."
 
+var completion_time : float = 999.0 setget set_completion_time
+var fastest_time : float = 999.0 setget set_fastest_time
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if $Control/ConfirmExit.visible:
 			$Control/ConfirmExit.hide()
 		elif $Control/ConfirmMainMenu.visible:
 			$Control/ConfirmMainMenu.hide()
+
+func set_completion_time(value : float) -> void:
+	completion_time = value
+	$Control/EscapeTimer.text = "%0.1f sec" % value
+
+func set_fastest_time(value : float) -> void:
+	fastest_time = value
+	$Control/FastestEscapeTimer.text = "%0.1f sec" % value
 
 func set_rest_stops(rest_stops : int = 0) -> void:
 	match(rest_stops):
