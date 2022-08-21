@@ -103,13 +103,13 @@ shadow_bias = 0.05
 directional_shadow_max_distance = 1024.0
 
 [node name="LongTunnel" parent="." instance=ExtResource( 7 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -293.95, -168.834, -294.705 )
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -293.95, -168.8, -294.705 )
 
 [node name="LongTunnel2" parent="." instance=ExtResource( 7 )]
-transform = Transform( -0.707107, -0.0984102, -0.700225, 0, 0.990268, -0.139173, 0.707107, -0.0984102, -0.700225, -159.599, -155.834, -160.355 )
+transform = Transform( 0.700225, -0.0984102, -0.707106, 0.139173, 0.990268, 0, 0.700225, -0.0984102, 0.707107, -159.55, -155.5, -160.306 )
 
 [node name="LongTunnel3" parent="." instance=ExtResource( 7 )]
-transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965926, -0.258819, 0.707107, -0.183013, -0.683013, -28.077, -118, -28.833 )
+transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.683013, -0.183013, 0.707107, -27.985, -117.75, -28.741 )
 
 [node name="HTerrain" type="Spatial" parent="."]
 script = ExtResource( 9 )
@@ -193,13 +193,13 @@ transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -404.367, -167.55, -403.123 )
 
 [node name="LeaningFlatBox" parent="Interactables" instance=ExtResource( 13 )]
-transform = Transform( -0.707106, -0.612371, -0.353553, 0, 0.499999, -0.866025, 0.707106, -0.612371, -0.353553, -166.351, -154.105, -158.38 )
+transform = Transform( -0.707106, -0.612371, -0.353553, 0, 0.499999, -0.866025, 0.707106, -0.612371, -0.353553, -166.351, -153.329, -158.38 )
 
 [node name="LeaningFlatBox2" parent="Interactables" instance=ExtResource( 13 )]
-transform = Transform( -0.707106, -0.612371, -0.353553, 0, 0.499999, -0.866025, 0.707106, -0.612371, -0.353553, -166.728, -154.105, -159 )
+transform = Transform( -0.707106, -0.612371, -0.353553, 0, 0.499999, -0.866025, 0.707106, -0.612371, -0.353553, -166.728, -153.329, -159 )
 
 [node name="CubeBox" parent="Interactables" instance=ExtResource( 5 )]
-transform = Transform( -0.707107, -0.0984103, -0.700225, 0, 0.990268, -0.139173, 0.707107, -0.0984103, -0.700225, -163.564, -153.778, -156.39 )
+transform = Transform( -0.707107, -0.0984103, -0.700225, 0, 0.990268, -0.139173, 0.707107, -0.0984103, -0.700225, -163.564, -153.002, -156.39 )
 
 [node name="CubeBox2" parent="Interactables" instance=ExtResource( 5 )]
 transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, -31.4632, -114.838, -25.4469 )
@@ -208,13 +208,13 @@ transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 
 transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, -27.3475, -113.377, -21.3312 )
 
 [node name="CubeBox4" parent="Interactables" instance=ExtResource( 5 )]
-transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, 19.9351, -99.3345, 10.8364 )
+transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, 19.9351, -98.5658, 10.8364 )
 
 [node name="CubeBox5" parent="Interactables" instance=ExtResource( 5 )]
-transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, 24.0506, -97.8736, 14.952 )
+transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, 24.0506, -97.1049, 14.952 )
 
 [node name="CubeBox6" parent="Interactables" instance=ExtResource( 5 )]
-transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, 27.2193, -96.5975, 18.1206 )
+transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965927, -0.258819, 0.707107, -0.183013, -0.683013, 27.2193, -95.8288, 18.1206 )
 
 [node name="FlatBox" parent="Interactables" instance=ExtResource( 4 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -320.834, -168.017, -313.694 )
@@ -232,7 +232,22 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -379, -168, -371 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.037, -112, -16.43 )
 
 [node name="OxygenPickup3" parent="Interactables" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 468.449, -15, 479.103 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 448.319, -15, 458.973 )
+
+[node name="OxygenPickup5" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 722.621, -15, 634.989 )
+
+[node name="OxygenPickup6" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 614.056, -15, 734.56 )
+
+[node name="OxygenPickup7" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 950.67, -15, 525.782 )
+
+[node name="OxygenPickup8" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 517.698, -15, 963.251 )
+
+[node name="OxygenPickup4" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 836.001, -15, 844.739 )
 
 [node name="LargeLongPlatform2" parent="." instance=ExtResource( 15 )]
 transform = Transform( 0.700225, -0.0984103, -0.707107, 0.139173, 0.990268, 0, 0.700225, -0.0984103, 0.707107, 107.976, -85.1596, 113.039 )
@@ -276,16 +291,16 @@ transform = Transform( 1, 0, 4.56956e-08, 0, 1, 0, -4.56956e-08, 0, 1, 768.132, 
 [node name="MidWideLongPlatform18" parent="." instance=ExtResource( 14 )]
 transform = Transform( -8.9407e-08, 0, 1, 0, 1, 0, -1, 0, -8.9407e-08, 846.132, -18.9096, 776.637 )
 
-[node name="MidWideLongestPlatform5" parent="." instance=ExtResource( 16 )]
+[node name="MidWideLongerPlatform5" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 855.423, -18.9096, 498.92 )
 
-[node name="MidWideLongestPlatform6" parent="." instance=ExtResource( 16 )]
+[node name="MidWideLongerPlatform6" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 906.433, -18.9096, 619.332 )
 
-[node name="MidWideLongestPlatform7" parent="." instance=ExtResource( 16 )]
+[node name="MidWideLongerPlatform7" parent="." instance=ExtResource( 16 )]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 608.535, -18.9096, 915.663 )
 
-[node name="MidWideLongestPlatform8" parent="." instance=ExtResource( 16 )]
+[node name="MidWideLongerPlatform8" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 487.321, -18.9096, 866.589 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]

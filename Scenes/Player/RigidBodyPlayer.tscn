@@ -16,8 +16,8 @@ resource_name = "Walking"
 length = 0.6
 
 [sub_resource type="CapsuleMesh" id=21]
-radius = 0.25
-mid_height = 1.6
+radius = 0.3
+mid_height = 1.5
 radial_segments = 16
 
 [sub_resource type="AudioStreamRandomPitch" id=23]
