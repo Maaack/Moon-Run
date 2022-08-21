@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/MoonMiniature/MeteorImpact.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MoonMiniature/MeteorImpactScaleCurveTexture.tres" type="Texture" id=2]
@@ -12,7 +12,7 @@ emission_ring_inner_radius = 10.0
 emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 1, 0 )
 direction = Vector3( 0, 1, 0 )
-spread = 60.0
+spread = 30.0
 gravity = Vector3( 0, -0.5, 0 )
 initial_velocity = 10.0
 angle = 360.0
@@ -22,9 +22,9 @@ scale_curve = ExtResource( 2 )
 anim_speed_random = 0.4
 
 [sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
 params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -43,7 +43,7 @@ emission_ring_inner_radius = 5.0
 emission_ring_height = 0.0
 emission_ring_axis = Vector3( 0, 1, 0 )
 direction = Vector3( 0, 1, 0 )
-spread = 30.0
+spread = 20.0
 gravity = Vector3( 0, -0.5, 0 )
 initial_velocity = 8.0
 angle = 360.0
@@ -96,25 +96,160 @@ albedo_texture = ExtResource( 4 )
 material = SubResource( 14 )
 size = Vector2( 10, 10 )
 
-[sub_resource type="Animation" id=16]
-resource_name = "New Anim"
-tracks/0/type = "method"
-tracks/0/path = NodePath(".")
+[sub_resource type="SphereShape" id=17]
+radius = 10.0
+
+[sub_resource type="Animation" id=18]
+resource_name = "Boom"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLayerLightParticles:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.7 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "emit"
-} ]
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MidLayerLightParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLayerLightParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TopLayerLightParticles:process_material:initial_velocity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 32.0, 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MidLayerLightParticles:process_material:initial_velocity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.05, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 16.0, 1.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("BottomLayerLightParticles:process_material:initial_velocity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 12.0, 1.0 ]
 }
 
-[sub_resource type="SphereShape" id=17]
-radius = 10.0
+[sub_resource type="Animation" id=19]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLayerLightParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MidLayerLightParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BottomLayerLightParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("TopLayerLightParticles:process_material:initial_velocity")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 10.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MidLayerLightParticles:process_material:initial_velocity")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 8.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("BottomLayerLightParticles:process_material:initial_velocity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6.0 ]
+}
 
 [node name="MeteorImpact" type="Spatial"]
 script = ExtResource( 1 )
@@ -124,7 +259,7 @@ emitting = false
 amount = 50
 lifetime = 25.0
 one_shot = true
-explosiveness = 0.9
+explosiveness = 0.95
 randomness = 0.5
 visibility_aabb = AABB( -25.088, -25.2529, -25.4195, 50.1761, 50.5057, 50.839 )
 process_material = SubResource( 2 )
@@ -135,7 +270,7 @@ emitting = false
 amount = 50
 lifetime = 25.0
 one_shot = true
-explosiveness = 0.9
+explosiveness = 0.92
 randomness = 0.5
 visibility_aabb = AABB( -25.5354, -25.2588, -24.8715, 51.0708, 50.5175, 49.743 )
 process_material = SubResource( 4 )
@@ -146,16 +281,17 @@ emitting = false
 amount = 50
 lifetime = 25.0
 one_shot = true
-explosiveness = 0.8
+explosiveness = 0.9
 randomness = 0.5
 visibility_aabb = AABB( -25.1949, -25.2073, -25.0239, 50.3898, 50.4145, 50.0478 )
 process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 15 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/New Anim" = SubResource( 16 )
-
 [node name="Area" type="Area" parent="."]
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 17 )
+
+[node name="BoomAnimation" type="AnimationPlayer" parent="."]
+anims/Boom = SubResource( 18 )
+anims/RESET = SubResource( 19 )
