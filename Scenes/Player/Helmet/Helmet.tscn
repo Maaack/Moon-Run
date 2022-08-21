@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/Helmet/Light.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player/Helmet/Helmet.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/OxygenMeter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Originals/SFX/Warning_-_GWJM.ogg" type="AudioStream" id=5]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 0.6, 0.4 )
@@ -67,5 +68,10 @@ material/0 = SubResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="WarningPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+bus = "SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

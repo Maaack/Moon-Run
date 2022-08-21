@@ -68,8 +68,6 @@ func show_message(text : String, duration : float, severity : int = 0):
 			$Viewport/HUD.pop_up_message(text, duration)
 		1:
 			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.WARNING_COLOR)
-		2:
+		2, _:
 			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.ALERT_COLOR, true)
-		_:
-			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.ALERT_COLOR, true)
-
+			$WarningPlayer.play()
