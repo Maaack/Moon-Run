@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Pickups/SuccessZone.gd" type="Script" id=1]
 
 [sub_resource type="CylinderShape" id=1]
-height = 30.0
+height = 256.0
 radius = 30.0
 
 [node name="SuccessZone" type="Area"]

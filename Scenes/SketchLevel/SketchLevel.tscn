@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/SketchLevel/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -17,6 +17,10 @@
 [ext_resource path="res://Scenes/SketchLevel/LargeLongPlatform.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/SketchLevel/MidWideLongerPlatform.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/SketchLevel/MidWideLongestPlatform.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/SketchLevel/Tunnel.tscn" type="PackedScene" id=18]
+[ext_resource path="res://ElbowChamber.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Data/Crater/data.hterrain" type="Resource" id=20]
+[ext_resource path="res://Scenes/Rocket/SpaceRocket.tscn" type="PackedScene" id=21]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -31,8 +35,19 @@ script = ExtResource( 8 )
 mode = 0
 textures = [ [  ], [  ] ]
 
+[sub_resource type="Resource" id=10]
+script = ExtResource( 8 )
+mode = 0
+textures = [ [  ], [  ] ]
+
 [node name="SketchLevel" type="Spatial"]
 script = ExtResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.965926, -0.12941, -0.224144, 0.258819, 0.482963, 0.836516, 0, -0.866025, 0.5, 0, 50, 0 )
+shadow_enabled = true
+shadow_bias = 0.05
+directional_shadow_max_distance = 1024.0
 
 [node name="AllLabels" type="Spatial" parent="."]
 visible = false
@@ -92,52 +107,6 @@ billboard = 1
 modulate = Color( 1, 0.913725, 0, 1 )
 text = "Outside - Medium"
 font = ExtResource( 6 )
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 8 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.965926, -0.12941, -0.224144, 0.258819, 0.482963, 0.836516, 0, -0.866025, 0.5, 0, 50, 0 )
-shadow_enabled = true
-shadow_bias = 0.05
-directional_shadow_max_distance = 1024.0
-
-[node name="LongTunnel" parent="." instance=ExtResource( 7 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -293.95, -168.8, -294.705 )
-
-[node name="LongTunnel2" parent="." instance=ExtResource( 7 )]
-transform = Transform( 0.700225, -0.0984102, -0.707106, 0.139173, 0.990268, 0, 0.700225, -0.0984102, 0.707107, -159.55, -155.5, -160.306 )
-
-[node name="LongTunnel3" parent="." instance=ExtResource( 7 )]
-transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.683013, -0.183013, 0.707107, -27.985, -117.75, -28.741 )
-
-[node name="HTerrain" type="Spatial" parent="."]
-script = ExtResource( 9 )
-lod_scale = 2.0
-_terrain_data = ExtResource( 10 )
-chunk_size = 32
-collision_enabled = true
-collision_layer = 1
-collision_mask = 1
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource( 9 )
-render_layers = 1
-shader_params/u_ground_uv_scale = 20
-shader_params/u_depth_blending = true
-shader_params/u_triplanar = false
-shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
-
-[node name="SuccessZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 970, -2, 980 )
-__meta__ = {
-"_editor_description_": "For testing purposes
-TODO: Delete me"
-}
-
-[node name="StartChamber" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -399.367, -168.3, -400.123 )
 
 [node name="Interactables" type="Spatial" parent="."]
 
@@ -249,6 +218,80 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 517.698, -15, 963.251 )
 [node name="OxygenPickup4" parent="Interactables" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 836.001, -15, 844.739 )
 
+[node name="OxygenPickup9" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -15.6167, 1092.07 )
+
+[node name="OxygenPickup10" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -6.13416, 1406.21 )
+
+[node name="OxygenPickup11" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, 14.8658, 1541.21 )
+
+[node name="PlayerStartPosition" type="Position3D" parent="."]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
+
+[node name="PlayerLastRoomPosition" type="Position3D" parent="."]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093, -14.824, 1092.07 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 9 )
+lod_scale = 2.0
+_terrain_data = ExtResource( 10 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 9 )
+render_layers = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="HTerrain2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 581, 149, 1530 )
+script = ExtResource( 9 )
+lod_scale = 2.0
+map_scale = Vector3( 2, 1, 2 )
+_terrain_data = ExtResource( 20 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 10 )
+render_layers = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="LongTunnel" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -293.95, -168.8, -294.705 )
+
+[node name="LongTunnel2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.700225, -0.0984102, -0.707106, 0.139173, 0.990268, 0, 0.700225, -0.0984102, 0.707107, -159.55, -155.5, -160.306 )
+
+[node name="LongTunnel3" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.683013, -0.183013, 0.707107, -27.985, -117.75, -28.741 )
+
+[node name="SuccessZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, 184, 1877.71 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="StartChamber" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -399.367, -168.3, -400.123 )
+
 [node name="LargeLongPlatform2" parent="." instance=ExtResource( 15 )]
 transform = Transform( 0.700225, -0.0984103, -0.707107, 0.139173, 0.990268, 0, 0.700225, -0.0984103, 0.707107, 107.976, -85.1596, 113.039 )
 
@@ -276,9 +319,6 @@ transform = Transform( 0.5, 0, -0.866026, 0, 1, 0, 0.866026, 0, 0.5, 652.673, -1
 [node name="MidWideLongPlatform16" parent="." instance=ExtResource( 14 )]
 transform = Transform( 1, 0, 4.56956e-08, 0, 1, 0, -4.56956e-08, 0, 1, 558.132, -18.9096, 732.637 )
 
-[node name="PlayerStartPosition3D" type="Position3D" parent="."]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
-
 [node name="MidWideLongestPlatform4" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 905.529, -18.9096, 914.109 )
 
@@ -302,6 +342,36 @@ transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 608.535, -1
 
 [node name="MidWideLongerPlatform8" parent="." instance=ExtResource( 16 )]
 transform = Transform( -0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 487.321, -18.9096, 866.589 )
+
+[node name="MidWideLongPlatform" parent="." instance=ExtResource( 14 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 999.238, -17.5, 1007.68 )
+
+[node name="ElbowChamber" parent="." instance=ExtResource( 19 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -16.5, 1092.07 )
+
+[node name="Tunnel" parent="." instance=ExtResource( 18 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1032, -16.5, 1032 )
+
+[node name="LongTunnel4" parent="." instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093, -17, 1241.07 )
+
+[node name="LongTunnel5" parent="." instance=ExtResource( 7 )]
+transform = Transform( -4.3286e-08, -6.08345e-09, 1, -0.139173, 0.990268, 0, -0.990268, -0.139173, -4.37114e-08, 1093, -4, 1432.07 )
+
+[node name="Tunnel2" parent="." instance=ExtResource( 18 )]
+transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 17.5049, 1558.15 )
+
+[node name="SpaceRocket" parent="." instance=ExtResource( 21 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, -106, 1877.89 )
+
+[node name="SpaceRocket2" parent="." instance=ExtResource( 21 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, 62, 1877.89 )
+
+[node name="SpaceRocket3" parent="." instance=ExtResource( 21 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093.44, 270.009, 1877.89 )
+
+[node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1981.69 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
