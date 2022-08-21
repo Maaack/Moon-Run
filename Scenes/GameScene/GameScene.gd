@@ -78,3 +78,10 @@ func _on_MeteorTimer_timeout():
 
 func _on_LastMinTimer_timeout():
 	$WorldContainer/Viewport/MoonWorld/Player.kill_human($WorldContainer/Viewport/MoonWorld/Player.DEATH_REASONS.METEOR)
+
+func _ready():
+	$HelmetViewport/Viewport/Helmet.start_run_mission()
+
+
+func _on_MoonWorld_message_logged(text, duration, severity):
+	$HelmetViewport/Viewport/Helmet.show_message(text, duration, severity)

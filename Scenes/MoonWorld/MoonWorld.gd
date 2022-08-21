@@ -12,6 +12,7 @@ signal human_died(reason)
 signal human_faced(vector3)
 signal succeeded(rest_stops)
 signal player_oxygen_picked_up
+signal message_logged(text, duration, severity)
 
 func _on_Player_camera_x_rotated(value):
 	emit_signal("player_camera_x_rotated", value)
@@ -47,3 +48,7 @@ func _on_RocketBody_rocket_left():
 
 func _on_Player_human_faced(vector3):
 	emit_signal("human_faced", vector3)
+
+
+func _on_Player_message_logged(text, duration, severity):
+	emit_signal("message_logged", text, duration, severity)

@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Theme/HUDTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Theme/digital-7_48_white_outline.tres" type="DynamicFont" id=3]
 
-[sub_resource type="Animation" id=2]
-length = 0.001
+[sub_resource type="Animation" id=4]
+resource_name = "FlashText"
+length = 0.6
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("CenterText:visible_characters")
+tracks/0/path = NodePath("CenterText:percent_visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -15,7 +18,74 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterText:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "TypeText"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CenterText:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CenterText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -52,28 +122,34 @@ margin_right = 383.0
 alignment = 2
 
 [node name="CenterText" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -191.5
-margin_top = -70.5
-margin_right = 191.5
-margin_bottom = -9.5
-text = "alert: meteor shower incoming
-return to the rocket to evacuate"
-percent_visible = 0.0
+margin_left = -353.5
+margin_top = -134.0
+margin_right = 353.5
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+valign = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/FlashText = SubResource( 4 )
 anims/RESET = SubResource( 2 )
+anims/TypeText = SubResource( 3 )
 anims/meteor_shower_alert = SubResource( 1 )
 
 [node name="CountdownTimer" type="Timer" parent="."]
 
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
