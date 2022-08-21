@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/Helmet/Light.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player/Helmet/Helmet.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/OxygenMeter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Originals/SFX/Warning_-_GWJM.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Theme/digital-7_25_green_outline.tres" type="DynamicFont" id=6]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 0.6, 0.4 )
@@ -39,6 +40,12 @@ operation = 2
 width = 0.66
 height = 0.6
 depth = 0.5
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, -0.299598, -0.174228 )
+modulate = Color( 0.0313726, 1, 0, 1 )
+text = "l                              R"
+font = ExtResource( 6 )
 
 [node name="OxygenMeter" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.295, 0.057889 )
