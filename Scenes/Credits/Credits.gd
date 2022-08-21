@@ -64,7 +64,7 @@ func reset():
 func _ready():
 	set_file_path(attribution_file_path)
 	set_header_and_footer()
-#	set_process(false)
+	set_process(false)
 
 func _process(_delta):
 	if round(current_speed) > 0:
