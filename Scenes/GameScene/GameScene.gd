@@ -44,9 +44,14 @@ func _on_MoonWorld_human_died(reason):
 	if InGameMenuController.current_menu.has_method("set_reason"):
 		InGameMenuController.current_menu.set_reason(reason)
 
-func _on_MoonWorld_succeeded(rest_stops):
+func _on_MoonWorld_succeeded(play_time, rest_stops):
 	stop_audio()
+	GameLog.set_completion(play_time)
 	InGameMenuController.open_menu(success_screen_packed, false)
+	if InGameMenuController.current_menu.has_method("set_completion_time"):
+		InGameMenuController.current_menu.set_completion_time(play_time)
+	if InGameMenuController.current_menu.has_method("set_fastest_time"):
+		InGameMenuController.current_menu.set_fastest_time(GameLog.fastest_time_played)
 	if InGameMenuController.current_menu.has_method("set_rest_stops"):
 		InGameMenuController.current_menu.set_rest_stops(rest_stops)
 

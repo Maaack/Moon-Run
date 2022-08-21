@@ -3,6 +3,8 @@ extends Node
 const GAME_LOG_SECTION = "GameLog"
 const APP_OPENED = "AppOpened"
 const TOTAL_TIME_PLAYED = "TotalTimePlayed"
+const FASTEST_TIME_PLAYED = "FastestTimePlayed"
+const TOTAL_COMPLETIONS = "TotalCompletions"
 const FIRST_VERSION_PLAYED = "FirstVersionPlayed"
 const LAST_VERSION_PLAYED = "LastVersionPlayed"
 const UPDATE_COUNTER_RESET = 3.0
@@ -10,6 +12,8 @@ const UNKNOWN_VERSION = "unknown"
 
 var app_opened : int = 0
 var total_time_played : float = 0.0
+var fastest_time_played : float = 999.0
+var total_completions : int = 0
 var first_version_played : String = UNKNOWN_VERSION setget set_first_version_played
 var last_version_played : String = UNKNOWN_VERSION setget set_last_version_played
 var update_counter : float = 0.0
@@ -47,4 +51,13 @@ func set_last_version_played(value : String) -> void:
 func set_version_played(value : String) -> void:
 	self.first_version_played = value
 	self.last_version_played = value
+
+func set_completion(time_in_sec : float):
+	fastest_time_played = Config.get_config(GAME_LOG_SECTION, FASTEST_TIME_PLAYED, fastest_time_played)
+	if time_in_sec < fastest_time_played:
+		fastest_time_played = time_in_sec
+		Config.set_config(GAME_LOG_SECTION, FASTEST_TIME_PLAYED, time_in_sec)
+	total_completions = Config.get_config(GAME_LOG_SECTION, TOTAL_COMPLETIONS, total_completions)
+	total_completions += 1
+	Config.set_config(GAME_LOG_SECTION, TOTAL_COMPLETIONS, total_completions)
 

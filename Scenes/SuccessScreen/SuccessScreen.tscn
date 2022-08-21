@@ -46,6 +46,62 @@ text = "That was exhausting!!! If this somehow ever ever happens again... I'm ta
 align = 1
 autowrap = true
 
+[node name="EscapeText" type="Label" parent="Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -337.0
+margin_top = -43.0
+margin_right = -21.0
+margin_bottom = -22.0
+custom_colors/font_color = Color( 1, 0.913725, 0, 1 )
+text = "Escape Completed in:"
+align = 1
+autowrap = true
+
+[node name="EscapeTimer" type="Label" parent="Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -337.0
+margin_top = -20.0
+margin_right = -21.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 1, 0.913725, 0, 1 )
+text = "999.0 seconds"
+align = 1
+autowrap = true
+
+[node name="FastestEscapeText" type="Label" parent="Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -337.0
+margin_top = 44.0
+margin_right = -21.0
+margin_bottom = 65.0
+custom_colors/font_color = Color( 1, 0.445312, 0, 1 )
+text = "Fastest Escape Is:"
+align = 1
+autowrap = true
+
+[node name="FastestEscapeTimer" type="Label" parent="Control"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -337.0
+margin_top = 67.0
+margin_right = -21.0
+margin_bottom = 88.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "999.0 seconds"
+align = 1
+autowrap = true
+
 [node name="ButtonsContainer" type="VBoxContainer" parent="Control"]
 anchor_left = 0.5
 anchor_top = 0.5

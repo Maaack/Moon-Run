@@ -10,7 +10,7 @@ signal player_right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
 signal human_faced(vector3)
-signal succeeded(rest_stops)
+signal succeeded(play_time, rest_stops)
 signal player_oxygen_picked_up
 signal message_logged(text, duration, severity)
 
@@ -35,8 +35,8 @@ func _on_Player_human_died(reason):
 func _on_Player_suit_damaged(value):
 	emit_signal("suit_damaged", value)
 
-func _on_Player_succeeded(rest_stops):
-	emit_signal("succeeded", rest_stops)
+func _on_Player_succeeded(play_time, rest_stops):
+	emit_signal("succeeded", play_time, rest_stops)
 
 func _on_Player_oxygen_picked_up():
 	emit_signal("player_oxygen_picked_up")

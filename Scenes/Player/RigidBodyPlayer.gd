@@ -16,7 +16,7 @@ signal left_foot_grounded(state)
 signal right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
-signal succeeded(rest_stops)
+signal succeeded(playtime, rest_stops)
 signal oxygen_picked_up
 signal message_logged(text, duration, severity)
 
@@ -96,7 +96,7 @@ func log_message(text : String, duration : float, severity : int) -> void:
 
 func succeed() -> void:
 	controls_frozen = true
-	emit_signal("succeeded", rest_stops)
+	emit_signal("succeeded", real_run_time, rest_stops)
 
 func kill_human(reason : int, delay : float = 0.0) -> void:
 	if delay > 0.0:
