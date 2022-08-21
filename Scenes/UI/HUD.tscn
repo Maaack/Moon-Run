@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Theme/HUDTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/UI/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Theme/digital-7_48_white_outline.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Animation" id=4]
 resource_name = "FlashText"
@@ -126,13 +127,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -191.5
-margin_top = -70.5
-margin_right = 191.5
-margin_bottom = -9.5
-text = "alert: meteor shower incoming
-return to the rocket to evacuate"
+margin_left = -353.5
+margin_top = -134.0
+margin_right = 353.5
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 3 )
 align = 1
+valign = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

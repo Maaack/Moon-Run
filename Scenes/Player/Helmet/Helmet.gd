@@ -48,7 +48,5 @@ func set_oxygen(value):
 		asphyxiating = false
 		emit_signal("stop_asphyxiation")
 
-
-
 func _on_Timer_timeout():
 	set_oxygen(oxygen-1)

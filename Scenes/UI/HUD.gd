@@ -2,18 +2,22 @@ extends Control
 
 
 const DEFAULT_COLOR = Color("08ff00")
+const WARNING_COLOR = Color("ff7200")
+const ALERT_COLOR = Color("ff0000")
+
 var labels_to_display = [] # list of labels which the text need to be displayed by the timer (slow print)
 var countdown = 60
 var countdown_text = "alert: meteor striking in 01:00"
 
-var start_text = "alert: meteor shower incoming \n return to the rocket to evacuate"
+var start_text = "incoming meteor shower\nreturn to the rocket to evacuate"
 
-func _ready():
-	yield(get_tree().create_timer(1.5), "timeout")
-	pop_up_message(start_text, 5)
+func start_run_mission():
+	pop_up_message("incoming transmission...", 2)
+	yield(get_tree().create_timer(2), "timeout")
+	pop_up_message(start_text, 5, WARNING_COLOR)
 	yield(get_tree().create_timer(5), "timeout")
 	add_objective("return to the rocket")
-
+	pop_up_message("run", 3.6, ALERT_COLOR, true)
 
 func add_objective(objective : String):
 	add(objective, $Objectives)
@@ -87,6 +91,9 @@ func _on_CountdownTimer_timeout():
 	modify_objective(old_countdown_text, countdown_text)
 
 func pop_up_message(text : String, duration : float = 5.0, text_color : Color = DEFAULT_COLOR, flash_flag : bool = false) -> void:
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.seek($AnimationPlayer.current_animation_length)
+		$CenterText.hide()
 	$CenterText.text = text
 	$CenterText.set("custom_colors/font_color", text_color)
 	if flash_flag:
