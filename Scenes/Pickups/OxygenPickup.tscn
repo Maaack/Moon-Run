@@ -23,7 +23,7 @@ transform = Transform( 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00148344, 9.53674e-07, -0.0156908 )
-light_color = Color( 0, 0.392157, 1, 1 )
+light_color = Color( 0, 1, 0.882353, 1 )
 light_energy = 0.2
 omni_attenuation = 3.0
 
@@ -31,7 +31,7 @@ omni_attenuation = 3.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0 )
 pixel_size = 0.05
 billboard = 1
-modulate = Color( 0, 0.392157, 1, 1 )
+modulate = Color( 0, 1, 0.882353, 1 )
 text = "O2"
 font = ExtResource( 3 )
 
