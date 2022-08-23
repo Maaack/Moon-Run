@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Scenes/Walls/CornerWallStraightTunnel.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Scenes/Walls/LongFlatWallStraightTunnel.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Scenes/Pickups/KillZone.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/WakeUpNode/WakeUpNode.tscn" type="PackedScene" id=28]
 
 [sub_resource type="PanoramaSky" id=7]
 
@@ -249,13 +250,111 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 517.698, -15, 963.251 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 836.001, -15, 844.739 )
 
 [node name="OxygenPickup9" parent="Interactables" instance=ExtResource( 11 )]
-transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -15.6167, 1092.07 )
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1076, -15.6167, 1109.07 )
 
 [node name="OxygenPickup10" parent="Interactables" instance=ExtResource( 11 )]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, -105.21, 1854.95 )
 
 [node name="OxygenPickup11" parent="Interactables" instance=ExtResource( 11 )]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 1093, 12.1145, 1541.21 )
+
+[node name="CubeBox23" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1105.19, -14.3903, 1095.29 )
+
+[node name="CubeBox24" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1100.95, -14.3903, 1091.05 )
+
+[node name="WakeUpNode" parent="Interactables" instance=ExtResource( 28 )]
+
+[node name="CubeBox19" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1061.5, -104.511, 1889.28 )
+
+[node name="CubeBox20" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1061.26, -104.511, 1881.04 )
+
+[node name="CubeBox21" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1061.26, -104.511, 1885.28 )
+
+[node name="CubeBox22" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1061.26, -100.511, 1885.28 )
+
+[node name="CubeBox31" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1119.32, -104.511, 1918.45 )
+
+[node name="CubeBox32" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1119.56, -104.511, 1926.7 )
+
+[node name="CubeBox33" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1119.56, -104.511, 1922.45 )
+
+[node name="CubeBox34" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1119.56, -100.511, 1922.45 )
+
+[node name="CubeBox35" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.32, -104.511, 1926.45 )
+
+[node name="CubeBox36" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.56, -104.511, 1934.7 )
+
+[node name="CubeBox37" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.56, -104.511, 1930.45 )
+
+[node name="CubeBox38" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.56, -100.511, 1930.45 )
+
+[node name="CubeBox39" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1124.32, -104.511, 1921.7 )
+
+[node name="CubeBox40" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1132.56, -104.511, 1921.45 )
+
+[node name="CubeBox41" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1128.32, -104.511, 1921.45 )
+
+[node name="CubeBox42" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1128.32, -100.511, 1921.45 )
+
+[node name="CubeBox23" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.26, -104.511, 1881.04 )
+
+[node name="CubeBox24" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1128.5, -104.511, 1885.28 )
+
+[node name="CubeBox25" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1128.5, -104.511, 1881.04 )
+
+[node name="CubeBox26" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1128.5, -100.511, 1881.04 )
+
+[node name="CubeBox27" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1128.5, -104.511, 1891.04 )
+
+[node name="CubeBox28" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1124.26, -104.511, 1895.28 )
+
+[node name="CubeBox29" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1128.5, -104.511, 1895.28 )
+
+[node name="CubeBox30" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1128.5, -100.511, 1895.28 )
+
+[node name="CubeBox43" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.33118e-07, 0, -1, 0, 1, 0, 1, 0, 1.33118e-07, 1066.92, -104.511, 1914.22 )
+
+[node name="CubeBox44" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( 1.33118e-07, 0, -1, 0, 1, 0, 1, 0, 1.33118e-07, 1066.92, -104.511, 1909.97 )
+
+[node name="CubeBox45" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, -1, 1066.92, -104.511, 1919.97 )
+
+[node name="CubeBox46" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, -1, 1062.68, -104.511, 1924.22 )
+
+[node name="CubeBox47" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, -1, 1066.92, -104.511, 1924.22 )
+
+[node name="CubeBox48" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, -1, 1066.92, -100.511, 1924.22 )
 
 [node name="PlayerStartPosition" type="Position3D" parent="."]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
@@ -341,7 +440,7 @@ message_duration = 6.0
 message_severity = 2
 
 [node name="KillZone" parent="." instance=ExtResource( 27 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 170, 512 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512.143, 165, 512.219 )
 collision_shape = SubResource( 15 )
 death_reason = 4
 death_delay = 8.0
@@ -413,13 +512,13 @@ message_text = "emergency launch imminent"
 message_severity = 1
 
 [node name="JumpMessageZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 34.2002, 1577.65 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 34.2002, 1587.65 )
 collision_shape = SubResource( 16 )
 message_text = "jump!"
 message_severity = 2
 
 [node name="GrabLadderMessageZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 209.2, 1812.65 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 209.2, 1835 )
 collision_shape = SubResource( 17 )
 message_text = "Grab the ladder!"
 message_severity = 2
@@ -449,13 +548,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1631.29 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 20, 1536 )
 
 [node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1086.44, -108.435, 1987.69 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1992.69 )
 
 [node name="RegolithRocketBlast" parent="." instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -102, 1884 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -102, 1889 )
 
 [node name="RocketBody" parent="." instance=ExtResource( 22 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1884 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1889 )
 
 [node name="WrongWayMessageZone" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -414.367, -151.834, -415.123 )
@@ -466,6 +565,7 @@ message_severity = 2
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
 
+[connection signal="launch_countdown" from="LaunchZone" to="Interactables/WakeUpNode" method="wake_up"]
 [connection signal="launch_countdown" from="LaunchZone" to="RegolithRocketBlast" method="launch"]
 [connection signal="launch_countdown" from="LaunchZone" to="RocketBody" method="launch"]
 [connection signal="rocket_left" from="RocketBody" to="." method="_on_RocketBody_rocket_left"]

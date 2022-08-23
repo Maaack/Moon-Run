@@ -87,6 +87,7 @@ func pop_up_message(text : String, duration : float = 5.0, text_color : Color = 
 		$CenterText.hide()
 	$CenterText.text = text
 	$CenterText.set("custom_colors/font_color", text_color)
+	$Crosshair.hide()
 	if flash_flag:
 		$AnimationPlayer.play("FlashText")
 	else:
@@ -98,3 +99,4 @@ func pop_up_message(text : String, duration : float = 5.0, text_color : Color = 
 func _on_MessageTimer_timeout():
 	$AnimationPlayer.stop()
 	$CenterText.hide()
+	$Crosshair.show()

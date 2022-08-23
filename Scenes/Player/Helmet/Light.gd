@@ -20,8 +20,8 @@ func toggle(value : bool) -> void:
 		new_color = off_color
 		new_material = off_material
 	$OmniLight.light_color = new_color
-	$CSGSphere.material = new_material
-	$CSGSphere/CSGSphere.material = new_material
+	$LightSurface.material = new_material
+	$LightSurface/InteriorSurface.material = new_material
 
 func _ready():
 	self.toggle_state = toggle_state

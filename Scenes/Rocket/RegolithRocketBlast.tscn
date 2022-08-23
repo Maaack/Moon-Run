@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Sourced/White puff/whitePuff01.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Rocket/RegolithRocketBlast.gd" type="Script" id=2]
@@ -80,6 +80,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 2.0, 4.0, 4.0, 2.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Area:space_override")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
 
 [sub_resource type="Animation" id=25]
 length = 0.001
@@ -131,6 +143,21 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 4.0 ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Area:space_override")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="SphereShape" id=26]
+radius = 60.0
 
 [node name="RegolithRocketBlast" type="Particles"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1089, -106, 1876 )
@@ -145,3 +172,14 @@ script = ExtResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/LiftOff = SubResource( 24 )
 anims/RESET = SubResource( 25 )
+
+[node name="Area" type="Area" parent="."]
+gravity_point = true
+gravity_distance_scale = 0.01
+gravity_vec = Vector3( 0, 0, 0 )
+gravity = -30.0
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 26 )

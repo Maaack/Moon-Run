@@ -1,16 +1,19 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/Player/Helmet/Light.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player/Helmet/TubeLight.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Theme/digital-7_25_green_outline.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/UI/OxygenMeter.gd" type="Script" id=3]
 
 [node name="OxygenMeter" type="Spatial"]
 script = ExtResource( 3 )
+text_color = Color( 0, 1, 0.882353, 1 )
+alert_color = Color( 1, 0, 0, 1 )
 
 [node name="Lights" type="Spatial" parent="."]
 
 [node name="Light" parent="Lights" instance=ExtResource( 1 )]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, -0.15, 0, -0.34 )
+on_color = Color( 0, 1, 0.882353, 1 )
 toggle_state = true
 
 [node name="Light2" parent="Lights" instance=ExtResource( 1 )]
@@ -31,6 +34,6 @@ toggle_state = true
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0.001, -0.33 )
-modulate = Color( 0.0313726, 1, 0, 1 )
+modulate = Color( 0, 1, 0.882353, 1 )
 text = "Oxygen"
 font = ExtResource( 2 )

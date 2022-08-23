@@ -1,11 +1,24 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Player/Helmet/Light.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player/Helmet/TubeLight.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player/Helmet/Helmet.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/UI/OxygenMeter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Originals/SFX/Warning_-_GWJM.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Theme/digital-7_25_green_outline.tres" type="DynamicFont" id=6]
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.498039 )
+emission_enabled = true
+emission = Color( 0.337255, 1, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.498039 )
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 0.6, 0.4 )
@@ -39,22 +52,36 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.333 )
 operation = 2
 width = 0.66
 height = 0.6
-depth = 0.5
+depth = 0.6
 
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, -0.299598, -0.174228 )
+[node name="LeftLabel3D" type="Label3D" parent="."]
+transform = Transform( -8.74228e-09, -1.77636e-15, 0.2, 0, 0.2, 1.77636e-15, -0.2, 7.76472e-23, -8.74228e-09, -0.329, -0.08, -0.27 )
 modulate = Color( 0.0313726, 1, 0, 1 )
-text = "l                              R"
+text = "left
+foot"
+font = ExtResource( 6 )
+
+[node name="RightLabel3D" type="Label3D" parent="."]
+transform = Transform( -8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 0.329, -0.08, -0.27 )
+modulate = Color( 0.0313726, 1, 0, 1 )
+text = "right
+foot"
 font = ExtResource( 6 )
 
 [node name="OxygenMeter" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.295, 0.057889 )
 
 [node name="LeftLight" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.252, -0.295, -0.225111 )
+transform = Transform( -3.27836e-08, -3.27835e-08, -0.75, -0.75, -3.27835e-08, 3.27836e-08, -3.27835e-08, 0.75, -3.27835e-08, -0.329, 0, -0.3 )
+on_material = SubResource( 5 )
+off_color = Color( 0, 0, 0, 1 )
+off_material = SubResource( 6 )
 
 [node name="RightLight" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.252, -0.295, -0.225111 )
+transform = Transform( 1.43302e-15, 3.27835e-08, 0.75, 0.75, -3.27835e-08, -2.69992e-21, 3.27835e-08, 0.75, -3.27835e-08, 0.329, 0, -0.3 )
+on_material = SubResource( 5 )
+off_color = Color( 0, 0, 0, 1 )
+off_material = SubResource( 6 )
 
 [node name="CameraPivot" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1 )

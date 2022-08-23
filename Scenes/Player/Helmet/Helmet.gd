@@ -33,7 +33,7 @@ func rotate_camera_y(value : float) -> void:
 
 func set_oxygen(value):
 	oxygen = value
-	$OxygenMeter.oxygen = oxygen
+	$OxygenMeter.oxygen = oxygen/100.0
 	if low_oxygen_alert == false and oxygen < 20:
 		low_oxygen_alert = true
 		$Viewport/HUD.add_warning(oxygen_warning_txt)
@@ -45,7 +45,7 @@ func set_oxygen(value):
 	if oxygen <= 0 and asphyxiating == false:
 		asphyxiating = true
 		emit_signal("start_asphyxiation")
-		show_message("oxygen empty", 10, 2)
+		show_message("oxygen empty", 6, 2)
 	elif oxygen > 0 and asphyxiating == true:
 		asphyxiating = false
 		emit_signal("stop_asphyxiation")

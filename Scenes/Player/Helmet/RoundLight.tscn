@@ -18,16 +18,16 @@ light_color = Color( 1, 0, 0, 1 )
 light_energy = 0.01
 omni_range = 0.25
 
-[node name="CSGSphere" type="CSGSphere" parent="."]
+[node name="LightSurface" type="CSGSphere" parent="."]
 radius = 0.025
 material = ExtResource( 4 )
 
-[node name="CSGSphere" type="CSGSphere" parent="CSGSphere"]
+[node name="InteriorSurface" type="CSGSphere" parent="LightSurface"]
 operation = 2
 radius = 0.02
 material = ExtResource( 4 )
 
-[node name="CSGBox" type="CSGBox" parent="CSGSphere"]
+[node name="CSGBox" type="CSGBox" parent="LightSurface"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11297e-09, 0.0254618 )
 operation = 2
 width = 0.05
