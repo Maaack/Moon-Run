@@ -341,7 +341,7 @@ message_duration = 6.0
 message_severity = 2
 
 [node name="KillZone" parent="." instance=ExtResource( 27 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 170, 512 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512.143, 165, 512.219 )
 collision_shape = SubResource( 15 )
 death_reason = 4
 death_delay = 8.0
@@ -449,13 +449,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1631.29 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 20, 1536 )
 
 [node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1086.44, -108.435, 1987.69 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1987.69 )
 
 [node name="RegolithRocketBlast" parent="." instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -102, 1884 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -102, 1884 )
 
 [node name="RocketBody" parent="." instance=ExtResource( 22 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1086, -106, 1884 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1884 )
 
 [node name="WrongWayMessageZone" parent="." instance=ExtResource( 12 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -414.367, -151.834, -415.123 )
