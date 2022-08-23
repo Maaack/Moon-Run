@@ -10,5 +10,8 @@ func load_scene(path : String) -> void:
 	AudioServer.set_bus_volume_db(master_idx, -80)
 	get_tree().paused = false
 	scene_to_load = path
-	get_tree().change_scene_to(loading_screen)
+	var err = get_tree().change_scene_to(loading_screen)
+	if err:
+		print("failed to load loading screen: %d" % err)
+		get_tree().quit()
 	AudioServer.set_bus_volume_db(master_idx, master_volume)
