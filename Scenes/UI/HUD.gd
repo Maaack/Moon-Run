@@ -6,8 +6,7 @@ const WARNING_COLOR = Color("ff7200")
 const ALERT_COLOR = Color("ff0000")
 
 var labels_to_display = [] # list of labels which the text need to be displayed by the timer (slow print)
-var countdown = 60
-var countdown_text = "alert: meteor striking in 01:00"
+var countdown : int = 60
 
 func add_objective(objective : String):
 	add(objective, $Objectives)
@@ -55,10 +54,10 @@ func remove(text, container):
 			return
 
 
-func start_countdown():
-	add_objective(countdown_text)
+func start_countdown(time : int = countdown) -> void:
+	countdown = time
+	$FinalCountdown.show()
 	$CountdownTimer.start()
-
 
 func _on_Timer_timeout():
 	var labels_finished_display = []
@@ -75,10 +74,8 @@ func _on_Timer_timeout():
 
 
 func _on_CountdownTimer_timeout():
-	var old_countdown_text = countdown_text
 	countdown -= 1
-	countdown_text = "alert: meteor striking in 00:%2d" % countdown
-	modify_objective(old_countdown_text, countdown_text)
+	$FinalCountdown/Timer.text = "%02d:%02d" % [floor(countdown / 60), (countdown % 60)]
 
 func pop_up_message(text : String, duration : float = 5.0, text_color : Color = DEFAULT_COLOR, flash_flag : bool = false) -> void:
 	if $AnimationPlayer.is_playing():

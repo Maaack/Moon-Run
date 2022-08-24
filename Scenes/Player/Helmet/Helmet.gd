@@ -5,7 +5,6 @@ signal stop_asphyxiation
 
 const oxygen_warning_txt = "warning: low oxygen"
 
-
 onready var camera_pivot : Spatial = $CameraPivot
 onready var camera : Spatial = $CameraPivot/Camera
 
@@ -52,15 +51,6 @@ func set_oxygen(value):
 
 func _on_Timer_timeout():
 	set_oxygen(oxygen-1)
-
-func start_run_mission():
-	show_message("incoming transmission...", 2)
-	yield(get_tree().create_timer(2), "timeout")
-	var start_text = "incoming meteor shower\nreturn to the rocket to evacuate"
-	show_message(start_text, 5, 1)
-	yield(get_tree().create_timer(5), "timeout")
-	$Viewport/HUD.add_objective("return to the rocket")
-	show_message("run", 3.6, 2)
 
 func show_message(text : String, duration : float, severity : int = 0):
 	match (severity):
