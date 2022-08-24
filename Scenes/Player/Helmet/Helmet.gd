@@ -9,8 +9,7 @@ onready var camera_pivot : Spatial = $CameraPivot
 onready var camera : Spatial = $CameraPivot/Camera
 
 var oxygen = 100 setget set_oxygen
-var low_oxygen_alert = false
-var asphyxiating = false
+var oxygen_state : int = GameConstants.OXYGEN_STATES.SAFE
 
 
 func toggle_right_light(value : bool) -> void:
@@ -33,21 +32,20 @@ func rotate_camera_y(value : float) -> void:
 func set_oxygen(value):
 	oxygen = value
 	$OxygenMeter.oxygen = oxygen/100.0
-	if low_oxygen_alert == false and oxygen < 20:
-		low_oxygen_alert = true
-		$Viewport/HUD.add_warning(oxygen_warning_txt)
-		show_message("oxygen low", 6, 1)
-	elif low_oxygen_alert == true and oxygen > 20:
-		low_oxygen_alert = false
-		$Viewport/HUD.remove_warning(oxygen_warning_txt)
-
-	if oxygen <= 0 and asphyxiating == false:
-		asphyxiating = true
+	if oxygen <= 0 and oxygen_state != GameConstants.OXYGEN_STATES.EMPTY:
+		oxygen_state = GameConstants.OXYGEN_STATES.EMPTY
 		emit_signal("start_asphyxiation")
+		$Viewport/HUD.set_oxygen_empty()
 		show_message("oxygen empty", 6, 2)
-	elif oxygen > 0 and asphyxiating == true:
-		asphyxiating = false
-		emit_signal("stop_asphyxiation")
+	elif oxygen > 0 and oxygen <= 20 and oxygen_state != GameConstants.OXYGEN_STATES.LOW:
+		oxygen_state = GameConstants.OXYGEN_STATES.LOW
+		$Viewport/HUD.set_oxygen_low()
+		show_message("oxygen low", 6, 1)
+	elif oxygen > 20 and oxygen_state != GameConstants.OXYGEN_STATES.SAFE:
+		if oxygen_state == GameConstants.OXYGEN_STATES.EMPTY:
+			emit_signal("stop_asphyxiation")
+		oxygen_state = GameConstants.OXYGEN_STATES.SAFE
+		$Viewport/HUD.set_oxygen_safe()
 
 func _on_Timer_timeout():
 	set_oxygen(oxygen-1)

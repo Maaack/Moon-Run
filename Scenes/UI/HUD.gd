@@ -19,6 +19,26 @@ func modify_objective(objective : String, new_text: String):
 func remove_objective(objective : String):
 	remove(objective, $Objectives)
 
+func set_oxygen_state(state : int = GameConstants.OXYGEN_STATES.SAFE) -> void:
+	match (state):
+		GameConstants.OXYGEN_STATES.EMPTY:
+			$OxygenEmptyText.show()
+			$OxygenLowText.hide()
+		GameConstants.OXYGEN_STATES.LOW:
+			$OxygenEmptyText.hide()
+			$OxygenLowText.show()
+		_:
+			$OxygenEmptyText.hide()
+			$OxygenLowText.hide()
+
+func set_oxygen_safe() -> void:
+	set_oxygen_state(GameConstants.OXYGEN_STATES.SAFE)
+
+func set_oxygen_low() -> void:
+	set_oxygen_state(GameConstants.OXYGEN_STATES.LOW)
+
+func set_oxygen_empty() -> void:
+	set_oxygen_state(GameConstants.OXYGEN_STATES.EMPTY)
 
 func add_warning(warning : String):
 	add(warning, $Warnings)
