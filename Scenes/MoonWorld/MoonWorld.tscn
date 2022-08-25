@@ -48,7 +48,7 @@ height = 20.0
 radius = 32.0
 
 [sub_resource type="BoxShape" id=14]
-extents = Vector3( 512, 20, 512 )
+extents = Vector3( 512, 50, 512 )
 
 [sub_resource type="BoxShape" id=15]
 extents = Vector3( 512, 20, 512 )
@@ -72,6 +72,7 @@ rings = 3
 
 [sub_resource type="Animation" id=19]
 resource_name = "MeteorImpact"
+length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("MeteorInstance:translation")
 tracks/0/interp = 1
@@ -79,7 +80,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector3( -500, 3000, -4000 ), Vector3( 1100, 600, 1965 ) ]
@@ -91,10 +92,22 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.8, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.4, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 1.0, 0.0 ]
+"values": [ 1.0, 8.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MeteorInstance:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -110,6 +123,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeteorInstance:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -500, 3000, -4000 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MeteorInstance:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [node name="MoonWorld" type="Spatial"]
@@ -470,20 +507,20 @@ message_text = "dont jump here"
 message_duration = 4.0
 
 [node name="WhyJumpMessageZone3" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 96.579, 512 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 124.579, 512 )
 collision_shape = SubResource( 14 )
 message_text = "risking exposure to impact debris"
 message_severity = 1
 
 [node name="EnjoyViewMessageZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 165, 512 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 155, 512 )
 collision_shape = SubResource( 15 )
 message_text = "enjoy the view before death"
 message_duration = 6.0
 message_severity = 2
 
 [node name="KillZone" parent="." instance=ExtResource( 27 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512.143, 165, 512.219 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 512.143, 155, 512.219 )
 collision_shape = SubResource( 15 )
 death_reason = 4
 death_delay = 8.0
@@ -610,6 +647,7 @@ transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107,
 
 [node name="MeteorInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 3000, -4000 )
+visible = false
 mesh = SubResource( 18 )
 
 [node name="WorldAnimationPlayer" type="AnimationPlayer" parent="."]

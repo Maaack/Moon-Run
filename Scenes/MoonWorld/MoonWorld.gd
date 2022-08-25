@@ -26,9 +26,10 @@ func _start_world_countdown():
 	yield(get_tree().create_timer(time_until_final_countdown), "timeout")
 	emit_signal("final_countdown_begun", final_countdown)
 	yield(get_tree().create_timer(final_countdown), "timeout")
-	emit_signal("end_world")
 	$WorldAnimationPlayer.play("MeteorImpact")
-	$Player.kill_human(METEOR_DEATH_REASON, 1)
+	yield($WorldAnimationPlayer, "animation_finished")
+	$Player.kill_human(METEOR_DEATH_REASON)
+	emit_signal("end_world")
 
 func _start_run_mission():
 	_log_message("incoming transmission...", 2)

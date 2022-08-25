@@ -85,6 +85,7 @@ audio_listener_enable_3d = true
 shadow_atlas_size = 1024
 
 [node name="MoonWorld" parent="WorldContainer/Viewport" instance=ExtResource( 2 )]
+world_time = 296.0
 
 [node name="HelmetViewport" type="ViewportContainer" parent="."]
 anchor_right = 1.0
