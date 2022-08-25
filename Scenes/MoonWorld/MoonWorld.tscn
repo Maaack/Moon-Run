@@ -304,7 +304,7 @@ transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107,
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -324.813, -168.027, -317.778 )
 
 [node name="OxygenPickup" parent="Interactables" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -379, -168, -371 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -370.261, -168, -371 )
 
 [node name="OxygenPickup2" parent="Interactables" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.037, -112, -16.43 )
@@ -607,7 +607,7 @@ message_severity = 2
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1032, -17, 1041 )
 
 [node name="FlatWallStraightTunnel2" parent="." instance=ExtResource( 25 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1020, 47, 1029 )
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1013, 47, 1022 )
 
 [node name="LongTunnel4" parent="." instance=ExtResource( 7 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093, -17, 1251.07 )
@@ -663,7 +663,7 @@ anims/RESET = SubResource( 20 )
 [connection signal="human_faced" from="Player" to="." method="_on_Player_human_faced"]
 [connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
 [connection signal="message_logged" from="Player" to="." method="_on_Player_message_logged"]
-[connection signal="oxygen_picked_up" from="Player" to="." method="_on_Player_oxygen_picked_up"]
+[connection signal="oxygen_updated" from="Player" to="." method="_on_Player_oxygen_updated"]
 [connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
 [connection signal="succeeded" from="Player" to="." method="_on_Player_succeeded"]
 [connection signal="suit_damaged" from="Player" to="." method="_on_Player_suit_damaged"]

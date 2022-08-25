@@ -17,10 +17,11 @@ signal right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
 signal succeeded(playtime, rest_stops)
-signal oxygen_picked_up
+signal oxygen_updated(value)
 signal message_logged(text, duration, severity)
 
 export(float) var mouse_sensitivity : float = 0.02
+export(float, 0, 300) var max_oxygen_time : float = 120.0
 
 onready var camera_pivot = $Pivot
 onready var camera = $Pivot/PlayerCamera
@@ -43,9 +44,12 @@ var controls_frozen : bool = false
 var run_time : float = 0.0
 var real_run_time : float = 0.0
 var rest_stops : int = 0
+var current_oxygen_time : float = 0
+var oxygen_loss_mod : float = 1.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	current_oxygen_time = max_oxygen_time
 
 func _update_linear_damp_by_contacts() -> void:
 	var total_linear_damp : float = 0
@@ -90,8 +94,13 @@ func add_play_time(delta : float) -> void:
 func log_message(text : String, duration : float, severity : int) -> void:
 	emit_signal("message_logged", text, duration, severity)
 
+func _stop_breath() -> void:
+	oxygen_loss_mod -= 1.0
+	$Breathing.stop()
+
 func succeed() -> void:
 	controls_frozen = true
+	_stop_breath()
 	emit_signal("succeeded", real_run_time, rest_stops)
 
 func kill_human(reason : int, delay : float = 0.0) -> void:
@@ -100,27 +109,39 @@ func kill_human(reason : int, delay : float = 0.0) -> void:
 	if controls_frozen:
 		return
 	controls_frozen = true
+	_stop_breath()
 	emit_signal("human_died", reason)
 	match(reason):
 		1:
 			$CrackedHelmet.play()
+			oxygen_loss_mod += 300
 	axis_lock_angular_x = false
 	axis_lock_angular_z = false
 	var random_angular_velocity = Vector3(rand_range(-0.5, 0.5),rand_range(-0.5, 0.5),rand_range(-0.5, 0.5))
 	angular_velocity = random_angular_velocity
 
 func damage_suit(amount : float) -> void:
-		emit_signal("suit_damaged", amount)
-		suit_damage += amount
+	emit_signal("suit_damaged", amount)
+	suit_damage += amount
 
 func pickup_oxygen():
-	emit_signal("oxygen_picked_up")
+	current_oxygen_time = max_oxygen_time
+	if not $AsphyxiationTimer.is_stopped():
+		$AsphyxiationTimer.stop()
+	emit_signal("oxygen_updated", current_oxygen_time / max_oxygen_time)
 
 func dive():
 	$DivingAnimationPlayer.play("Dive")
 
+func update_oxygen(delta : float):
+	current_oxygen_time -= delta * oxygen_loss_mod
+	emit_signal("oxygen_updated", current_oxygen_time / max_oxygen_time)
+	if current_oxygen_time <= 0 and $AsphyxiationTimer.is_stopped():
+		$AsphyxiationTimer.start()
+
 func _process(delta):
 	emit_signal("human_faced", camera.global_rotation)
+	update_oxygen(delta)
 	if controls_frozen:
 		return
 	add_play_time(delta)
@@ -200,3 +221,6 @@ func _on_LeftLegControl_foot_grounded(value):
 func _on_RightLegControl_foot_grounded(value):
 	right_foot_grounded = value
 	emit_signal("right_foot_grounded", value)
+
+func _on_AsphyxiationTimer_timeout():
+	kill_human(DEATH_REASONS.ASPHYXIATION)

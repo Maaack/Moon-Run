@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "GameConstants",
+"language": "GDScript",
+"path": "res://Scripts/GameConstants.gd"
+}, {
 "base": "ResourceFormatLoader",
 "class": "HTerrainDataLoader",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://Scenes/UI/SoundButton/SoundButton.gd"
 } ]
 _global_script_class_icons={
+"GameConstants": "",
 "HTerrainDataLoader": "",
 "HTerrainDataSaver": "",
 "Interactable3D": "",
@@ -56,6 +62,10 @@ GameLog="*res://Scripts/GameLog.gd"
 SceneLoader="*res://Scenes/LoadingScreen/SceneLoader.gd"
 InGameMenuController="*res://Scripts/InGameMenuController.gd"
 
+[display]
+
+window/size/fullscreen=true
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/zylann.hterrain/plugin.cfg", "res://addons/zylann.scatter/plugin.cfg" )
@@ -63,6 +73,13 @@ enabled=PoolStringArray( "res://addons/zylann.hterrain/plugin.cfg", "res://addon
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+mp3={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 

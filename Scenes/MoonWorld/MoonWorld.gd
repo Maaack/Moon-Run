@@ -12,7 +12,7 @@ signal suit_damaged(value)
 signal human_died(reason)
 signal human_faced(vector3)
 signal succeeded(play_time, rest_stops)
-signal player_oxygen_picked_up
+signal player_oxygen_updated(value)
 signal message_logged(text, duration, severity)
 signal objective_added(text)
 signal final_countdown_begun(time)
@@ -84,17 +84,11 @@ func _on_Player_suit_damaged(value):
 func _on_Player_succeeded(play_time, rest_stops):
 	emit_signal("succeeded", play_time, rest_stops)
 
-func _on_Player_oxygen_picked_up():
-	emit_signal("player_oxygen_picked_up")
-
-
 func _on_RocketBody_rocket_left():
 	$Player.kill_human(ABANDONED_DEATH_REASON)
 
-
 func _on_Player_human_faced(vector3):
 	emit_signal("human_faced", vector3)
-
 
 func _log_message(text, duration, severity = 0) -> void:
 	emit_signal("message_logged", text, duration, severity)
@@ -104,3 +98,6 @@ func _on_Player_message_logged(text, duration, severity):
 
 func _on_LaunchZone_launch_countdown():
 	_launch_rocket()
+
+func _on_Player_oxygen_updated(value):
+	emit_signal("player_oxygen_updated", value)
