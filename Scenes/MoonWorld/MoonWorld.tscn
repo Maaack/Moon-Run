@@ -362,6 +362,9 @@ transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107,
 [node name="PlayerLastRoomPosition" type="Position3D" parent="."]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093, -14.824, 1092.07 )
 
+[node name="ScreenshotPosition3D" type="Position3D" parent="."]
+transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 1136, -65, 1824 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 8 )
 
@@ -565,9 +568,7 @@ message_severity = 2
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
 
-[connection signal="launch_countdown" from="LaunchZone" to="Interactables/WakeUpNode" method="wake_up"]
-[connection signal="launch_countdown" from="LaunchZone" to="RegolithRocketBlast" method="launch"]
-[connection signal="launch_countdown" from="LaunchZone" to="RocketBody" method="launch"]
+[connection signal="launch_countdown" from="LaunchZone" to="." method="_on_LaunchZone_launch_countdown"]
 [connection signal="rocket_left" from="RocketBody" to="." method="_on_RocketBody_rocket_left"]
 [connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
 [connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]

@@ -38,6 +38,19 @@ func _start_run_mission():
 	emit_signal("objective_added", "return to the rocket")
 	_log_message("run", 3.6, 2)
 
+func _launch_rocket() -> void:
+	$RocketBody.launch()
+	$RegolithRocketBlast.launch()
+	$Interactables/WakeUpNode.wake_up()
+
+func _start_screenshot() -> void:
+	$Player.translation = $ScreenshotPosition3D.translation
+	$Player.rotation = $ScreenshotPosition3D.rotation
+	$Player.gravity_scale = 0.0
+	_log_message("moon run", 15)
+	yield(get_tree().create_timer(5), "timeout")
+	_launch_rocket()
+
 func _ready():
 	_start_world_countdown()
 	_start_run_mission()
@@ -84,3 +97,5 @@ func _log_message(text, duration, severity = 0) -> void:
 func _on_Player_message_logged(text, duration, severity):
 	_log_message(text, duration, severity)
 
+func _on_LaunchZone_launch_countdown():
+	_launch_rocket()
