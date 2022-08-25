@@ -76,6 +76,7 @@ func remove(text, container):
 
 func start_countdown(time : int = countdown) -> void:
 	countdown = time
+	$FinalCountdown/Timer.text = "%02d:%02d" % [floor(countdown / 60), (countdown % 60)]
 	$FinalCountdown.show()
 	$CountdownTimer.start()
 

@@ -10,7 +10,8 @@ onready var camera : Spatial = $CameraPivot/Camera
 
 var oxygen = 100 setget set_oxygen
 var oxygen_state : int = GameConstants.OXYGEN_STATES.SAFE
-
+var timer_running : bool = false
+var run_timer : float = 0.0
 
 func toggle_right_light(value : bool) -> void:
 	$RightLight.toggle_state = value
@@ -59,3 +60,18 @@ func show_message(text : String, duration : float, severity : int = 0):
 		2, _:
 			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.ALERT_COLOR, true)
 			$WarningPlayer.play()
+
+func start_timer() -> void:
+	run_timer = 0.0
+	timer_running = true
+
+func add_to_timer(delta : float) -> void:
+	if not timer_running:
+		return
+	run_timer += delta
+	var minutes = floor(run_timer / 60)
+	var seconds = run_timer - (minutes * 60.0)
+	$RunCounter.text = "%02d:%04.1f" % [minutes, seconds]
+
+func _process(delta):
+	add_to_timer(delta)

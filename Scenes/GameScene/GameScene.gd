@@ -38,6 +38,10 @@ func _on_MoonWorld_player_right_foot_grounded(state):
 func stop_audio():
 	$AudioPlayers/Breathing.stop()
 
+func stop_hud():
+	$HelmetViewport.hide()
+	$HelmetViewport/Viewport/Helmet.set_process(false)
+
 func _on_MoonWorld_human_died(reason):
 	stop_audio()
 	InGameMenuController.open_menu(death_screen_packed, false)
@@ -79,7 +83,7 @@ func _on_MoonWorld_message_logged(text, duration, severity):
 	$HelmetViewport/Viewport/Helmet.show_message(text, duration, severity)
 
 func _on_MoonWorld_final_countdown_begun(time):
-	$HelmetViewport/Viewport/Helmet.show_message("Impact in %d minute" % round(time/60), 5, 1)
+	$HelmetViewport/Viewport/Helmet.show_message("Impact in %d seconds" % round(time), 5, 1)
 	$HelmetViewport/Viewport/Helmet/Viewport/HUD.start_countdown(time)
 
 
@@ -89,3 +93,8 @@ func _on_MoonWorld_objective_added(text):
 
 func _on_MoonWorld_end_world():
 	$MeteorsViewport/Viewport/MoonMiniature.end_world()
+	$HelmetViewport.hide()
+
+
+func _ready():
+	$HelmetViewport/Viewport/Helmet.start_timer()
