@@ -8,8 +8,8 @@ export(float, 0, 10) var step_timer = 0.5
 export(float, 0, 10) var cooldown_timer = 0.0
 export(Vector3) var cast_to : Vector3 = Vector3.DOWN setget set_cast_to
 export(float, 0, 20) var walk_force : float = 10.0
-export(float, 0, 10) var bounce_force : float = 1.25
-export(float, 0, 500) var jump_force : float = 180
+export(float, 0, 10) var bounce_force : float = 1.0
+export(float, 0, 500) var jump_force : float = 200
 
 var foot_grounded : bool = false setget set_foot_grounded
 var is_stepping = false
@@ -60,6 +60,10 @@ func get_force_of_step(player_rotation : float, input_direction : Vector3, force
 	var force_of_step : Vector3 = input_direction.rotated(Vector3.UP, player_rotation) * walk_force * force_mod
 	force_of_step += foot_vector * bounce_force * force_mod
 	return force_of_step
+
+func get_force_of_jump(force_mod : float) -> Vector3:
+	var foot_vector : Vector3 = -$RayCast.cast_to.normalized()
+	return foot_vector * jump_force * force_mod
 
 func _process(delta):
 	self.foot_grounded = $RayCast.is_colliding() and not is_cooling_down

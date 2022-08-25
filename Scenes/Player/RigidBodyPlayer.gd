@@ -26,10 +26,6 @@ onready var camera_pivot = $Pivot
 onready var camera = $Pivot/PlayerCamera
 onready var left_arm = $Arms/LeftRayCast
 onready var right_arm = $Arms/RightRayCast
-var forward_movement_vector : Vector3 = Vector3.FORWARD
-var bounce_movement_vector : Vector3 = Vector3.UP
-var bounce_force : float = 2.5
-var jump_force : float = 360.0
 var turn_force : float = 1.0
 var rotate_y_force : float = 0.0
 var angular_damp_per_contact : float = 3.0
@@ -51,17 +47,17 @@ var rest_stops : int = 0
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _get_linear_damp_by_contacts() -> float:
+func _update_linear_damp_by_contacts() -> void:
 	var total_linear_damp : float = 0
 	total_linear_damp = int(left_foot_grounded) + int(right_foot_grounded)
 	total_linear_damp *= linear_damp_per_contact
-	return total_linear_damp
+	linear_damp = total_linear_damp
 
-func _get_angular_damp_by_contacts() -> float:
+func _update_angular_damp_by_contacts() -> void:
 	var total_angular_damp : float = 0
 	total_angular_damp = int(left_foot_grounded) + int(right_foot_grounded) + int(left_arm_contacting) + int(right_arm_contacting)
 	total_angular_damp *= angular_damp_per_contact
-	return total_angular_damp
+	angular_damp = total_angular_damp
 
 func _both_feet_can_reach_ground():
 	return left_foot_grounded and right_foot_grounded
@@ -124,13 +120,15 @@ func dive():
 	$DivingAnimationPlayer.play("Dive")
 
 func _process(delta):
+	emit_signal("human_faced", camera.global_rotation)
+	if controls_frozen:
+		return
 	add_play_time(delta)
 	self.left_arm_contacting = left_arm.is_colliding()
 	self.right_arm_contacting = right_arm.is_colliding()
-	linear_damp = _get_linear_damp_by_contacts()
-	angular_damp = _get_angular_damp_by_contacts()
+	_update_linear_damp_by_contacts()
+	_update_angular_damp_by_contacts()
 	self.free_look_mode = not _can_reach_ground() or Input.is_action_pressed("free_look")
-	emit_signal("human_faced", camera.global_rotation)
 
 func _input(event):
 	if controls_frozen:
@@ -184,8 +182,8 @@ func _integrate_forces(state):
 		state.add_torque(Vector3(0, rotate_y_force, 0) * mass)
 	rotate_y_force = 0.0
 	if Input.is_action_pressed("jump") and _both_feet_can_reach_ground():
-		var jump_impulse : Vector3 = bounce_movement_vector * jump_force * mass
-		state.add_central_force(bounce_movement_vector * jump_force * mass)
+		state.add_central_force($RightLegControl.get_force_of_jump(mass))
+		state.add_central_force($LeftLegControl.get_force_of_jump(mass))
 	var input_direction : Vector3 = _get_input_direction()
 	if input_direction != Vector3.ZERO:
 		if $RightLegControl.can_step():
