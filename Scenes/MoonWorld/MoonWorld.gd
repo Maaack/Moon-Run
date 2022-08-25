@@ -27,6 +27,7 @@ func _start_world_countdown():
 	emit_signal("final_countdown_begun", final_countdown)
 	yield(get_tree().create_timer(final_countdown), "timeout")
 	emit_signal("end_world")
+	$WorldAnimationPlayer.play("MeteorImpact")
 	$Player.kill_human(METEOR_DEATH_REASON, 1)
 
 func _start_run_mission():
@@ -43,9 +44,12 @@ func _launch_rocket() -> void:
 	$RegolithRocketBlast.launch()
 	$Interactables/WakeUpNode.wake_up()
 
+func _start_last_room() -> void:
+	$Player.translation = $PlayerLastRoomPosition.translation
+
 func _start_screenshot() -> void:
-	$Player.translation = $ScreenshotPosition3D.translation
-	$Player.rotation = $ScreenshotPosition3D.rotation
+	$Player.translation = $ScreenshotPosition.translation
+	$Player.rotation = $ScreenshotPosition.rotation
 	$Player.gravity_scale = 0.0
 	_log_message("moon run", 15)
 	yield(get_tree().create_timer(5), "timeout")

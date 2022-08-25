@@ -85,3 +85,7 @@ func _on_MoonWorld_final_countdown_begun(time):
 
 func _on_MoonWorld_objective_added(text):
 	$HelmetViewport/Viewport/Helmet/Viewport/HUD.add_objective(text)
+
+
+func _on_MoonWorld_end_world():
+	$MeteorsViewport/Viewport/MoonMiniature.end_world()

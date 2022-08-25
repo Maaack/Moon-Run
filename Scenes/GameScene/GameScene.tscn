@@ -132,6 +132,7 @@ bus = "Music"
 [node name="AsphyxiationTimer" type="Timer" parent="."]
 wait_time = 10.0
 
+[connection signal="end_world" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_end_world"]
 [connection signal="final_countdown_begun" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_final_countdown_begun"]
 [connection signal="human_died" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_died"]
 [connection signal="human_faced" from="WorldContainer/Viewport/MoonWorld" to="." method="_on_MoonWorld_human_faced"]

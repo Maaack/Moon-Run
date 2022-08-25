@@ -13,3 +13,6 @@ func rotate_camera(vector3 : Vector3) -> void:
 	camera.rotation.x = vector3.x
 	camera_pivot.rotation.y = vector3.y
 	camera_pivot.rotation.z = vector3.z
+
+func end_world() -> void:
+	$AnimationPlayer.play("MeteorImpact")
