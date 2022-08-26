@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -18,7 +18,7 @@
 [ext_resource path="res://Scenes/LevelParts/MidWideLongerPlatform.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/LevelParts/MidWideLongestPlatform.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/LevelParts/Tunnel.tscn" type="PackedScene" id=18]
-[ext_resource path="res://ElbowChamber.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/LevelParts/ElbowChamber.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Data/Crater/data.hterrain" type="Resource" id=20]
 [ext_resource path="res://Scenes/Rocket/RegolithRocketBlast.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/Rocket/RocketBody.tscn" type="PackedScene" id=22]
@@ -29,6 +29,9 @@
 [ext_resource path="res://Scenes/Pickups/KillZone.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scenes/WakeUpNode/WakeUpNode.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/MoonEnvironment/MoonEnvironment.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Scenes/LevelParts/Rods.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Scenes/LevelParts/RodPikes.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Scenes/LevelParts/LongBox.tscn" type="PackedScene" id=32]
 
 [sub_resource type="Resource" id=9]
 script = ExtResource( 8 )
@@ -39,6 +42,9 @@ textures = [ [  ], [  ] ]
 script = ExtResource( 8 )
 mode = 0
 textures = [ [  ], [  ] ]
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 80, 16, 20 )
 
 [sub_resource type="BoxShape" id=12]
 extents = Vector3( 20, 50, 80 )
@@ -60,9 +66,6 @@ radius = 16.0
 [sub_resource type="CylinderShape" id=17]
 height = 128.0
 radius = 32.0
-
-[sub_resource type="BoxShape" id=11]
-extents = Vector3( 80, 16, 20 )
 
 [sub_resource type="CapsuleMesh" id=18]
 radius = 800.0
@@ -310,7 +313,40 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -370.261, -168, -371 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22.037, -112, -16.43 )
 
 [node name="OxygenPickup3" parent="Interactables" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 448.319, -15, 458.973 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 460, -15, 460 )
+
+[node name="LongBox" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 410, -12, 457 )
+
+[node name="LongBox5" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 471.989, -13, 910.018 )
+
+[node name="LongBox6" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 462.989, -13, 875.018 )
+
+[node name="LongBox7" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 869.084, -13, 474.666 )
+
+[node name="LongBox8" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 903.895, -13, 484.371 )
+
+[node name="LongBox9" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 800.084, -13, 455.666 )
+
+[node name="LongBox10" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 834.895, -13, 465.371 )
+
+[node name="LongBox2" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 389, -12, 436 )
+
+[node name="LongBox3" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 440, -12, 412 )
+
+[node name="LongBox4" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 419, -12, 391 )
+
+[node name="OxygenPickup12" parent="Interactables" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 452, -15, 468 )
 
 [node name="OxygenPickup5" parent="Interactables" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 722.621, -15, 634.989 )
@@ -342,6 +378,15 @@ transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1105.19
 [node name="CubeBox24" parent="Interactables" instance=ExtResource( 5 )]
 transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1100.95, -14.3903, 1091.05 )
 
+[node name="CubeBox25" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1105.95, -14.3903, 1091.05 )
+
+[node name="CubeBox26" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1105.19, -14.3903, 1147.29 )
+
+[node name="CubeBox27" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( -2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 1108.95, -14.3903, 1143.05 )
+
 [node name="WakeUpNode" parent="Interactables" instance=ExtResource( 28 )]
 
 [node name="CubeBox19" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
@@ -370,6 +415,18 @@ transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1119.56, 
 
 [node name="CubeBox35" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.32, -104.511, 1926.45 )
+
+[node name="LongBox" parent="Interactables/WakeUpNode" instance=ExtResource( 32 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1052.56, -102.511, 1915.7 )
+
+[node name="LongBox2" parent="Interactables/WakeUpNode" instance=ExtResource( 32 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1052.56, -102.511, 1943.7 )
+
+[node name="LongBox3" parent="Interactables/WakeUpNode" instance=ExtResource( 32 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1052.56, -102.511, 1970.7 )
+
+[node name="LongBox4" parent="Interactables/WakeUpNode" instance=ExtResource( 32 )]
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1128.56, -102.511, 1966.7 )
 
 [node name="CubeBox36" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
 transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 1124.56, -104.511, 1934.7 )
@@ -434,6 +491,81 @@ transform = Transform( -1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, -1, 1066.92
 [node name="CubeBox48" parent="Interactables/WakeUpNode" instance=ExtResource( 5 )]
 transform = Transform( -1, 0, -7.35137e-08, 0, 1, 0, 7.35137e-08, 0, -1, 1066.92, -100.511, 1924.22 )
 
+[node name="FlatBox6" parent="Interactables/WakeUpNode" instance=ExtResource( 4 )]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 1061.49, -102.26, 1889.28 )
+
+[node name="FlatBox7" parent="Interactables/WakeUpNode" instance=ExtResource( 4 )]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 1061.49, -101.26, 1889.28 )
+
+[node name="FlatBox8" parent="Interactables/WakeUpNode" instance=ExtResource( 4 )]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 1061.49, -101.76, 1889.28 )
+
+[node name="FlatBox9" parent="Interactables/WakeUpNode" instance=ExtResource( 4 )]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 1128.26, -102.26, 1891 )
+
+[node name="FlatBox10" parent="Interactables/WakeUpNode" instance=ExtResource( 4 )]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 1128.26, -101.26, 1891 )
+
+[node name="FlatBox11" parent="Interactables/WakeUpNode" instance=ExtResource( 4 )]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 1128.26, -101.76, 1891 )
+
+[node name="CubeBox19" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 468.255, -14, 467.241 )
+
+[node name="CubeBox20" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 464.255, -14, 471.241 )
+
+[node name="CubeBox21" parent="Interactables" instance=ExtResource( 5 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 460.255, -14, 475.241 )
+
+[node name="RodPikes" parent="Interactables" instance=ExtResource( 31 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 467.4, -16, 474.4 )
+
+[node name="RodPikes2" parent="Interactables" instance=ExtResource( 31 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 470.6, -16, 477.6 )
+
+[node name="Rods" parent="Interactables" instance=ExtResource( 30 )]
+transform = Transform( -3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 468, -15, 475 )
+
+[node name="Rods2" parent="Interactables" instance=ExtResource( 30 )]
+transform = Transform( -3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 470, -15, 477 )
+
+[node name="Rods3" parent="Interactables" instance=ExtResource( 30 )]
+transform = Transform( -3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 469, -13.5, 476 )
+
+[node name="RodPikes3" parent="Interactables" instance=ExtResource( 31 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 373.6, -16, 419.4 )
+
+[node name="RodPikes4" parent="Interactables" instance=ExtResource( 31 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 370.4, -16, 422.6 )
+
+[node name="Rods4" parent="Interactables" instance=ExtResource( 30 )]
+transform = Transform( -3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 373, -15, 420 )
+
+[node name="Rods5" parent="Interactables" instance=ExtResource( 30 )]
+transform = Transform( -3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 371, -15, 422 )
+
+[node name="Rods6" parent="Interactables" instance=ExtResource( 30 )]
+transform = Transform( -3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 372, -13.5, 421 )
+
+[node name="LongBox11" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -399.367, -164.3, -418.123 )
+
+[node name="LongBox12" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -417.367, -164.3, -400.123 )
+
+[node name="LongBox13" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -407.367, -164.3, -375.123 )
+
+[node name="LongBox14" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -375.367, -164.3, -417.123 )
+
+[node name="LongBox15" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1113, -12.5, 1101.07 )
+
+[node name="LongBox16" parent="Interactables" instance=ExtResource( 32 )]
+transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1113, -12.5, 1127.07 )
+
 [node name="PlayerStartPosition" type="Position3D" parent="."]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
 
@@ -493,7 +625,13 @@ transform = Transform( 0.700225, -0.0984102, -0.707106, 0.139173, 0.990268, 0, 0
 transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.683013, -0.183013, 0.707107, -27.985, -117.75, -28.741 )
 
 [node name="FlatWallStraightTunnel" parent="." instance=ExtResource( 26 )]
-transform = Transform( 0.683013, -0.183013, -0.707108, 0.258819, 0.965927, 0, 0.683013, -0.183013, 0.707108, 12.3022, -35.9307, 11.5462 )
+transform = Transform( 0.683013, -0.183013, -0.707108, 0.258819, 0.965927, 0, 0.683013, -0.183013, 0.707108, 14, -35.931, 14 )
+
+[node name="WrongWayMessageZone" parent="." instance=ExtResource( 12 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -414.367, -151.834, -415.123 )
+collision_shape = SubResource( 11 )
+message_text = "wrong way"
+message_severity = 2
 
 [node name="SplitPathsMessageZone" parent="." instance=ExtResource( 12 )]
 transform = Transform( 0.700225, -0.0984103, -0.707107, 0.139173, 0.990268, 0, 0.700225, -0.0984103, 0.707107, 339.259, 27.5793, 350.321 )
@@ -538,13 +676,13 @@ transform = Transform( 0.683013, -0.183013, -0.707107, 0.258819, 0.965926, 0, 0.
 transform = Transform( 0.700225, -0.0984103, -0.707107, 0.139173, 0.990268, 0, 0.700225, -0.0984103, 0.707107, 332.004, -25.9096, 343.066 )
 
 [node name="MidWideLongPlatform4" parent="." instance=ExtResource( 14 )]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 425.004, -17.9096, 435.066 )
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 425.004, -18, 435.066 )
 
 [node name="MidWideLongestPlatform" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 626.567, -18.9096, 472.825 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 626.567, -19, 472.825 )
 
 [node name="MidWideLongestPlatform2" parent="." instance=ExtResource( 17 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 461.567, -18.9096, 636.825 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 461.567, -19, 636.825 )
 
 [node name="MidWideLongPlatform14" parent="." instance=ExtResource( 14 )]
 transform = Transform( 0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, 768.673, -18.9096, 664.013 )
@@ -591,8 +729,11 @@ collision_shape = SubResource( 16 )
 message_text = "emergency launch imminent"
 message_severity = 1
 
+[node name="LaunchZone" parent="." instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 21, 1540 )
+
 [node name="JumpMessageZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 34.2002, 1587.65 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 36.2002, 1595.65 )
 collision_shape = SubResource( 16 )
 message_text = "jump!"
 message_severity = 2
@@ -622,10 +763,7 @@ transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.
 transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.965927, -0.258819, -4.37114e-08, 1093, 17.5049, 1568.15 )
 
 [node name="DiveZone" parent="." instance=ExtResource( 24 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1631.29 )
-
-[node name="LaunchZone" parent="." instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 20, 1536 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1629.29 )
 
 [node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1992.69 )
@@ -635,12 +773,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -102, 1889 )
 
 [node name="RocketBody" parent="." instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1889 )
-
-[node name="WrongWayMessageZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -414.367, -151.834, -415.123 )
-collision_shape = SubResource( 11 )
-message_text = "wrong way"
-message_severity = 2
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
