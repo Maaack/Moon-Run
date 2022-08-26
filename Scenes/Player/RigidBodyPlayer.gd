@@ -17,19 +17,16 @@ signal right_foot_grounded(state)
 signal suit_damaged(value)
 signal human_died(reason)
 signal succeeded(playtime, rest_stops)
-signal oxygen_picked_up
+signal oxygen_updated(value)
 signal message_logged(text, duration, severity)
 
 export(float) var mouse_sensitivity : float = 0.02
+export(float, 0, 300) var max_oxygen_time : float = 120.0
 
 onready var camera_pivot = $Pivot
 onready var camera = $Pivot/PlayerCamera
 onready var left_arm = $Arms/LeftRayCast
 onready var right_arm = $Arms/RightRayCast
-var forward_movement_vector : Vector3 = Vector3.FORWARD
-var bounce_movement_vector : Vector3 = Vector3.UP
-var bounce_force : float = 2.5
-var jump_force : float = 360.0
 var turn_force : float = 1.0
 var rotate_y_force : float = 0.0
 var angular_damp_per_contact : float = 3.0
@@ -47,21 +44,24 @@ var controls_frozen : bool = false
 var run_time : float = 0.0
 var real_run_time : float = 0.0
 var rest_stops : int = 0
+var current_oxygen_time : float = 0
+var oxygen_loss_mod : float = 1.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	current_oxygen_time = max_oxygen_time
 
-func _get_linear_damp_by_contacts() -> float:
+func _update_linear_damp_by_contacts() -> void:
 	var total_linear_damp : float = 0
 	total_linear_damp = int(left_foot_grounded) + int(right_foot_grounded)
 	total_linear_damp *= linear_damp_per_contact
-	return total_linear_damp
+	linear_damp = total_linear_damp
 
-func _get_angular_damp_by_contacts() -> float:
+func _update_angular_damp_by_contacts() -> void:
 	var total_angular_damp : float = 0
 	total_angular_damp = int(left_foot_grounded) + int(right_foot_grounded) + int(left_arm_contacting) + int(right_arm_contacting)
 	total_angular_damp *= angular_damp_per_contact
-	return total_angular_damp
+	angular_damp = total_angular_damp
 
 func _both_feet_can_reach_ground():
 	return left_foot_grounded and right_foot_grounded
@@ -94,8 +94,13 @@ func add_play_time(delta : float) -> void:
 func log_message(text : String, duration : float, severity : int) -> void:
 	emit_signal("message_logged", text, duration, severity)
 
+func _stop_breath() -> void:
+	oxygen_loss_mod -= 1.0
+	$Breathing.stop()
+
 func succeed() -> void:
 	controls_frozen = true
+	_stop_breath()
 	emit_signal("succeeded", real_run_time, rest_stops)
 
 func kill_human(reason : int, delay : float = 0.0) -> void:
@@ -104,33 +109,47 @@ func kill_human(reason : int, delay : float = 0.0) -> void:
 	if controls_frozen:
 		return
 	controls_frozen = true
+	_stop_breath()
 	emit_signal("human_died", reason)
 	match(reason):
 		1:
 			$CrackedHelmet.play()
+			oxygen_loss_mod += 300
 	axis_lock_angular_x = false
 	axis_lock_angular_z = false
 	var random_angular_velocity = Vector3(rand_range(-0.5, 0.5),rand_range(-0.5, 0.5),rand_range(-0.5, 0.5))
 	angular_velocity = random_angular_velocity
 
 func damage_suit(amount : float) -> void:
-		emit_signal("suit_damaged", amount)
-		suit_damage += amount
+	emit_signal("suit_damaged", amount)
+	suit_damage += amount
 
 func pickup_oxygen():
-	emit_signal("oxygen_picked_up")
+	current_oxygen_time = max_oxygen_time
+	if not $AsphyxiationTimer.is_stopped():
+		$AsphyxiationTimer.stop()
+	emit_signal("oxygen_updated", current_oxygen_time / max_oxygen_time)
 
 func dive():
 	$DivingAnimationPlayer.play("Dive")
 
+func update_oxygen(delta : float):
+	current_oxygen_time -= delta * oxygen_loss_mod
+	emit_signal("oxygen_updated", current_oxygen_time / max_oxygen_time)
+	if current_oxygen_time <= 0 and $AsphyxiationTimer.is_stopped():
+		$AsphyxiationTimer.start()
+
 func _process(delta):
+	emit_signal("human_faced", camera.global_rotation)
+	update_oxygen(delta)
+	if controls_frozen:
+		return
 	add_play_time(delta)
 	self.left_arm_contacting = left_arm.is_colliding()
 	self.right_arm_contacting = right_arm.is_colliding()
-	linear_damp = _get_linear_damp_by_contacts()
-	angular_damp = _get_angular_damp_by_contacts()
+	_update_linear_damp_by_contacts()
+	_update_angular_damp_by_contacts()
 	self.free_look_mode = not _can_reach_ground() or Input.is_action_pressed("free_look")
-	emit_signal("human_faced", camera.global_rotation)
 
 func _input(event):
 	if controls_frozen:
@@ -184,8 +203,8 @@ func _integrate_forces(state):
 		state.add_torque(Vector3(0, rotate_y_force, 0) * mass)
 	rotate_y_force = 0.0
 	if Input.is_action_pressed("jump") and _both_feet_can_reach_ground():
-		var jump_impulse : Vector3 = bounce_movement_vector * jump_force * mass
-		state.add_central_force(bounce_movement_vector * jump_force * mass)
+		state.add_central_force($RightLegControl.get_force_of_jump(mass))
+		state.add_central_force($LeftLegControl.get_force_of_jump(mass))
 	var input_direction : Vector3 = _get_input_direction()
 	if input_direction != Vector3.ZERO:
 		if $RightLegControl.can_step():
@@ -202,3 +221,6 @@ func _on_LeftLegControl_foot_grounded(value):
 func _on_RightLegControl_foot_grounded(value):
 	right_foot_grounded = value
 	emit_signal("right_foot_grounded", value)
+
+func _on_AsphyxiationTimer_timeout():
+	kill_human(DEATH_REASONS.ASPHYXIATION)

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 2, 2, 2 )
+extents = Vector3( 12, 4, 4 )
 
 [sub_resource type="CubeMesh" id=2]
-size = Vector3( 4, 4, 4 )
+size = Vector3( 24, 8, 8 )
 
-[node name="CubeBox" type="RigidBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-mass = 200.0
+[node name="LongBox" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+mass = 3200.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )

@@ -3,16 +3,15 @@ extends Spatial
 signal start_asphyxiation
 signal stop_asphyxiation
 
-const oxygen_warning_txt = "warning: low oxygen"
-
+export(float, 0, 1) var low_oxygen_threshold : float = 0.2
 
 onready var camera_pivot : Spatial = $CameraPivot
 onready var camera : Spatial = $CameraPivot/Camera
 
-var oxygen = 100 setget set_oxygen
-var low_oxygen_alert = false
-var asphyxiating = false
-
+var oxygen : float = 1.0 setget set_oxygen
+var oxygen_state : int = GameConstants.OXYGEN_STATES.SAFE
+var timer_running : bool = false
+var run_timer : float = 0.0
 
 func toggle_right_light(value : bool) -> void:
 	$RightLight.toggle_state = value
@@ -33,34 +32,18 @@ func rotate_camera_y(value : float) -> void:
 
 func set_oxygen(value):
 	oxygen = value
-	$OxygenMeter.oxygen = oxygen/100.0
-	if low_oxygen_alert == false and oxygen < 20:
-		low_oxygen_alert = true
-		$Viewport/HUD.add_warning(oxygen_warning_txt)
-		show_message("oxygen low", 6, 1)
-	elif low_oxygen_alert == true and oxygen > 20:
-		low_oxygen_alert = false
-		$Viewport/HUD.remove_warning(oxygen_warning_txt)
-
-	if oxygen <= 0 and asphyxiating == false:
-		asphyxiating = true
-		emit_signal("start_asphyxiation")
+	$OxygenMeter.oxygen = oxygen
+	if oxygen <= 0 and oxygen_state != GameConstants.OXYGEN_STATES.EMPTY:
+		oxygen_state = GameConstants.OXYGEN_STATES.EMPTY
+		$Viewport/HUD.set_oxygen_empty()
 		show_message("oxygen empty", 6, 2)
-	elif oxygen > 0 and asphyxiating == true:
-		asphyxiating = false
-		emit_signal("stop_asphyxiation")
-
-func _on_Timer_timeout():
-	set_oxygen(oxygen-1)
-
-func start_run_mission():
-	show_message("incoming transmission...", 2)
-	yield(get_tree().create_timer(2), "timeout")
-	var start_text = "incoming meteor shower\nreturn to the rocket to evacuate"
-	show_message(start_text, 5, 1)
-	yield(get_tree().create_timer(5), "timeout")
-	$Viewport/HUD.add_objective("return to the rocket")
-	show_message("run", 3.6, 2)
+	elif oxygen > 0 and oxygen <= low_oxygen_threshold and oxygen_state != GameConstants.OXYGEN_STATES.LOW:
+		oxygen_state = GameConstants.OXYGEN_STATES.LOW
+		$Viewport/HUD.set_oxygen_low()
+		show_message("oxygen low", 6, 1)
+	elif oxygen > low_oxygen_threshold and oxygen_state != GameConstants.OXYGEN_STATES.SAFE:
+		oxygen_state = GameConstants.OXYGEN_STATES.SAFE
+		$Viewport/HUD.set_oxygen_safe()
 
 func show_message(text : String, duration : float, severity : int = 0):
 	match (severity):
@@ -71,3 +54,26 @@ func show_message(text : String, duration : float, severity : int = 0):
 		2, _:
 			$Viewport/HUD.pop_up_message(text, duration, $Viewport/HUD.ALERT_COLOR, true)
 			$WarningPlayer.play()
+
+func start_timer() -> void:
+	run_timer = 0.0
+	timer_running = true
+
+func add_to_timer(delta : float) -> void:
+	if not timer_running:
+		return
+	run_timer += delta
+	var minutes = floor(run_timer / 60)
+	var seconds = run_timer - (minutes * 60.0)
+	$RunCounter.text = "%02d:%04.1f" % [minutes, seconds]
+
+func _process(delta):
+	add_to_timer(delta)
+
+func quiet_helmet():
+	$WarningPlayer.volume_db = linear2db(0.02)
+	$WarningPlayer.pitch_scale = 0.75
+
+func kill_helmet():
+	hide()
+	set_process(false)

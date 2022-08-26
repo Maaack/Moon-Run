@@ -3,3 +3,8 @@
 [resource]
 flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0.498039 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/Helmet/TubeLight.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/UI/OxygenMeter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Originals/SFX/Warning_-_GWJM.ogg" type="AudioStream" id=5]
 [ext_resource path="res://Theme/digital-7_25_green_outline.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Theme/digital-7_16.tres" type="DynamicFont" id=7]
 
 [sub_resource type="SpatialMaterial" id=5]
 flags_transparent = true
@@ -21,7 +22,7 @@ flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0.498039 )
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 0.6, 0.4 )
+size = Vector2( 0.49, 0.288 )
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport")
@@ -54,6 +55,19 @@ width = 0.66
 height = 0.6
 depth = 0.6
 
+[node name="CSGBox2" type="CSGBox" parent="CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0.283459, -0.227422 )
+operation = 2
+width = 0.2
+height = 0.15
+depth = 0.1
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, -0.409982, 0 )
+radius = 0.38
+height = 0.1
+sides = 16
+
 [node name="LeftLabel3D" type="Label3D" parent="."]
 transform = Transform( -8.74228e-09, -1.77636e-15, 0.2, 0, 0.2, 1.77636e-15, -0.2, 7.76472e-23, -8.74228e-09, -0.329, -0.08, -0.27 )
 modulate = Color( 0.0313726, 1, 0, 1 )
@@ -68,19 +82,34 @@ text = "right
 foot"
 font = ExtResource( 6 )
 
+[node name="RunLight" type="OmniLight" parent="."]
+transform = Transform( 1, 5.0243e-15, -1.69194e-22, -4.35117e-15, 0.866025, -0.5, -2.51215e-15, 0.5, 0.866025, 0, 0.29949, -0.249281 )
+light_color = Color( 0.337255, 1, 0, 1 )
+light_energy = 0.3
+omni_range = 0.1
+omni_attenuation = 3.0
+
+[node name="RunCounter" type="Label3D" parent="."]
+transform = Transform( 1, 7.10543e-15, -1.77636e-15, -4.35117e-15, 0.866025, -0.5, -2.51215e-15, 0.5, 0.866025, -0.0598893, 0.327604, -0.286889 )
+pixel_size = 0.0025
+modulate = Color( 0.337255, 1, 0, 1 )
+text = "00:00.0"
+font = ExtResource( 7 )
+horizontal_alignment = 0
+
 [node name="OxygenMeter" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.295, 0.057889 )
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, -0.281599, -0.286336 )
 
 [node name="LeftLight" parent="." instance=ExtResource( 2 )]
 transform = Transform( -3.27836e-08, -3.27835e-08, -0.75, -0.75, -3.27835e-08, 3.27836e-08, -3.27835e-08, 0.75, -3.27835e-08, -0.329, 0, -0.3 )
+on_color = Color( 0.337255, 1, 0, 1 )
 on_material = SubResource( 5 )
-off_color = Color( 0, 0, 0, 1 )
 off_material = SubResource( 6 )
 
 [node name="RightLight" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1.43302e-15, 3.27835e-08, 0.75, 0.75, -3.27835e-08, -2.69992e-21, 3.27835e-08, 0.75, -3.27835e-08, 0.329, 0, -0.3 )
+on_color = Color( 0.337255, 1, 0, 1 )
 on_material = SubResource( 5 )
-off_color = Color( 0, 0, 0, 1 )
 off_material = SubResource( 6 )
 
 [node name="CameraPivot" type="Spatial" parent="."]
@@ -100,12 +129,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="WarningPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -20.0
-bus = "SFX"
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+bus = "Helmet"

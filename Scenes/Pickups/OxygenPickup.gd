@@ -11,6 +11,6 @@ func _process(delta):
 
 
 func _on_OxygenPickup_body_entered(body):
-	if body.is_in_group("Player"):
+	if body.has_method("pickup_oxygen"):
 		body.pickup_oxygen()
 		queue_free()
