@@ -47,6 +47,7 @@ func _launch_rocket() -> void:
 
 func _start_last_room() -> void:
 	$Player.translation = $PlayerLastRoomPosition.translation
+	$Player.rotation = $PlayerLastRoomPosition.rotation
 
 func _start_screenshot() -> void:
 	$Player.translation = $ScreenshotPosition.translation

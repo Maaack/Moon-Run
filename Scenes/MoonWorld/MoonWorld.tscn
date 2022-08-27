@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
@@ -62,6 +62,10 @@ extents = Vector3( 512, 20, 512 )
 [sub_resource type="CylinderShape" id=16]
 height = 32.0
 radius = 16.0
+
+[sub_resource type="CylinderShape" id=21]
+height = 32.0
+radius = 12.0
 
 [sub_resource type="CylinderShape" id=17]
 height = 128.0
@@ -570,7 +574,7 @@ transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, 1113, -12.5, 1127.07 )
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
 
 [node name="PlayerLastRoomPosition" type="Position3D" parent="."]
-transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1093, -14.824, 1092.07 )
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 1093, -14.824, 1102.07 )
 
 [node name="ScreenshotPosition" type="Position3D" parent="."]
 transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 1136, -65, 1824 )
@@ -730,12 +734,13 @@ message_text = "emergency launch imminent"
 message_severity = 1
 
 [node name="LaunchZone" parent="." instance=ExtResource( 23 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 21, 1540 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 23, 1544 )
 
 [node name="JumpMessageZone" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092.64, 36.2002, 1595.65 )
-collision_shape = SubResource( 16 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1092, 36.2, 1593 )
+collision_shape = SubResource( 21 )
 message_text = "jump!"
+message_duration = 1.5
 message_severity = 2
 
 [node name="GrabLadderMessageZone" parent="." instance=ExtResource( 12 )]
@@ -766,13 +771,13 @@ transform = Transform( -4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965927, 0, -0.
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, 67.9562, 1629.29 )
 
 [node name="LargeLongPlatform" parent="." instance=ExtResource( 15 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1992.69 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1093.44, -108.435, 1989.05 )
 
 [node name="RegolithRocketBlast" parent="." instance=ExtResource( 21 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -102, 1889 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -102, 1885.36 )
 
 [node name="RocketBody" parent="." instance=ExtResource( 22 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1889 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1885.36 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -390.367, -166.834, -391.123 )
