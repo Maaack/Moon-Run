@@ -1,12 +1,29 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Rocket/SpaceRocket.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Rocket/RocketBody.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Pickups/SuccessZone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sourced/White puff/whitePuff01.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/MoonMiniature/RocketExhaustScaleCurveTexture.tres" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape" id=15]
 radius = 3.0
 height = 40.0
+
+[sub_resource type="Animation" id=21]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "ThrottleUpEngine"
@@ -37,12 +54,53 @@ tracks/1/keys = {
 "method": "left_moon"
 } ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="CylinderShape" id=14]
 radius = 12.0
 
+[sub_resource type="Gradient" id=19]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+lifetime_randomness = 0.2
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, -0.1, 0 )
+initial_velocity = 100.0
+angle = 360.0
+angle_random = 1.0
+scale = 7.0
+scale_curve = ExtResource( 5 )
+color_ramp = SubResource( 20 )
+
+[sub_resource type="SpatialMaterial" id=17]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=18]
+material = SubResource( 17 )
+
 [node name="RocketBody" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1093, -106, 1878 )
 collision_mask = 0
 axis_lock_motion_x = true
 axis_lock_motion_z = true
@@ -58,6 +116,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 20, 
 shape = SubResource( 15 )
 
 [node name="EngineAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 21 )
 anims/ThrottleUpEngine = SubResource( 13 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="."]
@@ -67,5 +126,11 @@ shape = SubResource( 14 )
 [node name="SuccessZone" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0 )
 
-[node name="CollisionShape3" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.9224, 0 )
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+emitting = false
+amount = 32
+lifetime = 0.1
+visibility_aabb = AABB( -7.8669, -10.8168, -7.47449, 15.867, 11.8168, 15.0329 )
+process_material = SubResource( 16 )
+draw_pass_1 = SubResource( 18 )

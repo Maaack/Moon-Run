@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/MainMenu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Theme/digital-7_35.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Theme/digital-7_25.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Theme/digital-7_72.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Theme/digital-7_48.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Theme/MainMenuTheme.tres" type="Theme" id=4]
 [ext_resource path="res://Scenes/UI/SoundButton/SoundButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/OptionsMenu/OptionsMenu.tscn" type="PackedScene" id=6]
@@ -13,7 +13,7 @@
 resource_name = "Intro"
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Main/TitleContainer/Title:visible_characters")
+tracks/0/path = NodePath("MarginContainer/Main/TitleContainer/Title:visible_characters")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 0, 7, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Main/TitleContainer/SubTitle:visible_characters")
+tracks/1/path = NodePath("MarginContainer/Main/TitleContainer/SubTitle:visible_characters")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 18, 18 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Main/ButtonContainer/Play:visible")
+tracks/2/path = NodePath("MarginContainer/Main/ButtonContainer/Play:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ false, true, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Main/ButtonContainer/Options:visible")
+tracks/3/path = NodePath("MarginContainer/Main/ButtonContainer/Options:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -61,7 +61,7 @@ tracks/3/keys = {
 "values": [ false, true, true ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Main/ButtonContainer/Credits:visible")
+tracks/4/path = NodePath("MarginContainer/Main/ButtonContainer/Credits:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -73,7 +73,7 @@ tracks/4/keys = {
 "values": [ false, true, true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Main/ButtonContainer/Exit:visible")
+tracks/5/path = NodePath("MarginContainer/Main/ButtonContainer/Exit:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -100,7 +100,7 @@ tracks/6/keys = {
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "bezier"
-tracks/0/path = NodePath("Main/TitleContainer/Title:visible_characters")
+tracks/0/path = NodePath("MarginContainer/Main/TitleContainer/Title:visible_characters")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -110,7 +110,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/1/type = "bezier"
-tracks/1/path = NodePath("Main/TitleContainer/SubTitle:visible_characters")
+tracks/1/path = NodePath("MarginContainer/Main/TitleContainer/SubTitle:visible_characters")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -120,7 +120,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Main/ButtonContainer/Play:visible")
+tracks/2/path = NodePath("MarginContainer/Main/ButtonContainer/Play:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -132,7 +132,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Main/ButtonContainer/Options:visible")
+tracks/3/path = NodePath("MarginContainer/Main/ButtonContainer/Options:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -144,7 +144,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Main/ButtonContainer/Credits:visible")
+tracks/4/path = NodePath("MarginContainer/Main/ButtonContainer/Credits:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -156,7 +156,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Main/ButtonContainer/Exit:visible")
+tracks/5/path = NodePath("MarginContainer/Main/ButtonContainer/Exit:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -195,64 +195,77 @@ autoplay = "Intro"
 anims/Intro = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[node name="Main" type="Control" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 96
+custom_constants/margin_top = 128
+custom_constants/margin_left = 96
+custom_constants/margin_bottom = 128
 
-[node name="TitleContainer" type="VBoxContainer" parent="Main"]
-anchor_right = 1.0
-margin_top = 40.0
-margin_bottom = 91.0
+[node name="Main" type="Control" parent="MarginContainer"]
+margin_left = 96.0
+margin_top = 128.0
+margin_right = 928.0
+margin_bottom = 472.0
 
-[node name="Title" type="Label" parent="Main/TitleContainer"]
-margin_right = 1024.0
-margin_bottom = 26.0
+[node name="TitleContainer" type="VBoxContainer" parent="MarginContainer/Main"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -416.0
+margin_right = 416.0
+margin_bottom = 97.0
+custom_constants/separation = 24
+
+[node name="Title" type="Label" parent="MarginContainer/Main/TitleContainer"]
+margin_right = 832.0
+margin_bottom = 46.0
 custom_fonts/font = ExtResource( 2 )
 text = "Moon run"
 align = 1
 percent_visible = 0.0
 
-[node name="SubTitle" type="Label" parent="Main/TitleContainer"]
-margin_top = 30.0
-margin_right = 1024.0
-margin_bottom = 51.0
+[node name="SubTitle" type="Label" parent="MarginContainer/Main/TitleContainer"]
+margin_top = 70.0
+margin_right = 832.0
+margin_bottom = 103.0
 custom_fonts/font = ExtResource( 3 )
-text = "for godot wild jam #48"
+text = "complete"
 align = 1
 percent_visible = 0.0
 
-[node name="ButtonContainer" type="VBoxContainer" parent="Main"]
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/Main"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -47.0
-margin_top = -104.0
-margin_right = 47.0
-margin_bottom = 104.0
+margin_left = -96.0
+margin_top = -128.0
+margin_right = 96.0
+margin_bottom = 128.0
 custom_constants/separation = 16
 
-[node name="Play" parent="Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Play" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
 margin_right = 94.0
 margin_bottom = 40.0
 text = "play"
 
-[node name="Options" parent="Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Options" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
 margin_top = 56.0
 margin_right = 94.0
 margin_bottom = 96.0
 text = "options"
 
-[node name="Credits" parent="Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Credits" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
 margin_top = 112.0
 margin_right = 94.0
 margin_bottom = 152.0
 text = "credits"
 
-[node name="Exit" parent="Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Exit" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
 margin_top = 168.0
 margin_right = 94.0
@@ -281,8 +294,8 @@ volume_db = -12.0
 autoplay = true
 bus = "Music"
 
-[connection signal="pressed" from="Main/ButtonContainer/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="Main/ButtonContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="Main/ButtonContainer/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="Main/ButtonContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

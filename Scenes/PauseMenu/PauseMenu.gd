@@ -33,7 +33,7 @@ func _on_ExitBtn_pressed():
 
 
 func _on_ConfirmRestart_confirmed():
-	SceneLoader.load_scene("res://Scenes/GameScene/GameScene.tscn")
+	SceneLoader.reload_current_scene()
 
 
 func _on_ConfirmMainMenu_confirmed():
