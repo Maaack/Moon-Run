@@ -35,7 +35,7 @@ func _on_ConfirmExit_confirmed():
 	get_tree().quit()
 
 func _on_RestartButton_pressed():
-	SceneLoader.load_scene("res://Scenes/GameScene/GameScene.tscn")
+	SceneLoader.reload_current_scene()
 
 func _on_MainMenuButton_pressed():
 	$Control/ConfirmMainMenu.popup_centered()
