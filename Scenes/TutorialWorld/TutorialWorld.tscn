@@ -1,0 +1,271 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scenes/LevelParts/EndChamber.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player/RigidBodyPlayer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/TutorialWorld/TutorialWorld.gd" type="Script" id=3]
+[ext_resource path="res://Theme/digital-7_24_white_outline.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scenes/LevelParts/LongBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/LevelParts/CubeBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LevelParts/LightPost.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Pickups/MessageZone.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/LevelParts/Tunnel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/LevelParts/LongTunnel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Pickups/OxygenPickup.tscn" type="PackedScene" id=11]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2, 4, 8 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2, 4, 28 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2, 6, 12 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 4, 32, 32 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 2, 16, 16 )
+
+[node name="TutorialWorld" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="EndChamber" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, 0 )
+
+[node name="Labels" type="Spatial" parent="."]
+
+[node name="MoveForward" type="Label3D" parent="Labels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 3.5, 0 )
+pixel_size = 0.05
+billboard = 1
+double_sided = false
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "Move Forward [%move_forward%]"
+font = ExtResource( 4 )
+
+[node name="TurnAround" type="Label3D" parent="Labels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 3.5, 0 )
+pixel_size = 0.05
+billboard = 1
+double_sided = false
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "Turn Around [Mouse]"
+font = ExtResource( 4 )
+
+[node name="MoveBackward" type="Label3D" parent="Labels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5, 3.5, 0 )
+pixel_size = 0.05
+billboard = 1
+double_sided = false
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "Move Backward [%move_back%]"
+font = ExtResource( 4 )
+
+[node name="Strafe" type="Label3D" parent="Labels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 3.5, 0 )
+pixel_size = 0.05
+billboard = 1
+double_sided = false
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "Strafe left/right [%move_left%/%move_right%]"
+font = ExtResource( 4 )
+
+[node name="Jump" type="Label3D" parent="Labels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 643, 96, 0 )
+pixel_size = 0.05
+billboard = 1
+double_sided = false
+modulate = Color( 0.768627, 0.768627, 0.768627, 1 )
+text = "Jump [%jump%]
+for joy"
+font = ExtResource( 4 )
+
+[node name="LongBox" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -10 )
+
+[node name="LongBox2" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 10 )
+
+[node name="LongBox5" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 20, 1 )
+
+[node name="LongBox3" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 12, 0 )
+
+[node name="LongBox4" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13, 12, 0 )
+
+[node name="LongBox6" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 31, 4, -13 )
+
+[node name="LongBox7" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 31, 4, 13 )
+
+[node name="LongBox9" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 55, 4, -23 )
+
+[node name="LongBox10" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 55, 4, 23 )
+
+[node name="LongBox11" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 90, 4, -23 )
+
+[node name="LongBox12" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 90, 4, 23 )
+
+[node name="LongBox8" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 12, 0 )
+
+[node name="CubeBox" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 64, 2, 0 )
+
+[node name="CubeBox2" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 64, 6, 0 )
+
+[node name="CubeBox3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 70, 2, 0 )
+
+[node name="CubeBox4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 70, 6, 0 )
+
+[node name="CubeBox5" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 67, 2, 3 )
+
+[node name="CubeBox6" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 67, 6, 3 )
+
+[node name="CubeBox7" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 67, 2, -3 )
+
+[node name="CubeBox8" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 67, 6, -3 )
+
+[node name="CubeBox9" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 2, 28 )
+
+[node name="CubeBox10" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 6, 28 )
+
+[node name="CubeBox11" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 2, 28 )
+
+[node name="CubeBox12" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 6, 28 )
+
+[node name="CubeBox13" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 2, -28 )
+
+[node name="CubeBox14" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 6, -28 )
+
+[node name="CubeBox15" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 2, -28 )
+
+[node name="CubeBox16" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 6, -28 )
+
+[node name="LightPost" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0 )
+light_color = Color( 1, 0.85098, 0.85098, 1 )
+
+[node name="LightPost4" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, 0 )
+light_color = Color( 1, 0.85098, 0.85098, 1 )
+
+[node name="LightPost2" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72.5, 0, 25 )
+light_color = Color( 1, 0.85098, 0.85098, 1 )
+
+[node name="LightPost3" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 72.5, 0, -25 )
+light_color = Color( 1, 0.85098, 0.85098, 1 )
+
+[node name="MessageZone" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 4, 0 )
+collision_shape = SubResource( 1 )
+message_text = "< lights on the left and right >
+< indicate contact with the ground >"
+message_duration = 5.0
+
+[node name="MessageZone2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 4, 0 )
+collision_shape = SubResource( 2 )
+message_text = "You can only turn your body
+when touching the ground
+sometimes strafing is easier"
+message_duration = 6.0
+
+[node name="MessageZone3" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 119.701, 6, 0 )
+collision_shape = SubResource( 3 )
+message_text = "Lights at the bottom of the helmet
+indicate remaining oxygen
+\\/ \\/ \\/ \\/ \\/"
+message_duration = 5.0
+
+[node name="MessageZone4" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 174.701, 7, 0 )
+collision_shape = SubResource( 3 )
+message_text = "Going uphill can be easier
+than walking on flatground
+when the gravity is low"
+message_duration = 6.0
+
+[node name="MessageZone5" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 356.701, 34, 0 )
+collision_shape = SubResource( 3 )
+message_text = "stay centered to
+avoid running into walls
+and pick up speed"
+message_duration = 5.0
+
+[node name="MessageZone6" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 539.701, 83, 0 )
+collision_shape = SubResource( 3 )
+message_text = "you've completed the training!"
+message_duration = 5.0
+
+[node name="Tunnel" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 134, -0.5, 0 )
+
+[node name="Tunnel2" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0, 1, 564, 78, 0 )
+
+[node name="Tunnel3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 624, 81.8, 0 )
+
+[node name="LongTunnel" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0, 1, 258, 12.5, 0 )
+
+[node name="LongTunnel2" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 444, 50, 0 )
+
+[node name="Wall" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 658, 95, 0 )
+mesh = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="OxygenPickup" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 125, 1, 0 )
+
+[node name="OxygenPickup2" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 536, 76, 0 )
+
+[connection signal="camera_x_rotated" from="Player" to="." method="_on_Player_camera_x_rotated"]
+[connection signal="camera_y_reset" from="Player" to="." method="_on_Player_camera_y_reset"]
+[connection signal="camera_y_rotated" from="Player" to="." method="_on_Player_camera_y_rotated"]
+[connection signal="human_died" from="Player" to="." method="_on_Player_human_died"]
+[connection signal="human_faced" from="Player" to="." method="_on_Player_human_faced"]
+[connection signal="left_foot_grounded" from="Player" to="." method="_on_Player_left_foot_grounded"]
+[connection signal="message_logged" from="Player" to="." method="_on_Player_message_logged"]
+[connection signal="oxygen_updated" from="Player" to="." method="_on_Player_oxygen_updated"]
+[connection signal="right_foot_grounded" from="Player" to="." method="_on_Player_right_foot_grounded"]
+[connection signal="succeeded" from="Player" to="." method="_on_Player_succeeded"]

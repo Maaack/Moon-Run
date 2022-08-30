@@ -65,7 +65,9 @@ func add_to_timer(delta : float) -> void:
 	run_timer += delta
 	var minutes = floor(run_timer / 60)
 	var seconds = run_timer - (minutes * 60.0)
-	$RunCounter.text = "%02d:%04.1f" % [minutes, seconds]
+	var new_text = "%02d:%04.1f" % [minutes, seconds]
+	if $RunCounter.text != new_text:
+		$RunCounter.text = new_text
 
 func _process(delta):
 	add_to_timer(delta)
