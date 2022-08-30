@@ -276,7 +276,7 @@ percent_visible = 0.0
 [node name="SubTitle" type="Label" parent="MarginContainer/Main/TitleContainer"]
 margin_top = 70.0
 margin_right = 832.0
-margin_bottom = 103.0
+margin_bottom = 107.0
 custom_fonts/font = ExtResource( 3 )
 text = "complete"
 align = 1

@@ -5,7 +5,7 @@ var sub_menu
 
 
 func open_sub_menu(menu : Control):
-	$Main.visible = false
+	$MarginContainer/Main.visible = false
 	menu.visible = true
 	sub_menu = menu
 	$BackButton.visible = true
@@ -32,7 +32,7 @@ func _on_BackButton_pressed():
 	if sub_menu:
 		$BackButton.visible = false
 		sub_menu.visible = false
-		$Main.visible = true
+		$MarginContainer/Main.visible = true
 		sub_menu = null
 
 func _input(event):

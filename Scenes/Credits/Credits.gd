@@ -56,6 +56,7 @@ func set_file_path(value:String):
 func set_header_and_footer():
 	$ScrollContainer/VBoxContainer/HeaderSpace.rect_min_size.y = rect_size.y
 	$ScrollContainer/VBoxContainer/FooterSpace.rect_min_size.y = rect_size.y
+	$ScrollContainer/VBoxContainer/RichTextLabel.rect_min_size.x = rect_size.x
 
 func reset():
 	$ScrollContainer.scroll_vertical = 0
