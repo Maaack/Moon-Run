@@ -14,7 +14,6 @@ func open_sub_menu(menu : Control):
 func _on_Play_pressed():
 	SceneLoader.load_scene("res://Scenes/GameScene/GameScene.tscn")
 
-
 func _on_Options_pressed():
 	open_sub_menu($OptionsMenu)
 
@@ -39,3 +38,7 @@ func _on_BackButton_pressed():
 func _input(event):
 	if (event is InputEventMouseButton or event is InputEventKey):
 		$AnimationPlayer.seek(5.0)
+
+
+func _on_Tutorial_pressed():
+	SceneLoader.load_scene("res://Scenes/TutorialScene/TutorialScene.tscn")
