@@ -41,7 +41,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 1024.0
-margin_bottom = 2656.0
+margin_bottom = 2851.0
 rect_min_size = Vector2( 1024, 0 )
 
 [node name="HeaderSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
@@ -52,7 +52,7 @@ rect_min_size = Vector2( 0, 1024 )
 [node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
 margin_top = 1028.0
 margin_right = 1024.0
-margin_bottom = 1628.0
+margin_bottom = 1823.0
 rect_min_size = Vector2( 1024, 0 )
 focus_mode = 2
 size_flags_horizontal = 3
@@ -65,6 +65,9 @@ bbcode_text = "[center]
 
 ### Programming
 Marek  
+Tomy  
+
+### 3D Art
 Tomy  
 
 ### SFX and Composition
@@ -81,12 +84,22 @@ Author: [url=http://www.styleseven.com/]Style-7[/url]
 Source: [url=https://www.1001fonts.com/digital-7-font.html]1001Fonts : digital-7-font.html[/url]  
 License: [url=http://www.styleseven.com/]Free for personal use[/url]
 
+### Images
+#### Icon
+Author: [url=https://labs.openai.com/]Dall-E AI[/url]  
+Source: [url=https://labs.openai.com/]openai.com[/url]  
+License: [url=https://openai.com/api/policies/sharing-publication/#content-co-authored-with-the-openai-api-policy]Attribution[/url]  
 
 ## Tools
 #### Godot
 Author: [url=https://godotengine.org/contact]Juan Linietsky, Ariel Manzur, and contributors[/url]  
 Source: [url=https://godotengine.org/]godotengine.org[/url]  
 License: [url=https://github.com/godotengine/godot/blob/master/LICENSE.txt]MIT License[/url] 
+
+#### Heightmap terrain
+Author: [url=https://github.com/Zylann]Zylann[/url]  
+Source: [url=https://godotengine.org/asset-library/asset/231]godotengine.org[/url]  
+License: [url=https://github.com/Zylann/godot_heightmap_plugin/blob/master/LICENSE.md]MIT License[/url] 
 
 #### Git
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
@@ -107,6 +120,9 @@ Marek
 Marek  
 Tomy  
 
+### 3D Art
+Tomy  
+
 ### SFX and Composition
 Twitchywhalez  
 Mike  
@@ -121,10 +137,20 @@ Author: Style-7
 Source: 1001Fonts : digital-7-font.html  
 License: Free for personal use
 
+### Images
+#### Icon
+Author: Dall-E AI  
+Source: openai.com  
+License: Attribution  
 
 ## Tools
 #### Godot
 Author: Juan Linietsky, Ariel Manzur, and contributors  
+Source: godotengine.org  
+License: MIT License 
+
+#### Heightmap terrain
+Author: Zylann  
 Source: godotengine.org  
 License: MIT License 
 
@@ -143,9 +169,9 @@ scroll_active = false
 selection_enabled = true
 
 [node name="FooterSpace" type="Control" parent="ScrollContainer/VBoxContainer"]
-margin_top = 1632.0
+margin_top = 1827.0
 margin_right = 1024.0
-margin_bottom = 2656.0
+margin_bottom = 2851.0
 rect_min_size = Vector2( 0, 1024 )
 
 [node name="ScrollResetTimer" type="Timer" parent="."]
