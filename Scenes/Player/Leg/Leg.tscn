@@ -14,6 +14,8 @@ walk_force = 10.4
 [node name="Footstep" type="AudioStreamPlayer3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 stream = SubResource( 1 )
+unit_db = 4.0
+bus = "SFX"
 
 [node name="RayCast" type="RayCast" parent="."]
 enabled = true

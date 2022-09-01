@@ -5,10 +5,11 @@ var success_screen_packed = preload("res://Scenes/SuccessScreen/SuccessScreen.ts
 var left_foot_down : bool = false
 var right_foot_down : bool = false
 var rumble_in_open_space = 0.1
+var leg_rumble_mod = 1.3
 
 func recalculate_rumble():
 	var rumble_value : float = rumble_in_open_space
-	rumble_value += int(left_foot_down) + int(right_foot_down)
+	rumble_value += (int(left_foot_down) + int(right_foot_down)) * leg_rumble_mod
 	rumble_value /= 2.0 + rumble_in_open_space
 	_set_rumble_linear_2_volume(rumble_value)
 
