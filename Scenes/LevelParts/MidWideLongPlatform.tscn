@@ -30,33 +30,33 @@ shape = SubResource( 1 )
 mesh = SubResource( 2 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="." index="2"]
-transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -1.6, -34 )
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -1.6, -34.125 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -1.6, 34 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -1.6, 34.125 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="." index="4"]
-transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 66, -1.6, 0 )
+transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 66.125, -1.6, 0 )
 shape = SubResource( 4 )
 
 [node name="CollisionShape5" type="CollisionShape" parent="." index="5"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -66, -1.6, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -66.125, -1.6, 0 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="." index="6"]
-transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -1.6, -34 )
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -1.6, -34.125 )
 mesh = SubResource( 5 )
 
 [node name="MeshInstance3" type="MeshInstance" parent="." index="7"]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -1.6, 34 )
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, -1.6, 34.125 )
 mesh = SubResource( 5 )
 
 [node name="MeshInstance4" type="MeshInstance" parent="." index="8"]
-transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 66, -1.6, 0 )
+transform = Transform( 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 66.125, -1.6, 0 )
 mesh = SubResource( 6 )
 
 [node name="MeshInstance5" type="MeshInstance" parent="." index="9"]
-transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -66, -1.6, 0 )
+transform = Transform( 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -66.125, -1.6, 0 )
 mesh = SubResource( 6 )
