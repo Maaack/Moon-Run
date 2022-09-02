@@ -1,19 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/MainMenu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Theme/digital-7_72.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Theme/digital-7_48.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Theme/digital-7_128_white_outline.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Theme/MainMenuTheme.tres" type="Theme" id=4]
 [ext_resource path="res://Scenes/UI/SoundButton/SoundButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/OptionsMenu/OptionsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Originals/Music/Main_Menu_-_GWJM.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/Credits/Credits.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Originals/Images/PixelatedBackground.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Intro"
 length = 5.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("MarginContainer/Main/ButtonContainer/Play:visible")
+tracks/0/path = NodePath("MarginContainer2/Control/ButtonContainer/Play:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ false, true, true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MarginContainer/Main/ButtonContainer/Options:visible")
+tracks/1/path = NodePath("MarginContainer2/Control/ButtonContainer/Options:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -37,7 +37,7 @@ tracks/1/keys = {
 "values": [ false, true, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MarginContainer/Main/ButtonContainer/Credits:visible")
+tracks/2/path = NodePath("MarginContainer2/Control/ButtonContainer/Credits:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ false, true, true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("MarginContainer/Main/ButtonContainer/Exit:visible")
+tracks/3/path = NodePath("MarginContainer2/Control/ButtonContainer/Exit:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -73,7 +73,7 @@ tracks/4/keys = {
 "values": [ -12.0, -6.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("MarginContainer/Main/ButtonContainer/Tutorial:visible")
+tracks/5/path = NodePath("MarginContainer2/Control/ButtonContainer/Tutorial:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -109,30 +109,122 @@ tracks/7/keys = {
 "values": [ 0.0, 0.0, 1.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("MarginContainer/Main/TitleContainer/Title:visible_characters")
+[sub_resource type="Animation" id=3]
+resource_name = "IntroNoExit"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer2/Control/ButtonContainer/Play:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0, 3, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
 }
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("MarginContainer/Main/TitleContainer/SubTitle:visible_characters")
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer2/Control/ButtonContainer/Options:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"times": PoolRealArray( 0, 4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MarginContainer/Main/ButtonContainer/Play:visible")
+tracks/2/path = NodePath("MarginContainer2/Control/ButtonContainer/Credits:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Music:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 4.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -12.0, -6.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MarginContainer2/Control/ButtonContainer/Tutorial:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("MarginContainer/Main/TitleContainer/Title:percent_visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.7, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 1.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MarginContainer/Main/TitleContainer/SubTitle:percent_visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1, 2.8, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer2/Control/ButtonContainer/Play:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer2/Control/ButtonContainer/Options:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MarginContainer2/Control/ButtonContainer/Credits:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -144,7 +236,7 @@ tracks/2/keys = {
 "values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("MarginContainer/Main/ButtonContainer/Options:visible")
+tracks/3/path = NodePath("MarginContainer2/Control/ButtonContainer/Exit:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -156,7 +248,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("MarginContainer/Main/ButtonContainer/Credits:visible")
+tracks/4/path = NodePath("Music:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -165,10 +257,10 @@ tracks/4/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ -12.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("MarginContainer/Main/ButtonContainer/Exit:visible")
+tracks/5/path = NodePath("MarginContainer2/Control/ButtonContainer/Tutorial:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -180,7 +272,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Music:volume_db")
+tracks/6/path = NodePath("MarginContainer/Main/TitleContainer/Title:percent_visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -189,39 +281,15 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -12.0 ]
+"values": [ 0.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("MarginContainer/Main/ButtonContainer/Tutorial:visible")
+tracks/7/path = NodePath("MarginContainer/Main/TitleContainer/SubTitle:percent_visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("MarginContainer/Main/TitleContainer/Title:percent_visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("MarginContainer/Main/TitleContainer/SubTitle:percent_visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -238,93 +306,115 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 9 )
+expand = true
+flip_h = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Intro"
 anims/Intro = SubResource( 1 )
+anims/IntroNoExit = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 96
+custom_constants/margin_right = 128
 custom_constants/margin_top = 128
-custom_constants/margin_left = 96
+custom_constants/margin_left = 128
 custom_constants/margin_bottom = 128
 
 [node name="Main" type="Control" parent="MarginContainer"]
-margin_left = 96.0
+margin_left = 128.0
 margin_top = 128.0
-margin_right = 928.0
+margin_right = 896.0
 margin_bottom = 472.0
 
 [node name="TitleContainer" type="VBoxContainer" parent="MarginContainer/Main"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -416.0
-margin_right = 416.0
-margin_bottom = 97.0
-custom_constants/separation = 24
+margin_right = 496.0
+margin_bottom = 178.0
+custom_constants/separation = 48
 
 [node name="Title" type="Label" parent="MarginContainer/Main/TitleContainer"]
-margin_right = 832.0
-margin_bottom = 46.0
+margin_right = 496.0
+margin_bottom = 77.0
+custom_colors/font_color = Color( 0.337255, 1, 0, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "Moon run"
 align = 1
 percent_visible = 0.0
 
 [node name="SubTitle" type="Label" parent="MarginContainer/Main/TitleContainer"]
-margin_top = 70.0
-margin_right = 832.0
-margin_bottom = 107.0
-custom_fonts/font = ExtResource( 3 )
+margin_top = 125.0
+margin_right = 496.0
+margin_bottom = 202.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "complete"
 align = 1
 percent_visible = 0.0
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/Main"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -96.0
-margin_top = -128.0
-margin_right = 96.0
-margin_bottom = 128.0
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 224
+custom_constants/margin_top = 128
+custom_constants/margin_left = 224
+custom_constants/margin_bottom = 128
+
+[node name="Control" type="Control" parent="MarginContainer2"]
+margin_left = 224.0
+margin_top = 128.0
+margin_right = 800.0
+margin_bottom = 472.0
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer2/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -213.0
+margin_top = -264.0
 custom_constants/separation = 16
 
-[node name="Play" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Play" parent="MarginContainer2/Control/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
-margin_right = 94.0
+margin_right = 213.0
 margin_bottom = 40.0
 text = "play"
 
-[node name="Tutorial" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Tutorial" parent="MarginContainer2/Control/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
-margin_right = 94.0
+margin_right = 213.0
 margin_bottom = 40.0
 text = "tutorial"
 
-[node name="Options" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Options" parent="MarginContainer2/Control/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
-margin_top = 56.0
-margin_right = 94.0
-margin_bottom = 96.0
+margin_right = 213.0
+margin_bottom = 40.0
 text = "options"
 
-[node name="Credits" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Credits" parent="MarginContainer2/Control/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
-margin_top = 112.0
-margin_right = 94.0
-margin_bottom = 152.0
+margin_right = 213.0
+margin_bottom = 40.0
 text = "credits"
 
-[node name="Exit" parent="MarginContainer/Main/ButtonContainer" instance=ExtResource( 5 )]
+[node name="Exit" parent="MarginContainer2/Control/ButtonContainer" instance=ExtResource( 5 )]
 visible = false
-margin_top = 168.0
-margin_right = 94.0
-margin_bottom = 208.0
+margin_right = 213.0
+margin_bottom = 40.0
 text = "exit"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.12549, 0.12549, 0.12549, 0.627451 )
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
@@ -348,9 +438,9 @@ volume_db = -12.0
 autoplay = true
 bus = "Music"
 
-[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Play" to="." method="_on_Play_pressed"]
-[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Tutorial" to="." method="_on_Tutorial_pressed"]
-[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="MarginContainer/Main/ButtonContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="MarginContainer2/Control/ButtonContainer/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="MarginContainer2/Control/ButtonContainer/Tutorial" to="." method="_on_Tutorial_pressed"]
+[connection signal="pressed" from="MarginContainer2/Control/ButtonContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="MarginContainer2/Control/ButtonContainer/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="MarginContainer2/Control/ButtonContainer/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

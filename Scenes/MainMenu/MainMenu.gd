@@ -9,6 +9,7 @@ func open_sub_menu(menu : Control):
 	menu.visible = true
 	sub_menu = menu
 	$BackButton.visible = true
+	$ColorRect.visible = true
 
 
 func _on_Play_pressed():
@@ -24,12 +25,17 @@ func _on_Credits_pressed():
 	$Credits.set_process(true)
 
 
+func _ready():
+	if OS.has_feature("web"):
+		$AnimationPlayer.play("IntroNoExit")
+
 func _on_Exit_pressed():
 	get_tree().quit()
 
 
 func _on_BackButton_pressed():
 	if sub_menu:
+		$ColorRect.visible = false
 		$BackButton.visible = false
 		sub_menu.visible = false
 		$MarginContainer/Main.visible = true

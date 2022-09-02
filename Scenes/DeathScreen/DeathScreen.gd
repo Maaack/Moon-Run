@@ -42,3 +42,7 @@ func _on_MainMenuButton_pressed():
 
 func _on_ExitButton_pressed():
 	$Control/ConfirmExit.popup_centered()
+
+func _ready():
+	if OS.has_feature("web"):
+		$Control/ButtonsContainer/ExitButton.hide()

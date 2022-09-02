@@ -43,3 +43,7 @@ func _on_ConfirmMainMenu_confirmed():
 
 func _on_ConfirmExit_confirmed():
 	get_tree().quit()
+
+func _ready():
+	if OS.has_feature("web"):
+		$Control/ButtonsContainer/ExitBtn.hide()
